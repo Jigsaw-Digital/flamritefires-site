@@ -3,6 +3,18 @@
 // Include ACF Block Field Definitions
 require_once get_template_directory() . '/acf/acf-blocks.php';
 
+// Include custom post types
+require_once get_template_directory() . '/inc/post-types.php';
+
+// Include testimonials ACF fields
+require_once get_template_directory() . '/acf/testimonials.php';
+
+// Include testimonials slider block ACF fields
+require_once get_template_directory() . '/acf/blocks/testimonials-slider.php';
+
+// Include sample testimonials creator (remove in production)
+require_once get_template_directory() . '/inc/sample-testimonials.php';
+
 // Theme Setup
 add_action('after_setup_theme', 'sx_theme_setup');
 function sx_theme_setup() {
@@ -58,6 +70,71 @@ function sx_theme_setup() {
 add_action('init', 'sx_custom_new_menu');
 function sx_custom_new_menu(){
     register_nav_menu('main-menu', 'Main Menu');
+}
+
+// Menu Walker Classes for Greycaine Theme
+if (!class_exists('Greycaine_Desktop_Walker')) {
+    class Greycaine_Desktop_Walker extends Walker_Nav_Menu {
+        function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+            $classes = empty($item->classes) ? array() : (array) $item->classes;
+            $has_children = in_array('menu-item-has-children', $classes);
+            
+            $atts = array();
+            $atts['href'] = !empty($item->url) ? $item->url : '';
+            
+            if ($has_children) {
+                $attributes = ' class="px-4 text-sm uppercase tracking-[10px] xl:text-lg relative cursor-pointer text-white hover:text-white/70" onmouseenter="openMegaMenu()" onmouseleave="closeMegaMenu()"';
+                $output .= '<span' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</span>';
+            } else {
+                $attributes = ' href="' . esc_url($atts['href']) . '" class="px-4 text-sm uppercase tracking-[8px] relative text-white hover:text-white/70"';
+                $output .= '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
+            }
+        }
+    }
+}
+
+if (!class_exists('Greycaine_Mobile_Walker')) {
+    class Greycaine_Mobile_Walker extends Walker_Nav_Menu {
+        function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+            $classes = empty($item->classes) ? array() : (array) $item->classes;
+            $has_children = in_array('menu-item-has-children', $classes);
+            
+            $atts = array();
+            $atts['href'] = !empty($item->url) ? $item->url : '';
+            
+            if ($has_children) {
+                $output .= '<div class="text-white">';
+                $output .= '<div class="flex items-center justify-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="mobileSubMenuOpen = !mobileSubMenuOpen">';
+                $output .= '<span>' . apply_filters('the_title', $item->title, $item->ID) . '</span>';
+                $output .= '<svg x-show="!mobileSubMenuOpen" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>';
+                $output .= '<svg x-show="mobileSubMenuOpen" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>';
+                $output .= '</div>';
+                $output .= '</div>';
+            } else {
+                $attributes = ' href="' . esc_url($atts['href']) . '" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false"';
+                $output .= '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
+            }
+        }
+    }
+}
+
+// Default menu fallbacks
+function greycaine_default_menu() {
+    echo '<div class="flex items-center gap-2 xl:gap-4">';
+    echo '<a href="#" class="px-4 text-sm uppercase tracking-[10px] xl:text-lg relative text-white hover:text-white/70">Products</a>';
+    echo '<a href="/bespoke" class="px-4 text-sm uppercase tracking-[10px] xl:text-lg relative text-white hover:text-white/70">Bespoke</a>';
+    echo '<a href="/trade" class="px-4 text-sm uppercase tracking-[10px] xl:text-lg relative text-white hover:text-white/70">Trade</a>';
+    echo '<a href="/category/clearance" class="px-4 text-sm uppercase tracking-[10px] xl:text-lg relative text-white hover:text-white/70">Clearance</a>';
+    echo '</div>';
+}
+
+function greycaine_mobile_default_menu() {
+    echo '<div class="flex flex-col space-y-3">';
+    echo '<div class="text-white"><div class="flex items-center justify-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="mobileSubMenuOpen = !mobileSubMenuOpen"><span>Products</span><svg x-show="!mobileSubMenuOpen" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div></div>';
+    echo '<a href="/bespoke" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">Bespoke</a>';
+    echo '<a href="/trade" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">Trade</a>';
+    echo '<a href="/category/clearance" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">Clearance</a>';
+    echo '</div>';
 }
 
 // Custom Post Type for Coverage Points
@@ -1049,6 +1126,106 @@ function sx_block_init()
         'category'          => 'layout',
         'icon'              => 'clock',
         'keywords'          => array('reactive', 'maintenance', 'timeline', 'rollover', 'hover'),
+        'supports'          => $supports,
+    ));
+    
+    // Greycaine Layout Blocks
+    acf_register_block_type(array(
+        'name'              => 'dynamic-hero',
+        'title'             => __('Dynamic Hero'),
+        'description'       => __('Advanced hero section with video/image support, multiple slides, and extensive customization options.'),
+        'render_template'   => 'template-parts/blocks/dynamic-hero.php',
+        'category'          => 'layout',
+        'icon'              => 'format-video',
+        'keywords'          => array('hero', 'video', 'slider', 'contact', 'form', 'advanced', 'dynamic'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-hero',
+        'title'             => __('Layout Hero (Legacy)'),
+        'description'       => __('Legacy hero section with image slider and contact form.'),
+        'render_template'   => 'template-parts/blocks/layout-hero.php',
+        'category'          => 'layout',
+        'icon'              => 'cover-image',
+        'keywords'          => array('hero', 'slider', 'contact', 'form', 'legacy'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-video-hero',
+        'title'             => __('Layout Video Hero'),
+        'description'       => __('Hero section with video background and contact form.'),
+        'render_template'   => 'template-parts/blocks/layout-video-hero.php',
+        'category'          => 'layout',
+        'icon'              => 'video-alt3',
+        'keywords'          => array('hero', 'video', 'contact', 'form'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-content-image',
+        'title'             => __('Layout Content Image'),
+        'description'       => __('Content section with text and offset images.'),
+        'render_template'   => 'template-parts/blocks/layout-content-image.php',
+        'category'          => 'layout',
+        'icon'              => 'align-pull-left',
+        'keywords'          => array('content', 'image', 'text', 'offset'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-slider',
+        'title'             => __('Layout Slider'),
+        'description'       => __('Image slider with categories and links.'),
+        'render_template'   => 'template-parts/blocks/layout-slider.php',
+        'category'          => 'layout',
+        'icon'              => 'images-alt2',
+        'keywords'          => array('slider', 'images', 'categories', 'grid'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-product',
+        'title'             => __('Layout Product'),
+        'description'       => __('Product showcase with image slider and descriptions.'),
+        'render_template'   => 'template-parts/blocks/layout-product.php',
+        'category'          => 'layout',
+        'icon'              => 'products',
+        'keywords'          => array('product', 'showcase', 'slider', 'gallery'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-products-by-category',
+        'title'             => __('Layout Products by Category'),
+        'description'       => __('Display products filtered by category with breadcrumbs.'),
+        'render_template'   => 'template-parts/blocks/layout-products-by-category.php',
+        'category'          => 'layout',
+        'icon'              => 'category',
+        'keywords'          => array('products', 'category', 'grid', 'breadcrumbs'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'layout-contact',
+        'title'             => __('Layout Contact'),
+        'description'       => __('Contact section layout.'),
+        'render_template'   => 'template-parts/blocks/layout-contact.php',
+        'category'          => 'layout',
+        'icon'              => 'email-alt',
+        'keywords'          => array('contact', 'section'),
+        'supports'          => $supports,
+    ));
+    
+    acf_register_block_type(array(
+        'name'              => 'testimonials-slider',
+        'title'             => __('Testimonials Slider'),
+        'description'       => __('A slider to display customer testimonials with customizable styling.'),
+        'render_template'   => 'template-parts/blocks/testimonials-slider.php',
+        'category'          => 'layout',
+        'icon'              => 'format-quote',
+        'keywords'          => array('testimonials', 'slider', 'reviews', 'quotes', 'customers'),
         'supports'          => $supports,
     ));
 }

@@ -10,19 +10,19 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#750639',
-          light: '#8C1D4F',
-          dark: '#5E0023',
+          DEFAULT: '#E85319', // Greycaine primary green
+          light: '#4d4d4d',
+          dark: '#C60003',
         },
         secondary: {
-          DEFAULT: '#daa521', 
-          light: '#F6BA32',
-          dark: '#BE9010',
+          DEFAULT: '#B8A082', // Greycaine secondary beige/tan
+          light: '#CDB8A0',
+          dark: '#A08764',
         },
         tertiary: {
-          DEFAULT: '#008080',
-          light: '#00A3A3',
-          dark: '#006666',
+          DEFAULT: '#F5F3F0', // Greycaine tertiary light cream
+          light: '#FDFCFA',
+          dark: '#E8E3DC',
         },
       },
       // Add container query support

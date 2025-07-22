@@ -20,7 +20,7 @@
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', strpos($_SERVER['HTTP_HOST'], 'test') !== false ? 'asset_dev' : 'am_dev');
+define('DB_NAME', strpos($_SERVER['HTTP_HOST'], 'test') !== false ? 'flame_2025_dev' : 'am_dev');
 
 /** Database username */
 define('DB_USER', strpos($_SERVER['HTTP_HOST'], 'test') !== false ? 'root' : 'forge');
