@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap');
+@import 'tailwindcss';
+
+@config '../tailwind.config.js'; 
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+/* @import url("https://fonts.cdnfonts.com/css/open-sans"); */
+
+h1,
+h2 {
+  font-family: "Open Sans Light", sans-serif;
+}
+
+p {
+  /* font-family: "Open Sans" !important; */
+  font-family: "Open Sans Light", sans-serif;
+}
+
+.euphoria-script-regular {
+  font-family: "Dancing Script", cursive!important;
+  font-optical-sizing: auto; 
+  font-weight: 400;
+  font-style: normal;
+}
+
+.yarl__container {
+  background: #172435e3 !important;
+}
+
+/**
+* Bespoke 
+**/
+.cc-zizag {
+  border-image-repeat: repeat stretch;
+  border-image-source: url("../images/zigzag.svg");
+  border-top-style: solid;
+}
+
+.cc-top {
+  border-image-slice: 27 0 0 0;
+  border-image-width: 8px 0px 0px 0px;
+  border-image-outset: 5px 0px 0px 0px;
+}
+
+.cc-bottom {
+  border-image-slice: 27 0 0 0;
+  border-image-width: 8px 0px 0px 0px;
+  border-image-outset: 5px 0px 0px 0px;
+}
+
+.cc-zizag-secondary {
+  border-image-source: url("../images/zigzag_red.svg");
+}
+
+.cc-zizag-gold {
+  border-image-source: url("../images/zigzag_gold.svg");
+}
+
+/**
+* JD Sizes
+**/
+
+/**
+* JD
+**/
+.jd-content-white {
+  @apply text-white;
+}
+
+.jd-content p:first-child {
+  font-weight: bold;
+}
+
+.jd-content h2 {
+  @apply text-lg xl:text-xl lg:text-2xl mb-5 font-bold uppercase;
+}
+
+.jd-content h4 strong {
+  @apply text-[#9d3b39];
+}
+
+.jd-content p,
+.jd-content div {
+  @apply text-[12px] xl:text-lg mb-3 leading-6 xl:leading-8;
+}
+
+.jd-content li {
+  @apply list-disc ml-3 list-[#cab069] text-left text-[12px] xl:text-lg;
+}
+
+.jd-content a:not(.tracking-widest) {
+  @apply underline;
+}
+
+.jd-content img {
+  @apply w-full! mt-2;
+}
+
+.jd-opp-white {
+  @apply text-[#172334];
+}
+
+.jd-container {
+  height: 50%; /* Fallback */
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+}
+
+/**
+* JD Modifiers
+**/
+.jd-content-gold-title h2 {
+  @apply text-[#cab069];
+}
+
+
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.boat-intro h4 {
+  font-size: 15px;
+}
+
+
+.boat-schematics img {
+max-height: 85px;
+object-fit: fill;
+}
+
+.booking-message {
+	color: #971e2f;
+}
+
+.booking-message  a{
+text-decoration: underline;
+color:#000;
+}
+
+.rdp-button {
+    border: 1px solid white !important;
+}
+
+.jd-content-box h2 {
+	
+	font-family: "Open Sans Light", sans-serif!important;
+	margin-bottom: 10px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+
+/** HBOOK **/
+
+.hb-detail-field, .hb-input-datepicker, .hb-adults, .hb-children, #hb-option-1-multi-accom-1 {
+    margin-left:unset!important;
+}
+
+.hb-detail-field, .hb-input-datepicker, .hb-adults, .hb-children, #hb-option-1-multi-accom-1 {
+    @apply text-[#172334] max-w-[350px] lg:max-w-[400px] bg-white px-5 py-2.5 border border-[#47a1d9] rounded-sm block mx-auto;
+}
+
+.hb-search-button-wrapper input, .hb-confirm-button input, .gform_button {
+    @apply bg-[#3aa2eb] text-white hover:bg-[#3aa2eb]/90 cursor-pointer h-[43px] rounded-sm;
+}
+
+.gform_button {
+  @apply px-3;
+}
+
+.hb-title-search-form {
+    @apply hidden;
+}
+
+.book-bar label { 
+    @apply text-white!;
+} 
+
+.hb-multi-accom-choices, .hb-confirm-button input {
+    @apply mt-4 px-4;
+}
+
+.book-bar-results .hb-search-no-result {
+    @apply text-white! my-4
+}
+
+.book-bar-results .hb-booking-search-form, .book-bar-results .hb-search-result-title-section, .book-bar-results .hb-title, .book-bar-results .hb-multiple-option, .book-bar-results .hb-step-button input
+, .book-bar-results .hb-payment-info-wrapper, .book-bar-results .hb-options-total-price, .book-bar-results .hb-confirm-area {
+   @apply text-white!;
+}
+
+.book-bar-results .hb-options-gap {
+  display: none!important;
+}
+
+.book-bar-results .hb-accom-list, .book-bar-results .hb-booking-details-form {
+  max-width: 100%!important;
+}
+
+.hb-multi-accom-choices {
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.book-bar-results .hb-confirm-button input {
+  @apply px-3
+}
+
+.hb-previous-step {
+  @apply mt-4;
+}
+
+.book-bar-results .b-booking-details-form, .book-bar-results  #hbook-booking-form-1 {
+  @apply my-4!;
+}
+
+.gform_body, .gform_footer, .gform_validation_errors, .gform_confirmation_message {
+  @apply max-w-[750px] mx-auto!;
+}
+
+.gform_confirmation_message {
+  @apply text-center mt-4;
+}
+
+.ginput_container input, .ginput_container textarea {
+    @apply text-[#172334] max-w-[350px] lg:max-w-full lg:w-full bg-white px-5 py-2.5 border border-[#47a1d9] rounded-sm block mx-auto;
+}
+
+.gform_body {
+  @apply mt-8;
+} 
+
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after, .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after  {
+  display: none!important;
+}
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: var(--swiper-navigation-sides-offset, -40px)!important;
+    right: auto;
+}
+
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+    right: var(--swiper-navigation-sides-offset, -40px)!important;
+    left: auto;
+}
+
+@media (max-width: 800px) {
+    .hb-search-fields {
+        display: grid;
+    }
+
+    .hb-check-dates-wrapper, .hb-accom-number-wrapper, .hb-people-wrapper {
+      width: calc(100%)!important;
+      margin:0px auto;
+    }
+
+    .hb-detail-field, .hb-input-datepicker, .hb-adults, .hb-children, #hb-option-1-multi-accom-1 {
+      max-width: 100%!important;
+    }
+
+    #hb-form-1-hb-search-form-submit {
+      @apply mt-4 px-4;
+    } 
+
+    .gform_body, .gform_footer, .gform_validation_errors, .gform_confirmation_message {
+      @apply px-6!
+    }
+
+    .hb-change-search-wrapper input {
+      @apply mt-3 mb-6 px-3;
+    }
+
+    .hb-booking-search-form, .hb-accom-step-wrapper, .hb-intermediate-step-wrapper, .hb-booking-details-form {
+      @apply px-6;
+    }
+
+    .swiper-button-prev, .swiper-rtl .swiper-button-next {
+      left: var(--swiper-navigation-sides-offset, -30px)!important;
+      right: auto;
+    }
+
+    .swiper-button-next, .swiper-rtl .swiper-button-prev {
+        right: var(--swiper-navigation-sides-offset, -30px)!important;
+        left: auto;
+    }
+}
+
+
+     .hb-dp-week div:nth-child(3) > a,  .hb-dp-week div:nth-child(4) > a,  .hb-dp-week div:nth-child(7) > a {
+        background: #ddd !important;
+        color:#888;
+    }
+
+    .sub-menu {
+      display: none;
+    }
+    .group:has(> .sub-menu):hover {
+      display: block;
+    }
+
+.open {
+  display: block!important;
+} 

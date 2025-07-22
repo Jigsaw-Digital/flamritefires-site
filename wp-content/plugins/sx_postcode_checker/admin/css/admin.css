@@ -1,0 +1,74 @@
+.sx-admin-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.sx-admin-main {
+    flex: 1;
+    min-width: 500px;
+}
+
+.sx-admin-sidebar {
+    width: 300px;
+}
+
+.sx-settings-section {
+    background: white;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+    padding: 15px 20px;
+}
+
+.sx-settings-section h2 {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.sx-conditional-settings {
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    margin-top: 10px;
+    padding: 15px;
+}
+
+.sx-admin-box {
+    background: white;
+    border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    margin-bottom: 20px;
+    padding: 15px;
+}
+
+.sx-admin-box h3 {
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.sx-admin-box code {
+    display: block;
+    padding: 10px;
+    background: #f6f6f6;
+    margin: 10px 0;
+}
+
+.sx-media-upload {
+    background: #f8f8f8;
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 15px;
+    border-radius: 3px;
+}
+
+#sx-selected-csv-file {
+    margin: 10px 0;
+    font-style: italic;
+}
+
+#sx-save-csv-button {
+    margin-top: 5px;
+}
