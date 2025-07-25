@@ -338,6 +338,57 @@ function register_products_post_type() {
     ));
 }
 
+// Custom Post Type for Brochures
+add_action('init', 'register_brochures_post_type');
+function register_brochures_post_type() {
+    register_post_type('brochures', array(
+        'labels' => array(
+            'name' => 'Brochures',
+            'singular_name' => 'Brochure',
+            'add_new' => 'Add New Brochure',
+            'add_new_item' => 'Add New Brochure',
+            'edit_item' => 'Edit Brochure',
+            'new_item' => 'New Brochure',
+            'view_item' => 'View Brochure',
+            'search_items' => 'Search Brochures',
+            'not_found' => 'No brochures found',
+            'not_found_in_trash' => 'No brochures found in trash'
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_icon' => 'dashicons-media-document',
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'rewrite' => array('slug' => 'brochures'),
+        'show_in_rest' => true
+    ));
+    
+    // Register Brochure Categories taxonomy
+    register_taxonomy('brochure_category', 'brochures', array(
+        'labels' => array(
+            'name' => 'Brochure Categories',
+            'singular_name' => 'Brochure Category',
+            'search_items' => 'Search Categories',
+            'all_items' => 'All Categories',
+            'parent_item' => 'Parent Category',
+            'parent_item_colon' => 'Parent Category:',
+            'edit_item' => 'Edit Category',
+            'update_item' => 'Update Category',
+            'add_new_item' => 'Add New Category',
+            'new_item_name' => 'New Category Name',
+            'menu_name' => 'Categories'
+        ),
+        'hierarchical' => true,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'brochure-category'),
+        'show_in_rest' => true
+    ));
+}
+
 // Custom Post Type for Projects
 add_action('init', 'register_projects_post_type');
 function register_projects_post_type() {
@@ -793,6 +844,116 @@ function register_products_fields() {
     }
 }
 
+// Add Brochures ACF Fields
+add_action('acf/init', 'register_brochures_fields');
+function register_brochures_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_brochures',
+            'title' => 'Brochure Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_brochure_file',
+                    'label' => 'Brochure File',
+                    'name' => 'brochure_file',
+                    'type' => 'file',
+                    'instructions' => 'Upload the brochure PDF file',
+                    'required' => 1,
+                    'return_format' => 'array',
+                    'library' => 'all',
+                    'mime_types' => 'pdf'
+                ),
+                array(
+                    'key' => 'field_brochure_description',
+                    'label' => 'Brochure Description',
+                    'name' => 'brochure_description',
+                    'type' => 'textarea',
+                    'instructions' => 'Brief description of the brochure content',
+                    'required' => 0,
+                    'rows' => 4,
+                    'new_lines' => 'wpautop'
+                ),
+                array(
+                    'key' => 'field_brochure_featured',
+                    'label' => 'Featured Brochure',
+                    'name' => 'featured_brochure',
+                    'type' => 'true_false',
+                    'instructions' => 'Mark as featured to highlight this brochure',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No'
+                )
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'brochures'
+                    )
+                )
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label'
+        ));
+    }
+}
+
+// Add Brochure Category ACF Fields
+add_action('acf/init', 'register_brochure_category_fields');
+function register_brochure_category_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_brochure_category',
+            'title' => 'Brochure Category Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_brochure_category_image',
+                    'label' => 'Category Image',
+                    'name' => 'category_image',
+                    'type' => 'image',
+                    'instructions' => 'Upload an image for this brochure category',
+                    'required' => 0,
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all'
+                ),
+                array(
+                    'key' => 'field_brochure_category_featured',
+                    'label' => 'Featured Category',
+                    'name' => 'featured_category',
+                    'type' => 'true_false',
+                    'instructions' => 'Mark as featured to highlight this category',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No'
+                )
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'taxonomy',
+                        'operator' => '==',
+                        'value' => 'brochure_category'
+                    )
+                )
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label'
+        ));
+    }
+}
+
 // Add Product Category ACF Fields
 add_action('acf/init', 'register_product_category_fields');
 function register_product_category_fields() {
@@ -1084,6 +1245,137 @@ function acf_google_map_api() {
     if ($api_key) {
         acf_update_setting('google_api_key', $api_key);
     }
+}
+
+// Contact Form Handler
+add_action('admin_post_contact_form_submit', 'handle_contact_form_submission');
+add_action('admin_post_nopriv_contact_form_submit', 'handle_contact_form_submission');
+
+function handle_contact_form_submission() {
+    // Verify nonce
+    if (!wp_verify_nonce($_POST['contact_nonce'], 'contact_form_nonce')) {
+        wp_die('Security check failed. Please try again.');
+    }
+    
+    // Sanitize form data
+    $first_name = sanitize_text_field($_POST['first_name']);
+    $last_name = sanitize_text_field($_POST['last_name']);
+    $email = sanitize_email($_POST['email']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $subject = sanitize_text_field($_POST['subject']);
+    $message = sanitize_textarea_field($_POST['message']);
+    $privacy_consent = isset($_POST['privacy_consent']) ? true : false;
+    
+    // Validate required fields
+    $errors = array();
+    
+    if (empty($first_name)) {
+        $errors[] = 'First name is required.';
+    }
+    
+    if (empty($last_name)) {
+        $errors[] = 'Last name is required.';
+    }
+    
+    if (empty($email) || !is_email($email)) {
+        $errors[] = 'A valid email address is required.';
+    }
+    
+    if (empty($subject)) {
+        $errors[] = 'Subject is required.';
+    }
+    
+    if (empty($message)) {
+        $errors[] = 'Message is required.';
+    }
+    
+    if (!$privacy_consent) {
+        $errors[] = 'Privacy consent is required.';
+    }
+    
+    // If there are errors, redirect back with error message
+    if (!empty($errors)) {
+        $error_message = implode(' ', $errors);
+        wp_redirect(add_query_arg(array(
+            'contact_status' => 'error',
+            'message' => urlencode($error_message)
+        ), wp_get_referer()));
+        exit;
+    }
+    
+    // Prepare email content
+    $to = get_option('admin_email'); // or specify your contact email
+    $email_subject = 'New Contact Form Submission: ' . $subject;
+    
+    $email_body = "New contact form submission:\n\n";
+    $email_body .= "Name: " . $first_name . " " . $last_name . "\n";
+    $email_body .= "Email: " . $email . "\n";
+    $email_body .= "Phone: " . $phone . "\n";
+    $email_body .= "Subject: " . $subject . "\n";
+    $email_body .= "Message:\n" . $message . "\n\n";
+    $email_body .= "Submitted on: " . current_time('mysql') . "\n";
+    $email_body .= "IP Address: " . $_SERVER['REMOTE_ADDR'] . "\n";
+    
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ' . get_bloginfo('name') . ' <' . get_option('admin_email') . '>',
+        'Reply-To: ' . $first_name . ' ' . $last_name . ' <' . $email . '>'
+    );
+    
+    // Send email
+    $email_sent = wp_mail($to, $email_subject, $email_body, $headers);
+    
+    // Store submission in database (optional)
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'contact_submissions';
+    
+    // Create table if it doesn't exist
+    $charset_collate = $wpdb->get_charset_collate();
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        id mediumint(9) NOT NULL AUTO_INCREMENT,
+        first_name tinytext NOT NULL,
+        last_name tinytext NOT NULL,
+        email varchar(100) NOT NULL,
+        phone varchar(20),
+        subject varchar(200) NOT NULL,
+        message text NOT NULL,
+        submitted_at datetime DEFAULT CURRENT_TIMESTAMP,
+        ip_address varchar(45),
+        PRIMARY KEY (id)
+    ) $charset_collate;";
+    
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    dbDelta($sql);
+    
+    // Insert submission
+    $wpdb->insert(
+        $table_name,
+        array(
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'email' => $email,
+            'phone' => $phone,
+            'subject' => $subject,
+            'message' => $message,
+            'ip_address' => $_SERVER['REMOTE_ADDR']
+        ),
+        array('%s', '%s', '%s', '%s', '%s', '%s', '%s')
+    );
+    
+    // Redirect with success message
+    if ($email_sent) {
+        wp_redirect(add_query_arg(array(
+            'contact_status' => 'success',
+            'message' => urlencode('Thank you! Your message has been sent successfully. We will get back to you soon.')
+        ), wp_get_referer()));
+    } else {
+        wp_redirect(add_query_arg(array(
+            'contact_status' => 'error',
+            'message' => urlencode('Sorry, there was an error sending your message. Please try again or contact us directly.')
+        ), wp_get_referer()));
+    }
+    
+    exit;
 }
 
 // Calculate distance between two points using Haversine formula

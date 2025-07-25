@@ -14,6 +14,12 @@ $display_products = $data['display_products'] ?? false;
 $products_selection_type = $data['products_selection_type'] ?? 'by_category';
 $products_category_filter = $data['products_category_filter'] ?? null;
 
+// Brochure variables
+$display_brochures = $data['display_brochures'] ?? false;
+$brochures_selection_type = $data['brochures_selection_type'] ?? 'by_category';
+$brochures_category_filter = $data['brochures_category_filter'] ?? null;
+$brochures_limit = $data['brochures_limit'] ?? 12;
+
 // Get products based on selection
 $products = array();
 if ($display_products) {
@@ -102,6 +108,55 @@ if ($display_products) {
     }
 }
 
+// Get brochures based on selection
+$brochures = array();
+if ($display_brochures) {
+    if ($brochures_selection_type === 'manual' && !empty($data['brochures_selection'])) {
+        // Use manually selected brochures
+        $brochures = $data['brochures_selection'];
+        if (current_user_can('administrator')) {
+            echo '<!-- Using manual brochure selection: ' . count($brochures) . ' brochures -->';
+        }
+    } elseif ($brochures_selection_type === 'by_category' && $brochures_category_filter) {
+        // Use brochures from selected category filter
+        $filter_category = $brochures_category_filter;
+        // Get brochures from selected category
+        $args = array(
+            'post_type' => 'brochures',
+            'post_status' => 'publish',
+            'posts_per_page' => $brochures_limit > 0 ? $brochures_limit : -1,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'brochure_category',
+                    'field'    => 'term_id',
+                    'terms'    => $filter_category->term_id,
+                ),
+            ),
+        );
+        $brochure_query = new WP_Query($args);
+        $brochures = $brochure_query->posts;
+        wp_reset_postdata();
+        
+        if (current_user_can('administrator')) {
+            echo '<!-- Brochure category query found: ' . count($brochures) . ' brochures -->';
+        }
+    } else {
+        // Get all brochures if no category selected
+        $args = array(
+            'post_type' => 'brochures',
+            'post_status' => 'publish',
+            'posts_per_page' => $brochures_limit > 0 ? $brochures_limit : -1,
+        );
+        $brochure_query = new WP_Query($args);
+        $brochures = $brochure_query->posts;
+        wp_reset_postdata();
+        
+        if (current_user_can('administrator')) {
+            echo '<!-- All brochures query found: ' . count($brochures) . ' brochures -->';
+        }
+    }
+}
+
 // Debug: Check what products exist and their categories
 if (current_user_can('administrator')) {
     $all_products = get_posts(array('post_type' => 'products', 'posts_per_page' => -1));
@@ -155,14 +210,21 @@ if ($display_categories && $selected_category) {
                     </a>
                     <span>|</span>
                 <?php endif; ?>
-                <?php if ($products_category_filter): ?>
+                <?php if ($brochures_category_filter): ?>
+                    <a href="<?php echo get_term_link($brochures_category_filter); ?>" class="uppercase hover:underline">
+                        <?php echo esc_html($brochures_category_filter->name); ?>
+                    </a>
+                    <span>|</span>
+                <?php elseif ($products_category_filter): ?>
                     <a href="<?php echo get_term_link($products_category_filter); ?>" class="uppercase hover:underline">
                         <?php echo esc_html($products_category_filter->name); ?>
                     </a>
+                    <span>|</span>
                 <?php elseif ($selected_category): ?>
                     <a href="<?php echo get_term_link($selected_category); ?>" class="uppercase hover:underline">
                         <?php echo esc_html($selected_category->name); ?>
                     </a>
+                    <span>|</span>
                 <?php endif; ?>
             </div>
         </div>
@@ -233,8 +295,93 @@ if ($display_categories && $selected_category) {
         <?php endif; ?>
     <?php endif; ?>
 
+    <!-- Brochures Grid -->
+    <?php if ($display_brochures): ?>
+        <?php if (!empty($brochures)): ?>
+        <div class="mx-auto max-w-9xl <?php echo ($display_products && !empty($products)) ? 'mt-16' : ''; ?>">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <?php foreach ($brochures as $brochure): ?>
+                    <?php 
+                    $brochure_file = get_field('brochure_file', $brochure->ID);
+                    $brochure_description = get_field('brochure_description', $brochure->ID);
+                    $featured_image = get_the_post_thumbnail_url($brochure->ID, 'large');
+                    ?>
+                    <div class="group cursor-pointer bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                        <?php if ($brochure_file): ?>
+                            <a href="<?php echo esc_url($brochure_file['url']); ?>" target="_blank" class="block">
+                        <?php else: ?>
+                            <a href="<?php echo get_permalink($brochure->ID); ?>" class="block">
+                        <?php endif; ?>
+                            <?php if ($featured_image): ?>
+                                <div class="aspect-[3/4] overflow-hidden relative">
+                                    <img src="<?php echo esc_url($featured_image); ?>" 
+                                         alt="<?php echo esc_attr($brochure->post_title); ?>"
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                    <!-- PDF Download Overlay -->
+                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                        <div class="text-white text-center">
+                                            <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                            </svg>
+                                            <p class="text-sm font-semibold">Download PDF</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php else: ?>
+                                <div class="aspect-[3/4] bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                                    <div class="text-white text-center p-4">
+                                        <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <p class="text-sm font-semibold">PDF Brochure</p>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <div class="p-4">
+                                <h3 class="text-lg font-semibold text-primary group-hover:text-primary/80 transition-colors mb-2">
+                                    <?php echo esc_html($brochure->post_title); ?>
+                                </h3>
+                                <?php if ($brochure_description): ?>
+                                    <p class="text-sm text-gray-600 mt-2 line-clamp-3">
+                                        <?php echo esc_html($brochure_description); ?>
+                                    </p>
+                                <?php elseif ($brochure->post_excerpt): ?>
+                                    <p class="text-sm text-gray-600 mt-2 line-clamp-3">
+                                        <?php echo esc_html($brochure->post_excerpt); ?>
+                                    </p>
+                                <?php endif; ?>
+                                <?php if ($brochure_file): ?>
+                                    <div class="mt-3 flex items-center text-sm text-primary font-medium">
+                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                        </svg>
+                                        Download PDF
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php else: ?>
+            <div class="mx-auto max-w-9xl">
+                <div class="text-center py-16">
+                    <h3 class="text-xl font-semibold text-primary mb-4">No Brochures Found</h3>
+                    <p class="text-gray-600">
+                        <?php if ($brochures_category_filter): ?>
+                            No brochures found in "<?php echo esc_html($brochures_category_filter->name); ?>".
+                        <?php else: ?>
+                            No brochures available to display.
+                        <?php endif; ?>
+                    </p>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endif; ?>
+
     <!-- No Content Message -->
-    <?php if (empty($categories) && empty($products)): ?>
+    <?php if (empty($categories) && empty($products) && empty($brochures)): ?>
         <div class="mx-auto max-w-9xl">
             <div class="text-center py-16">
                 <h3 class="text-xl font-semibold text-primary mb-4">No Content Found</h3>

@@ -60,6 +60,7 @@ function register_layout_products_by_category_acf_fields() {
                             'choices' => array(
                                 'categories' => 'Categories',
                                 'products' => 'Products',
+                                'brochures' => 'Brochures',
                                 'both' => 'Both',
                             ),
                             'default_value' => 'categories',
@@ -215,6 +216,122 @@ function register_layout_products_by_category_acf_fields() {
                                 array(
                                     array(
                                         'field' => 'field_products_display_products',
+                                        'operator' => '==',
+                                        'value' => '1',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_display_brochures',
+                            'label' => 'Display Brochures',
+                            'name' => 'display_brochures',
+                            'type' => 'true_false',
+                            'instructions' => 'Show brochures section',
+                            'required' => 0,
+                            'default_value' => 0,
+                            'ui' => 1,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_products_category_display_type',
+                                        'operator' => '==',
+                                        'value' => 'brochures',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_brochures_selection_type',
+                            'label' => 'Brochure Selection Method',
+                            'name' => 'brochures_selection_type',
+                            'type' => 'radio',
+                            'instructions' => 'Choose how to select brochures to display',
+                            'required' => 1,
+                            'choices' => array(
+                                'by_category' => 'Show all brochures from selected category',
+                                'manual' => 'Manually select specific brochures',
+                            ),
+                            'default_value' => 'by_category',
+                            'layout' => 'vertical',
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_display_brochures',
+                                        'operator' => '==',
+                                        'value' => '1',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_brochures_category_filter',
+                            'label' => 'Brochure Category',
+                            'name' => 'brochures_category_filter',
+                            'type' => 'taxonomy',
+                            'instructions' => 'Select the category to show brochures from',
+                            'required' => 1,
+                            'taxonomy' => 'brochure_category',
+                            'field_type' => 'select',
+                            'allow_null' => 0,
+                            'return_format' => 'object',
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_display_brochures',
+                                        'operator' => '==',
+                                        'value' => '1',
+                                    ),
+                                    array(
+                                        'field' => 'field_brochures_selection_type',
+                                        'operator' => '==',
+                                        'value' => 'by_category',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_brochures_selection',
+                            'label' => 'Select Brochures',
+                            'name' => 'brochures_selection',
+                            'type' => 'post_object',
+                            'instructions' => 'Manually select specific brochures to display',
+                            'required' => 0,
+                            'post_type' => array('brochures'),
+                            'taxonomy' => array(),
+                            'allow_null' => 1,
+                            'multiple' => 1,
+                            'return_format' => 'object',
+                            'ui' => 1,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_display_brochures',
+                                        'operator' => '==',
+                                        'value' => '1',
+                                    ),
+                                    array(
+                                        'field' => 'field_brochures_selection_type',
+                                        'operator' => '==',
+                                        'value' => 'manual',
+                                    ),
+                                ),
+                            ),
+                        ),
+                        array(
+                            'key' => 'field_brochures_limit',
+                            'label' => 'Number of Brochures',
+                            'name' => 'brochures_limit',
+                            'type' => 'number',
+                            'instructions' => 'Maximum number of brochures to display (-1 for unlimited)',
+                            'required' => 0,
+                            'default_value' => 12,
+                            'min' => -1,
+                            'max' => 100,
+                            'conditional_logic' => array(
+                                array(
+                                    array(
+                                        'field' => 'field_display_brochures',
                                         'operator' => '==',
                                         'value' => '1',
                                     ),
