@@ -13,26 +13,26 @@ $slides_count = get_field('slider_slides_count');
 if (!$title || !$slides_count) return;
 ?>
 
-<section class="bg-[#dde2e4] py-8 lg:py-24 px-6 lg:px-12 relative">
+<section class="bg-gray-800 py-8 lg:py-24 px-6 lg:px-12 relative">
     <div class="lg:mx-auto max-w-7xl lg:flex justify-between gap-24 rounded-xl lg:px-12 lg:rounded-[35px] text-primary mb-8">
         <div class="lg:min-w-[400px]">
-            <h2 class="text-4xl lg:text-5xl text-primary"><?php echo esc_html($title); ?></h2>
+            <h2 class="text-4xl lg:text-5xl text-white"><?php echo esc_html($title); ?></h2>
             <?php if ($sub_title): ?>
-                <h3 class="mt-3 lg:mt-6 text-lg lg:text-xl text-primary">
+                <h3 class="mt-3 lg:mt-6 text-lg lg:text-xl text-white">
                     <?php echo esc_html($sub_title); ?>
                 </h3>
             <?php endif; ?>
         </div>
         <?php if ($description): ?>
             <div class="max-w-[700px]">
-                <p class="mt-3 lg:mt-0 lg:text-xl text-primary lg:tracking-[0.1rem] lg:leading-8">
+                <p class="mt-3 lg:mt-0 lg:text-xl text-white lg:tracking-[0.1rem] lg:leading-8">
                     <?php echo esc_html($description); ?>
                 </p>
             </div>
         <?php endif; ?>
     </div>
     
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 justify-center relative max-w-[1800px] mx-auto">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-center relative max-w-[1800px] mx-auto">
         <?php for ($i = 1; $i <= intval($slides_count); $i++): ?>
             <?php 
             $slide_image = get_field('slide_' . $i . '_image');

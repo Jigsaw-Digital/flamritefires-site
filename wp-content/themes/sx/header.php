@@ -91,7 +91,7 @@
     ));
     ?>
     
-    <header id="header" class="fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-[20px] xl:py-[30px]">
+    <header id="header" class="fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-[20px] xl:py-[30px] bg-gray-800">
         <div class="mx-auto flex max-w-6xl justify-between px-6 xl:max-w-7xl">
             <div class="flex w-[200px] items-center xl:w-[200px]">
                 <a href="<?php echo home_url('/'); ?>">
@@ -131,9 +131,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
                 </a>
-                <a href="/showroom" class="nav-desktop !lg:flex px-2 py-1 border-primary hover:bg-primary text-primary hover:text-white inline-block justify-center items-center border-2 border px-2 py-1 text-sm font-semibold xl:text-lg">
+                <!-- <a href="/showroom" class="nav-desktop !lg:flex px-2 py-1 border-primary hover:bg-primary text-primary hover:text-white inline-block justify-center items-center border-2 border px-2 py-1 text-sm font-semibold xl:text-lg">
                     <span class="text-[14px]">Book A <span class="hidden xl:inline-block">Showroom</span> Visit</span>
-                </a>
+                </a> -->
                 <button type="button" class="nav-mobile right-4 z-[999] rounded-md <?php echo ($small ? 'text-primary' : 'text-white'); ?>" @click="mobileMenuOpen = true">
                     <span class="sr-only">Open main menu</span>
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

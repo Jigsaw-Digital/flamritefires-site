@@ -63,7 +63,7 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
         
         <!-- Overlay -->
         <?php if ($overlay_opacity): ?>
-            <div class="absolute top-0 left-0 w-full h-full bg-primary/<?php echo intval($overlay_opacity); ?> z-10"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-[#1e2938]/<?php echo intval($overlay_opacity); ?> z-10"></div>
         <?php endif; ?>
         
         <!-- Content -->

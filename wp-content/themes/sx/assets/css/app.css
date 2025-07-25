@@ -661,6 +661,9 @@
   .h-full {
     height: 100%;
   }
+  .max-h-\[50px\] {
+    max-height: 50px;
+  }
   .max-h-\[350px\] {
     max-height: 350px;
   }
@@ -792,6 +795,9 @@
   }
   .max-w-\[120px\] {
     max-width: 120px;
+  }
+  .max-w-\[200px\] {
+    max-width: 200px;
   }
   .max-w-\[240px\] {
     max-width: 240px;
@@ -2541,6 +2547,11 @@
   .lg\:max-w-\[440px\] {
     @media (width >= 64rem) {
       max-width: 440px;
+    }
+  }
+  .lg\:max-w-lg {
+    @media (width >= 64rem) {
+      max-width: 32rem;
     }
   }
   .lg\:min-w-\[400px\] {
