@@ -194,7 +194,7 @@ if ($display_categories && $selected_category) {
 ?>
 
 <section class="bg-tertiary pb-16 pt-16 relative px-6 min-h-[calc(100vh-430px)]">
-    <div class="mx-auto max-w-8xl gap-14 lg:flex justify-between space-y-4 lg:space-y-0 mb-4 lg:mb-12">
+    <div class="mx-auto container max-w-8xl gap-14 lg:flex justify-between space-y-4 lg:space-y-0 mb-4 lg:mb-12">
         <div class="w-full lg:w-1/2 space-y-4">
             <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
                 <?php echo esc_html($data['title']); ?>
@@ -219,12 +219,10 @@ if ($display_categories && $selected_category) {
                     <a href="<?php echo get_term_link($products_category_filter); ?>" class="uppercase hover:underline">
                         <?php echo esc_html($products_category_filter->name); ?>
                     </a>
-                    <span>|</span>
                 <?php elseif ($selected_category): ?>
                     <a href="<?php echo get_term_link($selected_category); ?>" class="uppercase hover:underline">
                         <?php echo esc_html($selected_category->name); ?>
                     </a>
-                    <span>|</span>
                 <?php endif; ?>
             </div>
         </div>
@@ -239,7 +237,7 @@ if ($display_categories && $selected_category) {
     <!-- Products Grid -->
     <?php if ($display_products): ?>
         <?php if (!empty($products)): ?>
-        <div class="mx-auto max-w-9xl">
+        <div class="mx-auto max-w-9xl container">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <?php foreach ($products as $product): ?>
                     <?php 
@@ -298,7 +296,7 @@ if ($display_categories && $selected_category) {
     <!-- Brochures Grid -->
     <?php if ($display_brochures): ?>
         <?php if (!empty($brochures)): ?>
-        <div class="mx-auto max-w-9xl <?php echo ($display_products && !empty($products)) ? 'mt-16' : ''; ?>">
+        <div class="mx-auto max-w-9xl container <?php echo ($display_products && !empty($products)) ? 'mt-16' : ''; ?>">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                 <?php foreach ($brochures as $brochure): ?>
                     <?php 
@@ -313,7 +311,7 @@ if ($display_categories && $selected_category) {
                             <a href="<?php echo get_permalink($brochure->ID); ?>" class="block">
                         <?php endif; ?>
                             <?php if ($featured_image): ?>
-                                <div class="aspect-[3/4] overflow-hidden relative">
+                                <div class="aspect-[1/1] overflow-hidden relative">
                                     <img src="<?php echo esc_url($featured_image); ?>" 
                                          alt="<?php echo esc_attr($brochure->post_title); ?>"
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">

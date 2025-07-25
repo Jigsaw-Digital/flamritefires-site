@@ -552,6 +552,9 @@
   .table {
     display: table;
   }
+  .aspect-\[1\/1\] {
+    aspect-ratio: 1/1;
+  }
   .aspect-\[3\/4\] {
     aspect-ratio: 3/4;
   }
@@ -830,6 +833,9 @@
   }
   .max-w-\[800px\] {
     max-width: 800px;
+  }
+  .max-w-\[1200px\] {
+    max-width: 1200px;
   }
   .max-w-\[1600px\] {
     max-width: 1600px;

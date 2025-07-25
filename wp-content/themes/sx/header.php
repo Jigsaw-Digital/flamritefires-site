@@ -153,7 +153,7 @@
              x-transition:leave-end="opacity-0">
             <div class="flex items-center justify-between px-6 pb-12 pt-[20px]">
                 <a href="<?php echo home_url('/'); ?>">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Greycaine_Dark.png" class="my-auto w-[200px] lg:ml-0">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" class="my-auto w-[200px] lg:ml-0">
                 </a>
                 <div class="flex gap-4">
                     <a href="tel:01923923120">

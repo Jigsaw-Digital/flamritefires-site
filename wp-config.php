@@ -28,7 +28,6 @@ define('DB_USER', strpos($_SERVER['HTTP_HOST'], 'test') !== false ? 'root' : 'fo
 /** Database password */
 define('DB_PASSWORD', strpos($_SERVER['HTTP_HOST'], 'test') !== false ? '' : 'th0IKKLcmIqPQvJXzD7y');
 
-
 /** Database hostname */
 define( 'DB_HOST', '127.0.0.1' );
 
