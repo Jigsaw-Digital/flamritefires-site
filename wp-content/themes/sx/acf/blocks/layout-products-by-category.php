@@ -85,17 +85,16 @@ function register_layout_products_by_category_acf_fields() {
                             ),
                         ),
                         array(
-                            'key' => 'field_products_categories',
-                            'label' => 'Categories',
-                            'name' => 'categories',
-                            'type' => 'repeater',
-                            'instructions' => 'Add categories to display',
+                            'key' => 'field_selected_category',
+                            'label' => 'Select Category',
+                            'name' => 'selected_category',
+                            'type' => 'taxonomy',
+                            'instructions' => 'Choose a product category to display products from',
                             'required' => 0,
-                            'collapsed' => '',
-                            'min' => 0,
-                            'max' => 20,
-                            'layout' => 'table',
-                            'button_label' => 'Add Category',
+                            'taxonomy' => 'product_category',
+                            'field_type' => 'select',
+                            'allow_null' => 1,
+                            'return_format' => 'object',
                             'conditional_logic' => array(
                                 array(
                                     array(
@@ -103,30 +102,6 @@ function register_layout_products_by_category_acf_fields() {
                                         'operator' => '==',
                                         'value' => '1',
                                     ),
-                                ),
-                            ),
-                            'sub_fields' => array(
-                                array(
-                                    'key' => 'field_category_name',
-                                    'label' => 'Name',
-                                    'name' => 'name',
-                                    'type' => 'text',
-                                    'required' => 1,
-                                ),
-                                array(
-                                    'key' => 'field_category_slug',
-                                    'label' => 'Slug',
-                                    'name' => 'slug',
-                                    'type' => 'text',
-                                    'required' => 1,
-                                ),
-                                array(
-                                    'key' => 'field_category_image',
-                                    'label' => 'Image',
-                                    'name' => 'image',
-                                    'type' => 'image',
-                                    'required' => 0,
-                                    'return_format' => 'array',
                                 ),
                             ),
                         ),
@@ -150,17 +125,18 @@ function register_layout_products_by_category_acf_fields() {
                             ),
                         ),
                         array(
-                            'key' => 'field_products_products',
+                            'key' => 'field_products_selection',
                             'label' => 'Products',
-                            'name' => 'products',
-                            'type' => 'repeater',
-                            'instructions' => 'Add products to display',
+                            'name' => 'products_selection',
+                            'type' => 'post_object',
+                            'instructions' => 'Select products to display (or leave empty to show all products from selected category)',
                             'required' => 0,
-                            'collapsed' => '',
-                            'min' => 0,
-                            'max' => 50,
-                            'layout' => 'table',
-                            'button_label' => 'Add Product',
+                            'post_type' => array('products'),
+                            'taxonomy' => array(),
+                            'allow_null' => 1,
+                            'multiple' => 1,
+                            'return_format' => 'object',
+                            'ui' => 1,
                             'conditional_logic' => array(
                                 array(
                                     array(
@@ -170,28 +146,24 @@ function register_layout_products_by_category_acf_fields() {
                                     ),
                                 ),
                             ),
-                            'sub_fields' => array(
+                        ),
+                        array(
+                            'key' => 'field_products_limit',
+                            'label' => 'Number of Products',
+                            'name' => 'products_limit',
+                            'type' => 'number',
+                            'instructions' => 'Maximum number of products to display (-1 for unlimited)',
+                            'required' => 0,
+                            'default_value' => 12,
+                            'min' => -1,
+                            'max' => 100,
+                            'conditional_logic' => array(
                                 array(
-                                    'key' => 'field_product_title',
-                                    'label' => 'Title',
-                                    'name' => 'title',
-                                    'type' => 'text',
-                                    'required' => 1,
-                                ),
-                                array(
-                                    'key' => 'field_product_slug',
-                                    'label' => 'Slug',
-                                    'name' => 'slug',
-                                    'type' => 'text',
-                                    'required' => 1,
-                                ),
-                                array(
-                                    'key' => 'field_product_featured_image',
-                                    'label' => 'Featured Image',
-                                    'name' => 'featured_image',
-                                    'type' => 'image',
-                                    'required' => 0,
-                                    'return_format' => 'array',
+                                    array(
+                                        'field' => 'field_products_display_products',
+                                        'operator' => '==',
+                                        'value' => '1',
+                                    ),
                                 ),
                             ),
                         ),
@@ -218,3 +190,6 @@ function register_layout_products_by_category_acf_fields() {
         ));
     }
 }
+
+// Register the fields
+add_action('acf/init', 'register_layout_products_by_category_acf_fields');

@@ -45,11 +45,10 @@ $alignment_class = $alignment_classes[$text_alignment] ?? $alignment_classes['ce
         <div class="absolute inset-0 z-[-1] bg-gradient-to-r from-gray-800 to-gray-900"></div>
     <?php endif; ?>
     
-    <!-- Content Container with proper z-index -->
     <div class="container mx-auto px-4 relative z-10">
         <div class="<?php echo esc_attr($alignment_class); ?> max-w-4xl ">
-            <div class="hero-title !text-2xl text-left">
-               <h1><?php echo wp_kses_post($title); ?></h1>
+            <div class="hero-title !text-2xl text-left !text-white">
+               <div><?php echo $title; ?></div>
             </div>
         </div>
     </div>

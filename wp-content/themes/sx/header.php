@@ -59,7 +59,7 @@
     </style>
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?> x-data="{ mobileMenuOpen: false, mobileSubMenuOpen: false, megaMenuOpen: false }" style="background-color: #333;">
+<body <?php body_class(); ?> x-data="{ mobileMenuOpen: false, mobileSubMenuOpen1: false, mobileSubMenuOpen2: false, mobileSubMenuOpen3: false, mobileSubMenuOpen4: false, mobileSubMenuOpen5: false, megaMenuOpen: false }" style="background-color: #333;">
     <?php wp_body_open(); ?>
     
     <?php
@@ -108,7 +108,7 @@
                 </a>
             </div>
             
-            <div class="nav-desktop flex items-center gap-2 xl:gap-4">
+            <nav class="nav-desktop flex items-center">
                 <?php
                 wp_nav_menu(array(
                     'theme_location' => 'main-menu',
@@ -118,7 +118,7 @@
                     'fallback_cb' => 'greycaine_default_menu'
                 ));
                 ?>
-            </div>
+            </nav>
 
             <div class="flex gap-4 justify-center items-center">
                 <a href="tel:01923923120">

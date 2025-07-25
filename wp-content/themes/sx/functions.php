@@ -12,6 +12,9 @@ require_once get_template_directory() . '/acf/testimonials.php';
 // Include testimonials slider block ACF fields
 require_once get_template_directory() . '/acf/blocks/testimonials-slider.php';
 
+// Include layout products by category ACF fields
+require_once get_template_directory() . '/acf/blocks/layout-products-by-category.php';
+
 // Include sample testimonials creator (remove in production)
 require_once get_template_directory() . '/inc/sample-testimonials.php';
 
@@ -75,45 +78,102 @@ function sx_custom_new_menu(){
 // Menu Walker Classes for Greycaine Theme
 if (!class_exists('Greycaine_Desktop_Walker')) {
     class Greycaine_Desktop_Walker extends Walker_Nav_Menu {
+        function start_lvl(&$output, $depth = 0, $args = null) {
+            $indent = str_repeat("\t", $depth);
+            $output .= "\n$indent<ul class=\"submenu absolute top-full left-0 min-w-[200px] bg-gray-800 shadow-lg rounded-md opacity-0 invisible transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 z-50\">\n";
+        }
+
+        function end_lvl(&$output, $depth = 0, $args = null) {
+            $indent = str_repeat("\t", $depth);
+            $output .= "$indent</ul>\n";
+        }
+
         function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+            $indent = ($depth) ? str_repeat("\t", $depth) : '';
             $classes = empty($item->classes) ? array() : (array) $item->classes;
             $has_children = in_array('menu-item-has-children', $classes);
             
             $atts = array();
             $atts['href'] = !empty($item->url) ? $item->url : '';
             
-            if ($has_children) {
-                $attributes = ' class="px-4 text-sm uppercase tracking-[10px] xl:text-lg relative cursor-pointer text-white hover:text-white/70" onmouseenter="openMegaMenu()" onmouseleave="closeMegaMenu()"';
-                $output .= '<span' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</span>';
+            if ($depth === 0) {
+                // Top level menu items
+                if ($has_children) {
+                    $output .= $indent . '<li class="relative group">';
+                    $output .= '<span class="px-4 text-sm uppercase tracking-[8px] relative text-white hover:text-white/70 inline-block">';
+                    $output .= apply_filters('the_title', $item->title, $item->ID);
+                    $output .= '</span>';
+                } else {
+                    $output .= $indent . '<li>';
+                    $output .= '<a href="' . esc_url($atts['href']) . '" class="px-4 text-sm uppercase tracking-[8px] relative text-white hover:text-white/70">';
+                    $output .= apply_filters('the_title', $item->title, $item->ID);
+                    $output .= '</a>';
+                }
             } else {
-                $attributes = ' href="' . esc_url($atts['href']) . '" class="px-4 text-sm uppercase tracking-[8px] relative text-white hover:text-white/70"';
-                $output .= '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
+                // Sub menu items
+                $output .= $indent . '<li class="border-b border-gray-700 last:border-b-0">';
+                $output .= '<a href="' . esc_url($atts['href']) . '" class="block px-4 py-3 text-sm text-white hover:text-primary hover:bg-gray-700 transition-colors">';
+                $output .= apply_filters('the_title', $item->title, $item->ID);
+                $output .= '</a>';
             }
+        }
+
+        function end_el(&$output, $item, $depth = 0, $args = null) {
+            $output .= "</li>\n";
         }
     }
 }
 
 if (!class_exists('Greycaine_Mobile_Walker')) {
     class Greycaine_Mobile_Walker extends Walker_Nav_Menu {
+        private $submenu_count = 0;
+        
+        function start_lvl(&$output, $depth = 0, $args = null) {
+            $indent = str_repeat("\t", $depth);
+            $this->submenu_count++;
+            $output .= "\n$indent<div x-show=\"mobileSubMenuOpen{$this->submenu_count}\" x-transition class=\"pl-4 mt-2 space-y-2\">\n";
+        }
+
+        function end_lvl(&$output, $depth = 0, $args = null) {
+            $indent = str_repeat("\t", $depth);
+            $output .= "$indent</div>\n";
+        }
+
         function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+            $indent = ($depth) ? str_repeat("\t", $depth) : '';
             $classes = empty($item->classes) ? array() : (array) $item->classes;
             $has_children = in_array('menu-item-has-children', $classes);
             
             $atts = array();
             $atts['href'] = !empty($item->url) ? $item->url : '';
             
-            if ($has_children) {
-                $output .= '<div class="text-white">';
-                $output .= '<div class="flex items-center justify-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="mobileSubMenuOpen = !mobileSubMenuOpen">';
-                $output .= '<span>' . apply_filters('the_title', $item->title, $item->ID) . '</span>';
-                $output .= '<svg x-show="!mobileSubMenuOpen" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>';
-                $output .= '<svg x-show="mobileSubMenuOpen" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>';
-                $output .= '</div>';
-                $output .= '</div>';
+            if ($depth === 0) {
+                // Top level menu items
+                if ($has_children) {
+                    $submenu_id = $this->submenu_count + 1;
+                    $output .= $indent . '<div class="text-white">';
+                    $output .= '<div class="flex items-center justify-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="mobileSubMenuOpen' . $submenu_id . ' = !mobileSubMenuOpen' . $submenu_id . '">';
+                    $output .= '<span>' . apply_filters('the_title', $item->title, $item->ID) . '</span>';
+                    $output .= '<svg x-show="!mobileSubMenuOpen' . $submenu_id . '" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>';
+                    $output .= '<svg x-show="mobileSubMenuOpen' . $submenu_id . '" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>';
+                    $output .= '</div>';
+                } else {
+                    $output .= $indent . '<div>';
+                    $output .= '<a href="' . esc_url($atts['href']) . '" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">';
+                    $output .= apply_filters('the_title', $item->title, $item->ID);
+                    $output .= '</a>';
+                }
             } else {
-                $attributes = ' href="' . esc_url($atts['href']) . '" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false"';
-                $output .= '<a' . $attributes . '>' . apply_filters('the_title', $item->title, $item->ID) . '</a>';
+                // Sub menu items
+                $output .= $indent . '<div>';
+                $output .= '<a href="' . esc_url($atts['href']) . '" class="block text-[12px] uppercase text-white/80 hover:text-[#b25c43] py-1 pl-2" @click="mobileMenuOpen = false">';
+                $output .= apply_filters('the_title', $item->title, $item->ID);
+                $output .= '</a>';
             }
+        }
+
+        function end_el(&$output, $item, $depth = 0, $args = null) {
+            $output .= "</div>\n";
         }
     }
 }
@@ -217,6 +277,63 @@ function register_careers_post_type() {
         'menu_icon' => 'dashicons-businessperson',
         'supports' => array('title'),
         'rewrite' => array('slug' => 'careers'),
+        'show_in_rest' => true
+    ));
+}
+
+// Custom Post Type for Products
+add_action('init', 'register_products_post_type');
+function register_products_post_type() {
+    register_post_type('products', array(
+        'labels' => array(
+            'name' => 'Products',
+            'singular_name' => 'Product',
+            'add_new' => 'Add New Product',
+            'add_new_item' => 'Add New Product',
+            'edit_item' => 'Edit Product',
+            'new_item' => 'New Product',
+            'view_item' => 'View Product',
+            'search_items' => 'Search Products',
+            'not_found' => 'No products found',
+            'not_found_in_trash' => 'No products found in trash'
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'publicly_queryable' => true,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'menu_icon' => 'dashicons-products',
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'rewrite' => array('slug' => 'products'),
+        'show_in_rest' => true
+    ));
+    
+    // Flush rewrite rules on activation (only once)
+    if (get_option('products_post_type_flushed') !== 'yes') {
+        flush_rewrite_rules();
+        update_option('products_post_type_flushed', 'yes');
+    }
+    
+    // Register Product Categories taxonomy
+    register_taxonomy('product_category', 'products', array(
+        'labels' => array(
+            'name' => 'Product Categories',
+            'singular_name' => 'Product Category',
+            'search_items' => 'Search Categories',
+            'all_items' => 'All Categories',
+            'parent_item' => 'Parent Category',
+            'parent_item_colon' => 'Parent Category:',
+            'edit_item' => 'Edit Category',
+            'update_item' => 'Update Category',
+            'add_new_item' => 'Add New Category',
+            'new_item_name' => 'New Category Name',
+            'menu_name' => 'Categories'
+        ),
+        'hierarchical' => true,
+        'show_ui' => true,
+        'show_admin_column' => true,
+        'query_var' => true,
+        'rewrite' => array('slug' => 'product-category'),
         'show_in_rest' => true
     ));
 }
@@ -550,6 +667,170 @@ function register_careers_fields() {
                         'param' => 'post_type',
                         'operator' => '==',
                         'value' => 'careers'
+                    )
+                )
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label'
+        ));
+    }
+}
+
+// Add Products ACF Fields
+add_action('acf/init', 'register_products_fields');
+function register_products_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_products',
+            'title' => 'Product Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_product_description',
+                    'label' => 'Product Description',
+                    'name' => 'product_description',
+                    'type' => 'textarea',
+                    'instructions' => 'Brief description of the product',
+                    'required' => 0,
+                    'rows' => 4,
+                    'new_lines' => 'wpautop'
+                ),
+                array(
+                    'key' => 'field_product_price',
+                    'label' => 'Price',
+                    'name' => 'price',
+                    'type' => 'text',
+                    'instructions' => 'Product price (e.g., £99.99, From £50)',
+                    'required' => 0
+                ),
+                array(
+                    'key' => 'field_product_gallery',
+                    'label' => 'Product Gallery',
+                    'name' => 'product_gallery',
+                    'type' => 'gallery',
+                    'instructions' => 'Add additional product images',
+                    'required' => 0,
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'insert' => 'append',
+                    'library' => 'all'
+                ),
+                array(
+                    'key' => 'field_product_features',
+                    'label' => 'Features',
+                    'name' => 'features',
+                    'type' => 'repeater',
+                    'instructions' => 'Add product features',
+                    'required' => 0,
+                    'layout' => 'table',
+                    'button_label' => 'Add Feature',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_feature_text',
+                            'label' => 'Feature',
+                            'name' => 'text',
+                            'type' => 'text',
+                            'required' => 1
+                        )
+                    )
+                ),
+                array(
+                    'key' => 'field_product_specifications',
+                    'label' => 'Specifications',
+                    'name' => 'specifications',
+                    'type' => 'repeater',
+                    'instructions' => 'Add product specifications',
+                    'required' => 0,
+                    'layout' => 'table',
+                    'button_label' => 'Add Specification',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_spec_label',
+                            'label' => 'Label',
+                            'name' => 'label',
+                            'type' => 'text',
+                            'required' => 1
+                        ),
+                        array(
+                            'key' => 'field_spec_value',
+                            'label' => 'Value',
+                            'name' => 'value',
+                            'type' => 'text',
+                            'required' => 1
+                        )
+                    )
+                ),
+                array(
+                    'key' => 'field_product_featured',
+                    'label' => 'Featured Product',
+                    'name' => 'featured_product',
+                    'type' => 'true_false',
+                    'instructions' => 'Mark as featured to highlight this product',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No'
+                )
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'products'
+                    )
+                )
+            ),
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'default',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label'
+        ));
+    }
+}
+
+// Add Product Category ACF Fields
+add_action('acf/init', 'register_product_category_fields');
+function register_product_category_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        acf_add_local_field_group(array(
+            'key' => 'group_product_category',
+            'title' => 'Product Category Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_category_image',
+                    'label' => 'Category Image',
+                    'name' => 'category_image',
+                    'type' => 'image',
+                    'instructions' => 'Upload an image for this product category',
+                    'required' => 0,
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all'
+                ),
+                array(
+                    'key' => 'field_category_featured',
+                    'label' => 'Featured Category',
+                    'name' => 'featured_category',
+                    'type' => 'true_false',
+                    'instructions' => 'Mark as featured to highlight this category',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No'
+                )
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'taxonomy',
+                        'operator' => '==',
+                        'value' => 'product_category'
                     )
                 )
             ),
