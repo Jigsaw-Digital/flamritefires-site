@@ -155,15 +155,15 @@ if ($display_categories && $selected_category) {
                     </a>
                     <span>|</span>
                 <?php endif; ?>
-                <?php if ($selected_category): ?>
+                <?php if ($products_category_filter): ?>
+                    <a href="<?php echo get_term_link($products_category_filter); ?>" class="uppercase hover:underline">
+                        <?php echo esc_html($products_category_filter->name); ?>
+                    </a>
+                <?php elseif ($selected_category): ?>
                     <a href="<?php echo get_term_link($selected_category); ?>" class="uppercase hover:underline">
                         <?php echo esc_html($selected_category->name); ?>
                     </a>
-                    <span>|</span>
                 <?php endif; ?>
-                <span class="text-primary uppercase font-semibold font-montserrat">
-                    <?php echo esc_html($data['title']); ?>
-                </span>
             </div>
         </div>
         <div class="w-full lg:w-1/2 max-w-[700px]">
@@ -178,10 +178,7 @@ if ($display_categories && $selected_category) {
     <?php if ($display_products): ?>
         <?php if (!empty($products)): ?>
         <div class="mx-auto max-w-9xl">
-            <?php if ($display_categories && !empty($categories)): ?>
-                <h2 class="text-2xl font-bold text-primary mb-8 text-center">Products</h2>
-            <?php endif; ?>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <?php foreach ($products as $product): ?>
                     <?php 
                     $product_price = get_field('price', $product->ID);
