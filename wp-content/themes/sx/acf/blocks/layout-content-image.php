@@ -77,6 +77,24 @@ function register_layout_content_image_acf_fields() {
                     'allow_null' => 0,
                 ),
                 
+                // Background Theme
+                array(
+                    'key' => 'field_content_image_background_theme',
+                    'label' => 'Background Theme',
+                    'name' => 'background_theme',
+                    'type' => 'select',
+                    'instructions' => 'Choose the background theme for this section',
+                    'required' => 0,
+                    'choices' => array(
+                        'default' => 'Default (Light)',
+                        'dark' => 'Dark',
+                    ),
+                    'default_value' => 'default',
+                    'allow_null' => 0,
+                    'ui' => 1,
+                    'ajax' => 0,
+                ),
+                
                 // Main Image
                 array(
                     'key' => 'field_content_image_main',
