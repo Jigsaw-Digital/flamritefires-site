@@ -52,10 +52,21 @@ $title = get_the_title();
         <div class="lg:flex gap-24 justify-center px-6">
             <div class="lg:flex flex-col  gap-4 h-full justify-start lg:min-h-[350px]">
                 <div class="lg:text-lg max-w-[100%] lg:max-w-[440px] content mt-8 lg:mt-0">
-                         <h1 class="grey-qo-regular  text-primary hidden lg:block">
-            <?php echo esc_html(str_replace('- Greycaine', '', $title)); ?>
+                         <h1 class="grey-qo-regular  text-primary hidden lg:block text-3xl mb-2">
+            <div class="jd-content">
+                <?php echo esc_html(str_replace('- Greycaine', '', $title)); ?>
+            </div>
+
+            <style>
+                .jd-content ul {
+                    list-style: disk!important;
+
+                }
+            </style>
+
+
         </h1>
-                    <?php echo wp_kses_post($data['description_1']); ?>
+                   <div class="jd-content"> <?php echo str_replace('<li></li>', '', wp_kses_post($data['description_1'])); ?></div>
                 </div>
                 <?php if ($data['video']): ?>
                     <button class="border-primary hover:bg-primary text-primary hover:text-white inline-block mt-8 justify-center items-center border-2 px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer"
@@ -66,13 +77,13 @@ $title = get_the_title();
                  <div class="lg:text-lg max-w-[440px] content mt-8 lg:mt-0">
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
-                <div class="my-4">
-                    <a href="tel:01923923120" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-xs">
+                <div class="mb-2">
+                    <a href="tel:01923923120" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
                         Call Our Showroom
                     </a>
                 </div>
                 <div>
-                    <a href="/showroom" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-xs">
+                    <a href="/showroom" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
                         Visit Our Showroom
                     </a>
                 </div>
@@ -177,11 +188,11 @@ $cta_data = [
                             <h1 class="text-primary text-2xl lg:text-4xl mb-4">
                                 <?php echo esc_html($cta_data['title']); ?>
                             </h1>
-                            <p class="lg:text-lg text-primary max-w-[440px] content">
+                            <p class="lg:text-lg text-[#1e2938] max-w-[440px] content">
                                 <?php echo esc_html($cta_data['description']); ?>
                             </p>
                         </div>
-                        <a href="/showroom" class="lg:text-xs mt-4 rounded-lg inline-block justify-center items-center border-3 border px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer border-primary hover:bg-primary text-primary hover:text-white">
+                        <a href="/showroom" class="lg:text-xs mt-4 rounded-lg inline-block justify-center items-center border-3 border px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer bg-[#1e2938] hover:bg-primary text-wgite hover:text-white">
                             Visit Our Showroom
                         </a>
                     </div>

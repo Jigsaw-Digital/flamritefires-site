@@ -100,12 +100,12 @@ if (!class_exists('Greycaine_Desktop_Walker')) {
                 // Top level menu items
                 if ($has_children) {
                     $output .= $indent . '<li class="relative group">';
-                    $output .= '<span class="px-0 text-sm uppercase tracking-[5px] relative text-white hover:text-white/70 inline-block">';
+                    $output .= '<span class="px-2 text-sm uppercase tracking-[6px] relative text-white hover:text-white/70 inline-block">';
                     $output .= apply_filters('the_title', $item->title, $item->ID);
                     $output .= '</span>'; 
                 } else {
                     $output .= $indent . '<li>';
-                    $output .= '<a href="' . esc_url($atts['href']) . '" class="px-2 text-sm uppercase tracking-[8px] relative text-white hover:text-white/70">';
+                    $output .= '<a href="' . esc_url($atts['href']) . '" class="px-2 text-sm uppercase tracking-[6px] relative text-white hover:text-white/70">';
                     $output .= apply_filters('the_title', $item->title, $item->ID);
                     $output .= '</a>';
                 }

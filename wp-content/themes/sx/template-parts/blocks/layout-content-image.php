@@ -23,7 +23,7 @@ $background_theme = $background_theme ?: 'default';
 // Set theme-based classes and styles
 $is_dark = ($background_theme === 'dark');
 $bg_class = $is_dark ? 'bg-[#1e2938]' : 'bg-tertiary';
-$text_color = $is_dark ? 'text-white' : 'text-primary';
+$text_color = $is_dark ? 'text-white' : 'text-[#1e2938]';
 $subtitle_color = $is_dark ? 'text-orange-400' : 'text-orange-600';
 $button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-primary text-white hover:bg-primary/90';
 ?>
@@ -54,12 +54,12 @@ $button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-pri
             </h1>
             
             <!-- Content -->
-            <div class="lg:text-lg lg:mt-4 space-y-2 <?php echo $text_color; ?>">
+            <div class="lg:text-lg lg:mt-4 space-y-4 <?php echo $text_color; ?>">
                 <?php echo wp_kses_post($content); ?>
             </div>
             
             <!-- Contact Button -->
-            <a href="/contact-us" class="<?php echo $button_class; ?> inline-block mt-4 px-6 py-3 font-semibold transition duration-300 lg:text-xs">
+            <a href="/contact-us" class="<?php echo $button_class; ?> inline-block mt-0 px-6 py-3 font-semibold transition duration-300 lg:text-xs">
                 Contact Us
             </a>
         </div>
