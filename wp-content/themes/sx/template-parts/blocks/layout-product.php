@@ -10,15 +10,25 @@ global $post;
 $title = get_the_title();
 ?>
 
-<section class="bg-tertiary py-8 lg:py-16 px-6 relative">
+<div class="bg-tertiary py-8 lg:py-16 px-6 relative">
     <div class="lg:flex justify-center items-center w-full gap-12 mx-auto relative">
-        <div class="relative w-full lg:w-2/5">
+        <div class="relative w-full lg:w-2/5  max-w-[700px]">
             <?php if ($data['image_slider']): ?>
-                <div class="swiper-container product-slider" id="productSlider">
+                <div class="swiper-container product-slider overflow-hidden" id="productSlider">
                     <div class="swiper-wrapper">
                         <?php foreach ($data['image_slider'] as $slide): ?>
                             <div class="swiper-slide">
-                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
+                                <div class="rounded-[35px] transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
+                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="rounded-[35px] transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
+                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="rounded-[35px] transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
                                      style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
                                 </div>
                             </div>
@@ -26,12 +36,12 @@ $title = get_the_title();
                     </div>
                 </div>
                 <div class="flex gap-4 lg:gap-6 mt-6 lg:mt-8 justify-end absolute bottom-4 right-4 z-10">
-                    <div class="bg-[#c1b2a8] p-1 lg:p-3 rounded-full group cursor-pointer" id="productPrev">
+                    <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productPrev">
                         <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
                         </svg>
                     </div>
-                    <div class="bg-[#c1b2a8] p-1 lg:p-3 rounded-full group cursor-pointer" id="productNext">
+                    <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productNext">
                         <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
                         </svg>
@@ -85,7 +95,7 @@ $title = get_the_title();
             </video>
         </div>
     </div>
-</section>
+                </div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -148,3 +158,73 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<?php 
+// Get CTA data - you can customize this or make it dynamic
+$cta_data = [
+    'title' => 'Other Products',
+    'description' => 'Seeing and feeling furniture in person makes all the difference. Our expert designers work tirelessly to source the finest Italian-made pieces, and our website is just a taste of what we offer. Visit our two-storey, 3000 sq ft showroom in Watford, and let us show you the very best in Italian furniture design.'
+];
+?>
+
+<div class="bg-[#1e2938]">
+    <div class="max-w-[1800px] mx-auto mt-8 lg:mt-0 py-8 lg:py-32">
+        <div class="max-w-7xl relative bg-[#e0dbd1] rounded-xl lg:rounded-[35px] justify-center items-center text-white px-6 lg:px-12 py-12 lg:py-24">
+            <div class="min-w-[100%] lg:min-w-[550px] lg:absolute left-12 bottom-24">
+                <div class="lg:h-[600px] flex justify-center items-center">
+                    <div>
+                        <div class="lg:text-lg text-primary max-w-[440px] content">
+                            <h1 class="text-primary text-2xl lg:text-4xl mb-4">
+                                <?php echo esc_html($cta_data['title']); ?>
+                            </h1>
+                            <p class="lg:text-lg text-primary max-w-[440px] content">
+                                <?php echo esc_html($cta_data['description']); ?>
+                            </p>
+                        </div>
+                        <a href="/showroom" class="lg:text-xs mt-4 rounded-lg inline-block justify-center items-center border-3 border px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer border-primary hover:bg-primary text-primary hover:text-white">
+                            Visit Our Showroom
+                        </a>
+                    </div>
+                </div>
+                <div class="flex gap-4 lg:gap-6 mt-6 lg:mt-8 justify-end">
+                    <div class="bg-[#c1b2a8] p-1 lg:p-3 rounded-full group cursor-pointer" id="bottomSliderPrev">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                        </svg>
+                    </div>
+                    <div class="bg-[#c1b2a8] p-1 lg:p-3 rounded-full group cursor-pointer" id="bottomSliderNext">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <?php if ($data['image_slider']): ?>
+                <div class="swiper lg:absolute lg:-right-[50%] mt-6 lg:mt-0 !bg-[#dddad1]" id="bottomProductSlider">
+                    <div class="swiper-wrapper">
+                        <?php 
+                        $reversed_images = array_reverse($data['image_slider']);
+                        foreach ($reversed_images as $slide): 
+                        ?>
+                            <div class="swiper-slide">
+                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[360px] lg:min-h-[750px] rounded-xl"
+                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
+                                </div>
+                            </div>
+                              <div class="swiper-slide">
+                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[360px] lg:min-h-[750px] rounded-xl"
+                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
+                                </div>
+                            </div>
+                              <div class="swiper-slide">
+                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[360px] lg:min-h-[750px] rounded-xl"
+                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</div>
