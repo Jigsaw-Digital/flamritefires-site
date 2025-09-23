@@ -13,11 +13,6 @@
                 ?>
             </div>
             <div class="flex flex-wrap gap-12 mt-8 lg:mt-0">
-                <div class="space-y-2">
-                    <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Pages</h3>
-                    <a href="<?php echo esc_url(home_url('/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Home</a>
-                    <a href="<?php echo esc_url(home_url('/contact-us')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Contact</a>
-                </div>
 
                 <div class="space-y-2">
                     <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Products</h3>
@@ -25,7 +20,7 @@
                     <a href="<?php echo esc_url(home_url('/e-fx-fireplace-suites/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-FX Fireplace Suites</a>
                     <a href="<?php echo esc_url(home_url('/hearth-inset-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Hearth &amp; Inset Fires</a>
                     <a href="<?php echo esc_url(home_url('/e-ridium-holographic-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-RIDIUM Holographic Fires</a>
-                </div>
+v                </div>
 
                 <div class="space-y-2">
                     <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Other</h3>
@@ -109,6 +104,11 @@
         </div>
         <div class="max-w-7xl px-6 lg:px-0 mx-auto flex flex-col sm:flex-row justify-between items-center text-white/60 mt-8 lg:mt-16 text-sm">
             <p class="copyright">All Rights Reserved. <?php echo date('Y'); ?>.</p>
+            <div class="flex items-center gap-4 mt-2 sm:mt-0 text-xs">
+                <a href="<?php echo esc_url(home_url('/cookie-policy/')); ?>" class="hover:text-white/80 transition-colors">Cookie Policy</a>
+                <span class="text-white/40">|</span>
+                <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="hover:text-white/80 transition-colors">Privacy Policy</a>
+            </div>
         </div>
     </div>
 

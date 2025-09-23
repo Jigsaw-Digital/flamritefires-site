@@ -57,7 +57,7 @@ function sx_theme_setup() {
 //                 theme: {
 //                     extend: {
 //                         colors: {
-//                             primary: '#750639',
+//                             primary: '#1e2938',
 //                             primary_light: '#9c084c',
 //                             primary_dark: '#5e052e',
 //                             secondary: '#daa521',

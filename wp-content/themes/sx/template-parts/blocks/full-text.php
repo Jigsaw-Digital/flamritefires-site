@@ -77,7 +77,7 @@ switch ($padding) {
 .prose h4,
 .prose h5,
 .prose h6 {
-    color: var(--color-primary, #750639);
+    color: var(--color-primary, #1e2938);
     font-weight: 700;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -136,7 +136,7 @@ switch ($padding) {
 }
 
 .prose blockquote {
-    border-left: 4px solid var(--color-primary, #750639);
+    border-left: 4px solid var(--color-primary, #1e2938);
     padding-left: 1.5rem;
     margin: 2rem 0;
     font-style: italic;
@@ -163,7 +163,7 @@ switch ($padding) {
 }
 
 .prose th {
-    background-color: var(--color-primary, #750639);
+    background-color: var(--color-primary, #1e2938);
     color: white;
     font-weight: 600;
 }
@@ -173,7 +173,7 @@ switch ($padding) {
 }
 
 .prose a {
-    color: var(--color-primary, #750639);
+    color: var(--color-primary, #1e2938);
     text-decoration: underline;
     transition: color 0.2s ease;
 }
@@ -184,7 +184,7 @@ switch ($padding) {
 
 .prose strong {
     font-weight: 700;
-    color: var(--color-primary, #750639);
+    color: var(--color-primary, #1e2938);
 }
 
 .prose em {
