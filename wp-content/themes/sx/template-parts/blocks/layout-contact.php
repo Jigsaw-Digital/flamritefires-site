@@ -175,9 +175,11 @@ $data = get_field('layout_contact_data');
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
                             <p class="text-gray-600">
-                                Your Business Address<br>
-                                City, State 12345<br>
-                                United Kingdom
+                                Flamerite Fires<br>
+                                Lichfield Road Industrial Estate<br>
+                                Staffordshire<br>
+                                B79 7UL<br>
+                                UK
                             </p>
                         </div>
                     </div>
@@ -189,10 +191,10 @@ $data = get_field('layout_contact_data');
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
+                            <h3 class="font-semibold text-gray-900 mb-1">Telephone</h3>
                             <p class="text-gray-600">
-                                <a href="tel:01923923120" class="hover:text-primary transition-colors">
-                                    01923 923 120
+                                <a href="tel:01543251122" class="hover:text-primary transition-colors">
+                                    01543 251122
                                 </a>
                             </p>
                         </div>
@@ -207,28 +209,13 @@ $data = get_field('layout_contact_data');
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
                             <p class="text-gray-600">
-                                <a href="mailto:info@greycaine.co.uk" class="hover:text-primary transition-colors">
-                                    info@greycaine.co.uk
+                                <a href="mailto:info@flameritefires.com" class="hover:text-primary transition-colors">
+                                    info@flameritefires.com
                                 </a>
                             </p>
                         </div>
                     </div>
                     
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-semibold text-gray-900 mb-1">Business Hours</h3>
-                            <p class="text-gray-600">
-                                Monday - Friday: 9:00 AM - 5:00 PM<br>
-                                Saturday: 9:00 AM - 1:00 PM<br>
-                                Sunday: Closed
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

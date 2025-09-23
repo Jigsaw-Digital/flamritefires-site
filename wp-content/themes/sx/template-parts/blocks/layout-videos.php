@@ -69,6 +69,19 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                     $video_file = get_field('video_file', $video->ID);
                     $featured_image = get_the_post_thumbnail_url($video->ID, 'large');
 
+                    // Fallback to try different image sizes if large doesn't work
+                    if (!$featured_image) {
+                        $featured_image = get_the_post_thumbnail_url($video->ID, 'full');
+                    }
+                    if (!$featured_image) {
+                        $featured_image = get_the_post_thumbnail_url($video->ID, 'medium');
+                    }
+                    if (!$featured_image) {
+                        $featured_image = get_the_post_thumbnail_url($video->ID);
+                    }
+
+                    // Debug featured image
+
                     // Create excerpt from description or post content
                     $excerpt = '';
                     if ($video_description) {
@@ -117,15 +130,6 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                                                 <path d="M8 5v14l11-7z"/>
                                             </svg>
                                         </div>
-                                    </div>
-                                <?php endif; ?>
-
-                                <!-- Duration Badge (if enabled) -->
-                                <?php if ($show_duration && $video_size): ?>
-                                    <div class="absolute bottom-3 right-3">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-black bg-opacity-70 text-white">
-                                            <?php echo esc_html($video_size); ?>
-                                        </span>
                                     </div>
                                 <?php endif; ?>
                             </div>
