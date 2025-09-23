@@ -106,7 +106,7 @@ if (!class_exists('Greycaine_Desktop_Walker')) {
                 // Top level menu items
                 if ($has_children) {
                     $output .= $indent . '<li class="relative group">';
-                    $output .= '<span class="px-2 text-sm uppercase tracking-[6px] relative text-white hover:text-white/70 inline-block">';
+                    $output .= '<span class="px-2 text-sm uppercase tracking-[6px] relative text-white hover:text-white/70 inline-block" style="font-size: 13px;">';
                     $output .= apply_filters('the_title', $item->title, $item->ID);
                     $output .= '</span>'; 
                 } else {
