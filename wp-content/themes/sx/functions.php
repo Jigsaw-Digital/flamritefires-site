@@ -1829,6 +1829,17 @@ function sx_block_init()
         'keywords'          => array('videos', 'media', 'modal', 'layout'),
         'supports'          => $supports,
     ));
+
+    acf_register_block_type(array(
+        'name'              => 'layout-warranty',
+        'title'             => __('Layout Warranty'),
+        'description'       => __('Extended warranty information and application form.'),
+        'render_template'   => 'template-parts/blocks/layout-warranty.php',
+        'category'          => 'layout',
+        'icon'              => 'shield',
+        'keywords'          => array('warranty', 'form', 'extended', 'protection'),
+        'supports'          => $supports,
+    ));
 }
 
 // Custom Walker Class for Desktop Menu

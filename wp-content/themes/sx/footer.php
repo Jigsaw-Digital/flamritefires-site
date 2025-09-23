@@ -15,18 +15,16 @@
             <div class="flex flex-wrap gap-12 mt-8 lg:mt-0">
                 <div class="space-y-2">
                     <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Pages</h3>
-                    <?php
-                    $pages_links = array(
-                        array('name' => 'Home', 'href' => home_url('/')),
-                        array('name' => 'Products', 'href' => home_url('/products')),
-                        array('name' => 'Contact', 'href' => home_url('/contact-us')),
-                        array('name' => 'Showroom', 'href' => home_url('/showroom'))
-                    );
-                    
-                    foreach ($pages_links as $link) {
-                        echo '<a href="' . esc_url($link['href']) . '" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">' . esc_html($link['name']) . '</a>';
-                    }
-                    ?>
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Home</a>
+                    <a href="<?php echo esc_url(home_url('/contact-us')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Contact</a>
+                </div>
+
+                <div class="space-y-2">
+                    <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Products</h3>
+                    <a href="<?php echo esc_url(home_url('/e-fx-built-in-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-FX Built In Fires</a>
+                    <a href="<?php echo esc_url(home_url('/e-fx-fireplace-suites/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-FX Fireplace Suites</a>
+                    <a href="<?php echo esc_url(home_url('/hearth-inset-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Hearth &amp; Inset Fires</a>
+                    <a href="<?php echo esc_url(home_url('/e-ridium-holographic-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-RIDIUM Holographic Fires</a>
                 </div>
 
                 <div class="space-y-2">
@@ -35,7 +33,6 @@
                     $other_links = array(
                         array('name' => 'Bespoke', 'href' => home_url('/bespoke')),
                         array('name' => 'About Us', 'href' => home_url('/about-us')),
-                        array('name' => 'Trade Account', 'href' => home_url('/trade')),
                         array('name' => 'Privacy Policy', 'href' => home_url('/privacy-policy'))
                     );
                     
