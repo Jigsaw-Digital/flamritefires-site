@@ -35,7 +35,7 @@ if (!$data) return;
                                         <?php if ($data['slides_' . $i . '_call_to_action']): ?>
                                             <a href="<?php echo esc_url($data['slides_' . $i . '_call_to_action']['url']); ?>" 
                                                class="bg-white text-primary hover:bg-gray-100 block mt-4 max-w-[300px] text-center px-6 py-3 font-semibold transition duration-300">
-                                                Visit Our Showroom
+                                                Contact Us
                                             </a>
                                         <?php endif; ?>
                                     </div>

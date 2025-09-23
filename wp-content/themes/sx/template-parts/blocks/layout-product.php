@@ -83,8 +83,8 @@ $title = get_the_title();
                     </a>
                 </div>
                 <div>
-                    <a href="/showroom" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
-                        Visit Our Showroom
+                    <a href="/contact-us/" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
+                        Contact Us
                     </a>
                 </div>
             </div>
@@ -192,8 +192,8 @@ $cta_data = [
                                 <?php echo esc_html($cta_data['description']); ?>
                             </p>
                         </div>
-                        <a href="/showroom" class="lg:text-xs mt-4 rounded-lg inline-block justify-center items-center border-3 border px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer bg-[#1e2938] hover:bg-primary text-wgite hover:text-white">
-                            Visit Our Showroom
+                        <a href="/contact-us/" class="lg:text-xs mt-4 rounded-lg inline-block justify-center items-center border-3 border px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer bg-[#1e2938] hover:bg-primary text-wgite hover:text-white">
+                            Contact Us
                         </a>
                     </div>
                 </div>
