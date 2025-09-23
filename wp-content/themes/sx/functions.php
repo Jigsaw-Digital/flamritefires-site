@@ -1840,6 +1840,17 @@ function sx_block_init()
         'keywords'          => array('warranty', 'form', 'extended', 'protection'),
         'supports'          => $supports,
     ));
+
+    acf_register_block_type(array(
+        'name'              => 'full-text',
+        'title'             => __('Full Text'),
+        'description'       => __('Full-width text content block for terms, policies, and other text content.'),
+        'render_template'   => 'template-parts/blocks/full-text.php',
+        'category'          => 'layout',
+        'icon'              => 'editor-alignleft',
+        'keywords'          => array('text', 'content', 'terms', 'policy', 'full-width'),
+        'supports'          => $supports,
+    ));
 }
 
 // Custom Walker Class for Desktop Menu
