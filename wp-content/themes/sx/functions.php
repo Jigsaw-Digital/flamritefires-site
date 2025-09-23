@@ -15,6 +15,12 @@ require_once get_template_directory() . '/acf/blocks/testimonials-slider.php';
 // Include layout products by category ACF fields
 require_once get_template_directory() . '/acf/blocks/layout-products-by-category.php';
 
+// Include documents ACF fields
+require_once get_template_directory() . '/acf/documents.php';
+
+// Include videos ACF fields
+require_once get_template_directory() . '/acf/videos.php';
+
 // Include sample testimonials creator (remove in production)
 require_once get_template_directory() . '/inc/sample-testimonials.php';
 
@@ -1799,6 +1805,28 @@ function sx_block_init()
         'category'          => 'layout',
         'icon'              => 'format-quote',
         'keywords'          => array('testimonials', 'slider', 'reviews', 'quotes', 'customers'),
+        'supports'          => $supports,
+    ));
+
+    acf_register_block_type(array(
+        'name'              => 'layout-documents',
+        'title'             => __('Layout Documents'),
+        'description'       => __('Display documents in a grid layout.'),
+        'render_template'   => 'template-parts/blocks/layout-documents.php',
+        'category'          => 'layout',
+        'icon'              => 'media-document',
+        'keywords'          => array('documents', 'files', 'pdf', 'layout'),
+        'supports'          => $supports,
+    ));
+
+    acf_register_block_type(array(
+        'name'              => 'layout-videos',
+        'title'             => __('Layout Videos'),
+        'description'       => __('Display videos in a grid layout with modal popup.'),
+        'render_template'   => 'template-parts/blocks/layout-videos.php',
+        'category'          => 'layout',
+        'icon'              => 'video-alt3',
+        'keywords'          => array('videos', 'media', 'modal', 'layout'),
         'supports'          => $supports,
     ));
 }
