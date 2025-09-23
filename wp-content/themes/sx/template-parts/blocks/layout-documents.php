@@ -58,28 +58,32 @@ if ($columns === '2') {
 }
 
 // Get file type badge colors
-function get_file_type_badge($file_type) {
-    $badges = array(
-        'pdf' => 'bg-red-100 text-red-800',
-        'word' => 'bg-blue-100 text-blue-800',
-        'excel' => 'bg-green-100 text-green-800',
-        'powerpoint' => 'bg-orange-100 text-orange-800',
-        'text' => 'bg-gray-100 text-gray-800',
-        'other' => 'bg-purple-100 text-purple-800',
-    );
-    return $badges[$file_type] ?? 'bg-gray-100 text-gray-800';
+if (!function_exists('get_file_type_badge')) {
+    function get_file_type_badge($file_type) {
+        $badges = array(
+            'pdf' => 'bg-red-100 text-red-800',
+            'word' => 'bg-blue-100 text-blue-800',
+            'excel' => 'bg-green-100 text-green-800',
+            'powerpoint' => 'bg-orange-100 text-orange-800',
+            'text' => 'bg-gray-100 text-gray-800',
+            'other' => 'bg-purple-100 text-purple-800',
+        );
+        return $badges[$file_type] ?? 'bg-gray-100 text-gray-800';
+    }
 }
 
-function get_file_type_label($file_type) {
-    $labels = array(
-        'pdf' => 'PDF',
-        'word' => 'DOC',
-        'excel' => 'XLS',
-        'powerpoint' => 'PPT',
-        'text' => 'TXT',
-        'other' => 'FILE',
-    );
-    return $labels[$file_type] ?? 'FILE';
+if (!function_exists('get_file_type_label')) {
+    function get_file_type_label($file_type) {
+        $labels = array(
+            'pdf' => 'PDF',
+            'word' => 'DOC',
+            'excel' => 'XLS',
+            'powerpoint' => 'PPT',
+            'text' => 'TXT',
+            'other' => 'FILE',
+        );
+        return $labels[$file_type] ?? 'FILE';
+    }
 }
 ?>
 
