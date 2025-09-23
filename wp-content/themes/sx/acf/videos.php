@@ -25,10 +25,9 @@ function register_videos_acf_fields() {
                     'label' => 'Video File',
                     'name' => 'video_file',
                     'type' => 'file',
-                    'instructions' => 'Upload the video file (MP4, MOV, etc.)',
+                    'instructions' => 'Upload any file type',
                     'required' => 1,
                     'return_format' => 'array',
-                    'mime_types' => 'mp4,mov,avi,wmv,flv,webm',
                 ),
             ),
             'location' => array(

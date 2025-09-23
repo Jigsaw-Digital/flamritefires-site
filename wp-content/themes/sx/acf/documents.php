@@ -25,10 +25,9 @@ function register_documents_acf_fields() {
                     'label' => 'Document File',
                     'name' => 'document_file',
                     'type' => 'file',
-                    'instructions' => 'Upload the document file (PDF, DOC, etc.)',
+                    'instructions' => 'Upload any file type',
                     'required' => 1,
                     'return_format' => 'array',
-                    'mime_types' => 'pdf,doc,docx,xls,xlsx,ppt,pptx,txt',
                 ),
                 array(
                     'key' => 'field_document_file_type',
