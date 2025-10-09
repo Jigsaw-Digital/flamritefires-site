@@ -20,7 +20,7 @@
                     <a href="<?php echo esc_url(home_url('/e-fx-fireplace-suites/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-FX Fireplace Suites</a>
                     <a href="<?php echo esc_url(home_url('/hearth-inset-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">Hearth &amp; Inset Fires</a>
                     <a href="<?php echo esc_url(home_url('/e-ridium-holographic-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[6px] text-white hover:text-white/70 block">E-RIDIUM Holographic Fires</a>
-v                </div>
+               </div>
 
                 <div class="space-y-2">
                     <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Other</h3>
