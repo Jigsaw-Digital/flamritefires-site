@@ -113,7 +113,7 @@
                 wp_nav_menu(array(
                     'theme_location' => 'main-menu',
                     'container' => false,
-                    'menu_class' => 'flex items-center gap-2 xl:gap-4',
+                    'menu_class' => 'flex items-center gap-1.5',
                     'walker' => new Greycaine_Desktop_Walker(),
                     'fallback_cb' => 'greycaine_default_menu'
                 ));
