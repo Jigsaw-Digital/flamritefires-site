@@ -184,7 +184,7 @@ get_header();
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
                                 <p class="text-gray-600">
-                                    <a href="tel:01923923120" class="hover:text-primary transition-colors">
+                                    <a href="tel:01543251122" class="hover:text-primary transition-colors">
                                         01923 923 120
                                     </a>
                                 </p>

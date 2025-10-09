@@ -78,7 +78,7 @@ $title = get_the_title();
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
                 <div class="mb-2">
-                    <a href="tel:01923923120" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
+                    <a href="tel:01543251122" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
                         Call Our Showroom
                     </a>
                 </div>

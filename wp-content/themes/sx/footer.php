@@ -8,7 +8,7 @@
                 if ($site_logo) {
                     echo '<img src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
                 } else {
-                    echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Greycaine">';
+                    echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Flamerite Fires">';
                 }
                 ?>
             </div>
