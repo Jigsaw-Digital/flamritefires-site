@@ -111,7 +111,7 @@ if (!class_exists('Greycaine_Desktop_Walker')) {
                     $output .= '</span>'; 
                 } else {
                     $output .= $indent . '<li>';
-                    $output .= '<a href="' . esc_url($atts['href']) . '" class="px-2 text-sm uppercase tracking-[6px] relative text-white hover:text-white/70">';
+                    $output .= '<a href="' . esc_url($atts['href']) . '" class="px-2 text-sm uppercase tracking-[6px] relative text-white hover:text-white/70" style="font-size: 11px;">';
                     $output .= apply_filters('the_title', $item->title, $item->ID);
                     $output .= '</a>';
                 }
