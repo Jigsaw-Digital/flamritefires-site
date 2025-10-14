@@ -11,15 +11,15 @@ $title = get_the_title();
 ?>
 
 <div class="bg-tertiary py-8 lg:py-16 px-6 relative">
-    <div class="lg:flex justify-center items-center w-full gap-12 mx-auto relative">
-        <div class="relative w-full lg:w-2/5 max-w-[700px]">
+    <div class="lg:flex justify-center items-start w-full gap-12 mx-auto relative max-w-7xl">
+        <div class="relative w-full lg:w-2/5 max-w-[600px]">
             <?php if ($data['image_slider']): ?>
                 <!-- Main Image Slider -->
-                <div class="swiper-container product-slider overflow-hidden rounded-[35px] mb-4" id="productSlider">
+                <div class="swiper-container product-slider overflow-hidden rounded-[35px] relative" id="productSlider">
                     <div class="swiper-wrapper">
                         <?php foreach ($data['image_slider'] as $slide): ?>
                             <div class="swiper-slide">
-                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                <div class="aspect-[4/3] w-full overflow-hidden">
                                     <img src="<?php echo esc_url($slide['url']); ?>"
                                          alt="<?php echo esc_attr($title); ?>"
                                          class="w-full h-full object-contain bg-gray-100">
@@ -29,14 +29,14 @@ $title = get_the_title();
                     </div>
 
                     <!-- Navigation Arrows -->
-                    <div class="flex gap-4 lg:gap-6 mt-6 lg:mt-8 justify-end absolute bottom-4 right-4 z-10">
-                        <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productPrev">
-                            <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex gap-3 justify-center mt-4 lg:hidden">
+                        <div class="bg-[#1e2938] p-3 rounded-full group cursor-pointer" id="productPrev">
+                            <svg class="text-primary w-6 h-6 group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
                             </svg>
                         </div>
-                        <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productNext">
-                            <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="bg-[#1e2938] p-3 rounded-full group cursor-pointer" id="productNext">
+                            <svg class="text-primary w-6 h-6 group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
                             </svg>
                         </div>
@@ -44,17 +44,33 @@ $title = get_the_title();
                 </div>
 
                 <!-- Thumbnail Slider -->
-                <div class="swiper-container thumbs-slider" id="thumbsSlider">
-                    <div class="swiper-wrapper">
-                        <?php foreach ($data['image_slider'] as $index => $slide): ?>
-                            <div class="swiper-slide cursor-pointer">
-                                <div class="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-primary transition-colors duration-200">
-                                    <img src="<?php echo esc_url($slide['url']); ?>"
-                                         alt="<?php echo esc_attr($title); ?> thumbnail <?php echo $index + 1; ?>"
-                                         class="w-full h-full object-cover">
+                <div class="mt-3">
+                    <div class="swiper-container thumbs-slider" id="thumbsSlider">
+                        <div class="swiper-wrapper">
+                            <?php foreach ($data['image_slider'] as $index => $slide): ?>
+                                <div class="swiper-slide cursor-pointer">
+                                    <div class="aspect-square rounded-lg overflow-hidden border-2 border-gray-300 hover:border-primary transition-colors duration-200">
+                                        <img src="<?php echo esc_url($slide['url']); ?>"
+                                             alt="<?php echo esc_attr($title); ?> thumbnail <?php echo $index + 1; ?>"
+                                             class="w-full h-full object-cover">
+                                    </div>
                                 </div>
-                            </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Arrows (Desktop) -->
+                    <div class="hidden lg:flex gap-3 justify-center mt-4">
+                        <div class="bg-[#1e2938] p-3 rounded-full group cursor-pointer" id="productPrevDesktop">
+                            <svg class="text-primary w-8 h-8 group-hover:scale-125 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
+                            </svg>
+                        </div>
+                        <div class="bg-[#1e2938] p-3 rounded-full group cursor-pointer" id="productNextDesktop">
+                            <svg class="text-primary w-8 h-8 group-hover:scale-125 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
+                            </svg>
+                        </div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -122,19 +138,22 @@ $title = get_the_title();
 document.addEventListener('DOMContentLoaded', function() {
     // Thumbnail slider
     const thumbsSlider = new Swiper('#thumbsSlider', {
-        spaceBetween: 10,
+        spaceBetween: 8,
         slidesPerView: 4,
         freeMode: true,
         watchSlidesProgress: true,
         breakpoints: {
             0: {
                 slidesPerView: 3,
+                spaceBetween: 6,
             },
             640: {
                 slidesPerView: 4,
+                spaceBetween: 8,
             },
             1024: {
-                slidesPerView: 5,
+                slidesPerView: 4,
+                spaceBetween: 10,
             },
         },
     });
@@ -143,14 +162,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const productSlider = new Swiper('#productSlider', {
         slidesPerView: 1,
         spaceBetween: 0,
-        navigation: {
-            nextEl: '#productNext',
-            prevEl: '#productPrev',
-        },
         thumbs: {
             swiper: thumbsSlider,
         },
     });
+
+    // Navigation button handlers
+    const mobileNext = document.getElementById('productNext');
+    const mobilePrev = document.getElementById('productPrev');
+    const desktopNext = document.getElementById('productNextDesktop');
+    const desktopPrev = document.getElementById('productPrevDesktop');
+
+    if (mobileNext) {
+        mobileNext.addEventListener('click', () => productSlider.slideNext());
+    }
+    if (mobilePrev) {
+        mobilePrev.addEventListener('click', () => productSlider.slidePrev());
+    }
+    if (desktopNext) {
+        desktopNext.addEventListener('click', () => productSlider.slideNext());
+    }
+    if (desktopPrev) {
+        desktopPrev.addEventListener('click', () => productSlider.slidePrev());
+    }
 
     // Video modal functionality
     const watchVideoBtn = document.getElementById('watchVideoBtn');
@@ -186,8 +220,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <style>
     /* Active thumbnail styling */
-    #thumbsSlider .swiper-slide-thumb-active .aspect-square {
+    #thumbsSlider .swiper-slide-thumb-active div {
         border-color: #c1a068 !important;
+        box-shadow: 0 0 0 1px #c1a068;
+    }
+
+    /* Ensure proper spacing and layout */
+    .thumbs-slider {
+        padding: 0;
     }
 </style>
 
