@@ -1672,6 +1672,10 @@
     --tw-tracking: 2px;
     letter-spacing: 2px;
   }
+  .tracking-\[3px\] {
+    --tw-tracking: 3px;
+    letter-spacing: 3px;
+  }
   .tracking-\[6px\] {
     --tw-tracking: 6px;
     letter-spacing: 6px;
