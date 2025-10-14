@@ -60,7 +60,7 @@ $title = get_the_title();
                     </div>
 
                     <!-- Navigation Arrows (Desktop) -->
-                    <div class="hidden lg:flex gap-3 justify-center mt-4">
+                    <!-- <div class="hidden lg:flex gap-3 justify-center mt-4">
                         <div class="bg-[#1e2938] p-3 rounded-full group cursor-pointer" id="productPrevDesktop">
                             <svg class="text-primary w-8 h-8 group-hover:scale-125 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
@@ -71,7 +71,7 @@ $title = get_the_title();
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
                             </svg>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             <?php endif; ?>
         </div>
