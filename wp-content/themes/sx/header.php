@@ -120,20 +120,34 @@
                 ?>
             </nav>
 
-            <div class="flex gap-4 justify-center items-center">
-                <a href="tel:01543251122">
-                    <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] lg:w-[30px] hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex gap-3 lg:gap-4 justify-center items-center">
+                <!-- Mobile: Icons only -->
+                <a href="tel:01543251122" class="lg:hidden">
+                    <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
                 </a>
-                <a href="mailto:info@flameritefires.com">
-                    <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] lg:w-[30px] hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="mailto:info@flameritefires.com" class="lg:hidden">
+                    <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
                 </a>
-                <!-- <a href="/showroom" class="nav-desktop !lg:flex px-2 py-1 border-primary hover:bg-primary text-primary hover:text-white inline-block justify-center items-center border-2 border px-2 py-1 text-sm font-semibold xl:text-lg">
-                    <span class="text-[14px]">Book A <span class="hidden xl:inline-block">Showroom</span> Visit</span>
-                </a> -->
+
+                <!-- Desktop: Text with icons -->
+                <a href="tel:01543251122" class="hidden lg:flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors font-medium text-sm xl:text-base">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    <span>01543 251122</span>
+                </a>
+                <a href="mailto:info@flameritefires.com" class="hidden lg:flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors font-medium text-sm xl:text-base">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span class="hidden xl:inline">info@flameritefires.com</span>
+                    <span class="xl:hidden">Email Us</span>
+                </a>
+
                 <button type="button" class="nav-mobile right-4 z-[999] rounded-md <?php echo ($small ? 'text-primary' : 'text-white'); ?>" @click="mobileMenuOpen = true">
                     <span class="sr-only">Open main menu</span>
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

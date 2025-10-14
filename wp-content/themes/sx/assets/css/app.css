@@ -2216,6 +2216,13 @@
       }
     }
   }
+  .hover\:text-primary\/80 {
+    &:hover {
+      @media (hover: hover) {
+        color: color-mix(in oklab, #E85319 80%, transparent);
+      }
+    }
+  }
   .hover\:text-red-200 {
     &:hover {
       @media (hover: hover) {
@@ -2834,6 +2841,11 @@
       justify-content: flex-end;
     }
   }
+  .lg\:gap-4 {
+    @media (width >= 64rem) {
+      gap: calc(var(--spacing) * 4);
+    }
+  }
   .lg\:gap-6 {
     @media (width >= 64rem) {
       gap: calc(var(--spacing) * 6);
@@ -3070,6 +3082,16 @@
       margin-block: calc(var(--spacing) * 6);
     }
   }
+  .xl\:hidden {
+    @media (width >= 80rem) {
+      display: none;
+    }
+  }
+  .xl\:inline {
+    @media (width >= 80rem) {
+      display: inline;
+    }
+  }
   .xl\:inline-block {
     @media (width >= 80rem) {
       display: inline-block;
@@ -3116,6 +3138,12 @@
     @media (width >= 80rem) {
       font-size: var(--text-5xl);
       line-height: var(--tw-leading, var(--text-5xl--line-height));
+    }
+  }
+  .xl\:text-base {
+    @media (width >= 80rem) {
+      font-size: var(--text-base);
+      line-height: var(--tw-leading, var(--text-base--line-height));
     }
   }
   .xl\:text-lg {
