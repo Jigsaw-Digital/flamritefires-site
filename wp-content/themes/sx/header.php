@@ -59,9 +59,6 @@
 
         /* Transparent header styles */
         .header-transparent {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
         }
 
         .header-transparent.scrolled {
@@ -72,11 +69,11 @@
 
         /* Link colors for transparent header */
         .header-transparent:not(.scrolled) .nav-desktop a {
-            color: #1f2937 !important;
+            color: #fff !important;
         }
 
         .header-transparent:not(.scrolled) .text-primary {
-            color: #1f2937 !important;
+            color: #fff !important;
         }
 
         .header-transparent:not(.scrolled) .text-white {
