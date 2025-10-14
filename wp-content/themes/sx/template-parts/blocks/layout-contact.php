@@ -11,7 +11,7 @@ $data = get_field('layout_contact_data');
         
         <!-- Block Header -->
         <?php if (!empty($data['title'])): ?>
-            <div class="text-center mb-12">
+            <div class="text-center mb-12"> 
                 <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
                     <?php echo esc_html($data['title']); ?>
                 </h1>
