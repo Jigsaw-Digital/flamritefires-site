@@ -1,6 +1,6 @@
     </main>
 
-    <div class="print:hidden pt-16 pb-16 bg-primary overflow-hidden">
+    <div class="print:hidden pt-16 pb-16 bg-primary overflow-hidden px-6 lg:px-10">
         <div class="max-w-7xl mx-auto lg:flex justify-between px-6 lg:px-0">
             <div class="w-[200px] xl:w-[300px] max-w-[400px]">
                 <?php 
