@@ -119,31 +119,13 @@ document.addEventListener('DOMContentLoaded', function() {
             prevEl: '#productPrev',
         },
     });
-    
-    // Bottom product slider
-    const bottomSlider = new Swiper('#bottomProductSlider', {
-        slidesPerView: 2,
-        spaceBetween: 40,
-        breakpoints: {
-            0: {
-                slidesPerView: 1,
-            },
-            768: {
-                slidesPerView: 2,
-            },
-        },
-        navigation: {
-            nextEl: '#bottomSliderNext',
-            prevEl: '#bottomSliderPrev',
-        },
-    });
-    
+
     // Video modal functionality
     const watchVideoBtn = document.getElementById('watchVideoBtn');
     const videoModal = document.getElementById('videoModal');
     const modalVideo = document.getElementById('modalVideo');
     const closeVideoModal = document.getElementById('closeVideoModal');
-    
+
     if (watchVideoBtn) {
         watchVideoBtn.addEventListener('click', function() {
             const videoUrl = this.getAttribute('data-video');
@@ -152,14 +134,14 @@ document.addEventListener('DOMContentLoaded', function() {
             videoModal.classList.remove('hidden');
         });
     }
-    
+
     if (closeVideoModal) {
         closeVideoModal.addEventListener('click', function() {
             videoModal.classList.add('hidden');
             modalVideo.pause();
         });
     }
-    
+
     // Close modal when clicking outside
     videoModal?.addEventListener('click', function(e) {
         if (e.target === this) {
@@ -170,72 +152,116 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-<?php 
-// Get CTA data - you can customize this or make it dynamic
-$cta_data = [
-    'title' => 'Other Products',
-    'description' => 'Seeing and feeling furniture in person makes all the difference. Our expert designers work tirelessly to source the finest Italian-made pieces, and our website is just a taste of what we offer. Visit our two-storey, 3000 sq ft showroom in Watford, and let us show you the very best in Italian furniture design.'
-];
+<?php
+// Get related products from the same category
+$current_product_id = get_the_ID();
+$product_categories = get_the_terms($current_product_id, 'product_category');
+$related_products = array();
+
+if ($product_categories && !is_wp_error($product_categories)) {
+    // Get the first category
+    $category = $product_categories[0];
+
+    // Query for other products in the same category
+    $args = array(
+        'post_type' => 'products',
+        'post_status' => 'publish',
+        'posts_per_page' => 6,
+        'post__not_in' => array($current_product_id), // Exclude current product
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'product_category',
+                'field'    => 'term_id',
+                'terms'    => $category->term_id,
+            ),
+        ),
+    );
+
+    $related_query = new WP_Query($args);
+    $related_products = $related_query->posts;
+    wp_reset_postdata();
+}
 ?>
 
-<div class="bg-[#1e2938]">
-    <div class="max-w-[1800px] mx-auto mt-8 lg:mt-0 py-8 lg:py-32">
-        <div class="max-w-7xl relative bg-[#e0dbd1] rounded-xl lg:rounded-[35px] justify-center items-center text-white px-6 lg:px-12 py-12 lg:py-24">
-            <div class="min-w-[100%] lg:min-w-[550px] lg:absolute left-12 bottom-24">
-                <div class="lg:h-[600px] flex justify-center items-center">
-                    <div>
-                        <div class="lg:text-lg text-primary max-w-[440px] content">
-                            <h1 class="text-primary text-2xl lg:text-4xl mb-4">
-                                <?php echo esc_html($cta_data['title']); ?>
-                            </h1>
-                            <p class="lg:text-lg text-[#1e2938] max-w-[440px] content">
-                                <?php echo esc_html($cta_data['description']); ?>
-                            </p>
+<?php if (!empty($related_products)): ?>
+<section class="bg-tertiary py-16 px-6">
+    <div class="mx-auto container max-w-9xl">
+        <h2 class="text-3xl lg:text-4xl font-bold text-primary mb-8">
+            Other Products in <?php echo esc_html($category->name); ?>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <?php foreach ($related_products as $product): ?>
+                <?php
+                $product_price = get_field('price', $product->ID);
+                $product_description = get_field('description', $product->ID);
+                $featured_image = get_the_post_thumbnail_url($product->ID, 'large');
+
+                // Create excerpt from description or post content
+                $excerpt = '';
+                if ($product_description) {
+                    $excerpt = wp_trim_words(strip_tags($product_description), 20, '...');
+                } elseif ($product->post_excerpt) {
+                    $excerpt = wp_trim_words($product->post_excerpt, 20, '...');
+                } elseif ($product->post_content) {
+                    $excerpt = wp_trim_words(strip_tags($product->post_content), 20, '...');
+                }
+                ?>
+                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
+                    <a href="<?php echo get_permalink($product->ID); ?>" class="block">
+                        <?php if ($featured_image): ?>
+                            <div class="aspect-[4/3] overflow-hidden bg-gray-50">
+                                <img src="<?php echo esc_url($featured_image); ?>"
+                                     alt="<?php echo esc_attr($product->post_title); ?>"
+                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                        <?php else: ?>
+                            <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                <div class="text-center text-gray-400">
+                                    <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">No Image</span>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="p-6">
+                            <div class="mb-3">
+                                <h3 class="text-xl font-bold text-gray-900 group-hover:text-primary transition-colors duration-200 leading-tight">
+                                    <?php echo esc_html($product->post_title); ?>
+                                </h3>
+                            </div>
+
+                            <?php if ($excerpt): ?>
+                                <p class="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+                                    <?php echo esc_html($excerpt); ?>
+                                </p>
+                            <?php endif; ?>
+
+                            <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                                <?php if ($product_price): ?>
+                                    <div class="text-right">
+                                        <span class="text-primary font-bold text-lg">
+                                            <?php echo esc_html($product_price); ?>
+                                        </span>
+                                    </div>
+                                <?php else: ?>
+                                    <div></div>
+                                <?php endif; ?>
+
+                                <div class="flex items-center text-primary text-sm font-medium">
+                                    <span class="mr-1">View Details</span>
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <a href="/contact-us/" class="lg:text-xs mt-4 rounded-lg inline-block justify-center items-center border-3 border px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer bg-[#1e2938] hover:bg-primary text-wgite hover:text-white">
-                            Contact Us
-                        </a>
-                    </div>
+                    </a>
                 </div>
-                <div class="flex gap-4 lg:gap-6 mt-6 lg:mt-8 justify-end">
-                    <div class="bg-[#c1b2a8] p-1 lg:p-3 rounded-full group cursor-pointer" id="bottomSliderPrev">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 9-3 3m0 0 3 3m-3-3h7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                        </svg>
-                    </div>
-                    <div class="bg-[#c1b2a8] p-1 lg:p-3 rounded-full group cursor-pointer" id="bottomSliderNext">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon" class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-            <?php if ($data['image_slider']): ?>
-                <div class="swiper lg:absolute lg:-right-[50%] mt-6 lg:mt-0 !bg-[#dddad1]" id="bottomProductSlider">
-                    <div class="swiper-wrapper">
-                        <?php 
-                        $reversed_images = array_reverse($data['image_slider']);
-                        foreach ($reversed_images as $slide): 
-                        ?>
-                            <div class="swiper-slide">
-                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[360px] lg:min-h-[750px] rounded-xl"
-                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
-                                </div>
-                            </div>
-                              <div class="swiper-slide">
-                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[360px] lg:min-h-[750px] rounded-xl"
-                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
-                                </div>
-                            </div>
-                              <div class="swiper-slide">
-                                <div class="hover:scale-110 transition-transform duration-500 ease-in-out min-h-[360px] lg:min-h-[750px] rounded-xl"
-                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
+            <?php endforeach; ?>
         </div>
     </div>
-</div>
+</section>
+<?php endif; ?>
