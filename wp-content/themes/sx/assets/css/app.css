@@ -668,6 +668,9 @@
   .h-\[90vh\] {
     height: 90vh;
   }
+  .h-\[100vh\] {
+    height: 100vh;
+  }
   .h-\[200px\] {
     height: 200px;
   }

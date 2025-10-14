@@ -22,7 +22,7 @@ $contact_form_button = get_field('contact_form_button');
 $show_divider = get_field('show_divider');
 
 $is_product = strpos($_SERVER['REQUEST_URI'], '/products/') !== false;
-$hero_class = $is_product ? 'bg-white h-[40vh] lg:h-[50vh] relative' : ($small_hero ? 'bg-white h-[calc(100vh-100px)] relative' : 'bg-white h-[calc(100vh-100px)] relative');
+$hero_class = $is_product ? 'bg-white h-[40vh] lg:h-[50vh] relative' : ($small_hero ? 'bg-white h-[calc(100vh-100px)] relative' : 'bg-white h-[100vh] relative');
 $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] object-cover !rounded-none' : ($small_hero ? 'mt-[70px] lg:mt-[110px] !mx-6 !lg:mx-12 hero-slider relative h-full lg:h-[calc(94vh-115px)] object-cover rounded-xl lg:rounded-[35px]' : 'h-[90vh] lg:h-[100vh] hero-slider !rounded-none');
 ?>
 

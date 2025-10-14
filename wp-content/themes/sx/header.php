@@ -72,20 +72,31 @@
 
         /* Link colors for transparent header */
         .header-transparent:not(.scrolled) .nav-desktop a {
-            color: #c1a068 !important;
+            color: #1f2937 !important;
         }
 
         .header-transparent:not(.scrolled) .text-primary {
-            color: #c1a068 !important;
+            color: #1f2937 !important;
         }
 
         .header-transparent:not(.scrolled) .text-white {
-            color: #c1a068 !important;
+            color: #1f2937 !important;
+        }
+
+        /* Remove main margin when transparent header is used */
+        body.has-transparent-header main {
+            margin-top: 0 !important;
         }
     </style>
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?> x-data="{ mobileMenuOpen: false, mobileSubMenuOpen1: false, mobileSubMenuOpen2: false, mobileSubMenuOpen3: false, mobileSubMenuOpen4: false, mobileSubMenuOpen5: false, megaMenuOpen: false }" style="background-color: #333;">
+<body <?php
+    if ($has_dynamic_hero) {
+        body_class('has-transparent-header');
+    } else {
+        body_class();
+    }
+?> x-data="{ mobileMenuOpen: false, mobileSubMenuOpen1: false, mobileSubMenuOpen2: false, mobileSubMenuOpen3: false, mobileSubMenuOpen4: false, mobileSubMenuOpen5: false, megaMenuOpen: false }" style="background-color: #333;">
     <?php wp_body_open(); ?>
     
     <?php
