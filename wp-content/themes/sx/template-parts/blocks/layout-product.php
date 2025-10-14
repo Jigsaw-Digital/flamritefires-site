@@ -184,7 +184,7 @@ if ($product_categories && !is_wp_error($product_categories)) {
 ?>
 
 <?php if (!empty($related_products)): ?>
-<section class="bg-tertiary py-16 px-6">
+<section class="bg-[#1e2938] py-16 px-6">
     <div class="mx-auto container max-w-9xl">
         <h2 class="text-3xl lg:text-4xl font-bold text-primary mb-8">
             Other Products in <?php echo esc_html($category->name); ?>
