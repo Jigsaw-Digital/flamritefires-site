@@ -136,7 +136,7 @@ $title = get_the_title();
     <!-- Where to Buy Modal/Slide-out -->
     <div id="whereToBuyModal" class="fixed inset-0 z-50 hidden">
         <!-- Overlay -->
-        <div id="whereToBuyOverlay" class="absolute inset-0 bg-black bg-opacity-30 transition-opacity"></div>
+        <div id="whereToBuyOverlay" class="absolute inset-0  transition-opacity" style="background: rgba(0,0,0,0.3)"></div>
 
         <!-- Modal Content - Full screen on mobile, slide-out on desktop -->
         <div id="whereToBuyContent" class="absolute bg-white transition-transform duration-300 ease-in-out
