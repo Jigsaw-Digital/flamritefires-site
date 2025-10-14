@@ -102,7 +102,7 @@ p {
 }
 
 .jd-content li {
-  @apply list-disc ml-3 list-[#cab069] text-left text-[12px] xl:text-lg;
+  @apply list-disc ml-3 list-[#cab069] text-left text-[16px] xl:text-lg;
 }
 
 .jd-content a:not(.tracking-widest) {

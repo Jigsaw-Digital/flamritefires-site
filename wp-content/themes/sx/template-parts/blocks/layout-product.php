@@ -29,7 +29,7 @@ $title = get_the_title();
                     </div>
 
                     <!-- Navigation Arrows -->
-                    <div class="flex gap-3 justify-center mt-4 lg:hidden">
+                    <!-- <div class="flex gap-3 justify-center mt-4 lg:hidden">
                         <div class="bg-[#1e2938] p-3 rounded-full group cursor-pointer" id="productPrev">
                             <svg class="text-primary w-6 h-6 group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
@@ -40,7 +40,7 @@ $title = get_the_title();
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
                             </svg>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <!-- Thumbnail Slider -->
@@ -75,7 +75,7 @@ $title = get_the_title();
                 </div>
             <?php endif; ?>
         </div>
-        <div class="lg:flex gap-24 justify-center px-6">
+        <div class="lg:flex gap-24 justify-center px-4 lg:px-6">
             <div class="lg:flex flex-col  gap-4 h-full justify-start lg:min-h-[350px]">
                 <div class="lg:text-lg max-w-[100%] lg:max-w-[440px] content mt-8 lg:mt-0">
                          <h1 class="grey-qo-regular  text-primary hidden lg:block text-3xl mb-2">
@@ -104,12 +104,12 @@ $title = get_the_title();
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
                 <div class="mb-2">
-                    <button id="whereToBuyBtn" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md cursor-pointer">
+                    <button id="whereToBuyBtn" class="bg-white text-primary outline-2 outline-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md cursor-pointer">
                         Where to Buy
                     </button>
                 </div>
                 <div>
-                    <a href="/contact-us/" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
+                    <a href="/contact-us/" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md cursor-pointer">
                         Contact Us
                     </a>
                 </div>
