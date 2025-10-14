@@ -2458,6 +2458,11 @@
       position: absolute;
     }
   }
+  .lg\:sticky {
+    @media (width >= 64rem) {
+      position: sticky;
+    }
+  }
   .lg\:inset-y-0 {
     @media (width >= 64rem) {
       inset-block: calc(var(--spacing) * 0);
@@ -2466,6 +2471,11 @@
   .lg\:-top-\[108px\] {
     @media (width >= 64rem) {
       top: calc(108px * -1);
+    }
+  }
+  .lg\:top-8 {
+    @media (width >= 64rem) {
+      top: calc(var(--spacing) * 8);
     }
   }
   .lg\:right-0 {
@@ -2783,6 +2793,11 @@
         margin-block-start: calc(calc(var(--spacing) * 8) * var(--tw-space-y-reverse));
         margin-block-end: calc(calc(var(--spacing) * 8) * calc(1 - var(--tw-space-y-reverse)));
       }
+    }
+  }
+  .lg\:self-start {
+    @media (width >= 64rem) {
+      align-self: flex-start;
     }
   }
   .lg\:rounded-\[35px\] {

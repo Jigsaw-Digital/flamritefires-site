@@ -12,7 +12,7 @@ $title = get_the_title();
 
 <div class="bg-tertiary py-8 lg:py-16 px-6 relative">
     <div class="lg:flex justify-center items-start w-full gap-12 mx-auto relative max-w-7xl">
-        <div class="relative w-full lg:w-2/5 max-w-[600px]">
+        <div class="relative w-full lg:w-2/5 max-w-[600px] lg:sticky lg:top-8 lg:self-start">
             <?php if ($data['image_slider']): ?>
                 <!-- Main Image Slider -->
                 <div class="swiper-container product-slider overflow-hidden rounded-[35px] relative" id="productSlider">
