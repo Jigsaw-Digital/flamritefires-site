@@ -79,6 +79,11 @@
         .header-transparent:not(.scrolled) .text-white {
             color: #1f2937 !important;
         }
+
+        /* Contact links (email/phone) in orange for transparent header */
+        .header-transparent:not(.scrolled) .text-primary {
+            color: #e85319 !important;
+        }
     </style>
     <?php wp_head(); ?>
 </head>
