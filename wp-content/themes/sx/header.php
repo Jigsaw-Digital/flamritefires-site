@@ -36,12 +36,12 @@
         .light-logo { display: none; }
         .nav-desktop { display: flex; }
         .nav-mobile { display: none; }
-        
+
         @media (max-width: 1023px) {
             .nav-desktop { display: none !important; }
             .nav-mobile { display: block !important; }
         }
-        
+
         .megamenu {
             visibility: hidden;
             opacity: 0;
@@ -51,10 +51,36 @@
             visibility: visible;
             opacity: 1;
         }
-        
+
         .grey-qo-regular {
             font-family: 'Montserrat', sans-serif;
             font-style: italic;
+        }
+
+        /* Transparent header styles */
+        .header-transparent {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .header-transparent.scrolled {
+            background: #1f2937;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        /* Link colors for transparent header */
+        .header-transparent:not(.scrolled) .nav-desktop a {
+            color: #c1a068 !important;
+        }
+
+        .header-transparent:not(.scrolled) .text-primary {
+            color: #c1a068 !important;
+        }
+
+        .header-transparent:not(.scrolled) .text-white {
+            color: #c1a068 !important;
         }
     </style>
     <?php wp_head(); ?>
@@ -67,13 +93,15 @@
     global $post;
     $hero_block = null;
     $small = false;
-    
+    $has_dynamic_hero = false;
+
     if (has_blocks($post->post_content)) {
         $blocks = parse_blocks($post->post_content);
         foreach ($blocks as $block) {
             if (in_array($block['blockName'], ['acf/dynamic-hero', 'acf/layout-hero', 'acf/layout-video-hero'])) {
                 $hero_block = $block;
                 if ($block['blockName'] === 'acf/dynamic-hero') {
+                    $has_dynamic_hero = true;
                     $small = isset($block['attrs']['data']['small']) && $block['attrs']['data']['small'] == '1';
                 } else {
                     $small = isset($block['attrs']['data']['small']) && $block['attrs']['data']['small'] == '1';
@@ -82,16 +110,24 @@
             }
         }
     }
-    
+
     // Get WordPress categories for product menu
     $product_categories = get_categories(array(
         'taxonomy' => 'category',
         'hide_empty' => true,
         'parent' => 0
     ));
+
+    // Header classes based on hero type
+    $header_classes = 'fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-[20px] xl:py-[30px] transition-all duration-300';
+    if ($has_dynamic_hero) {
+        $header_classes .= ' header-transparent';
+    } else {
+        $header_classes .= ' bg-gray-800';
+    }
     ?>
-    
-    <header id="header" class="fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-[20px] xl:py-[30px] bg-gray-800">
+
+    <header id="header" class="<?php echo esc_attr($header_classes); ?>" data-has-dynamic-hero="<?php echo $has_dynamic_hero ? 'true' : 'false'; ?>">
         <div class="mx-auto flex max-w-6xl justify-between px-6 xl:max-w-7xl">
             <div class="flex w-[200px] items-center xl:w-[200px]">
                 <a href="<?php echo home_url('/'); ?>">

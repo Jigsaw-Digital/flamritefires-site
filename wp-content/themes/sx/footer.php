@@ -112,6 +112,30 @@
         </div>
     </div>
 
+    <script>
+    // Handle transparent header scroll behavior
+    document.addEventListener('DOMContentLoaded', function() {
+        const header = document.getElementById('header');
+        const hasDynamicHero = header && header.getAttribute('data-has-dynamic-hero') === 'true';
+
+        if (hasDynamicHero) {
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                if (currentScroll > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                lastScroll = currentScroll;
+            });
+        }
+    });
+    </script>
+
     <?php wp_footer(); ?>
 </body>
 </html>
