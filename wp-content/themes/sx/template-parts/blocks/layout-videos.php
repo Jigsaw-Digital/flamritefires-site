@@ -140,7 +140,7 @@ $modal_id_prefix = 'video-modal-' . uniqid();
 
                                 <!-- Play Button Overlay -->
                                 <?php if ($video_url): ?>
-                                    <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-30 group-hover:bg-opacity-40 transition-all duration-300">
+                                    <div class="absolute inset-0 flex items-center justify-center bg-opacity-30 group-hover:bg-opacity-40 transition-all duration-300">
                                         <div class="bg-white bg-opacity-90 group-hover:bg-opacity-100 rounded-full p-4 transition-all duration-300">
                                             <svg class="w-8 h-8 text-primary" fill="currentColor" viewBox="0 0 24 24">
                                                 <path d="M8 5v14l11-7z"/>
