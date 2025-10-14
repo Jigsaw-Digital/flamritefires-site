@@ -1796,7 +1796,18 @@ function sx_block_init()
         'keywords'          => array('contact', 'section'),
         'supports'          => $supports,
     ));
-    
+
+    acf_register_block_type(array(
+        'name'              => 'layout-general-form',
+        'title'             => __('Layout General Form'),
+        'description'       => __('General form layout with selectable form types.'),
+        'render_template'   => 'template-parts/blocks/layout-general-form.php',
+        'category'          => 'layout',
+        'icon'              => 'feedback',
+        'keywords'          => array('form', 'general', 'download', 'brochure'),
+        'supports'          => $supports,
+    ));
+
     acf_register_block_type(array(
         'name'              => 'testimonials-slider',
         'title'             => __('Testimonials Slider'),
