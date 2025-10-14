@@ -2478,6 +2478,11 @@
       top: calc(var(--spacing) * 8);
     }
   }
+  .lg\:top-32 {
+    @media (width >= 64rem) {
+      top: calc(var(--spacing) * 32);
+    }
+  }
   .lg\:right-0 {
     @media (width >= 64rem) {
       right: calc(var(--spacing) * 0);
