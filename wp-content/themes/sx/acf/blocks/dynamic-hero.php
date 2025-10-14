@@ -33,6 +33,18 @@ function register_dynamic_hero_acf_fields() {
                     'ui_off_text' => 'No',
                 ),
                 array(
+                    'key' => 'field_dynamic_hero_disable_transparent_header',
+                    'label' => 'Disable Transparent Header',
+                    'name' => 'disable_transparent_header',
+                    'type' => 'true_false',
+                    'instructions' => 'Keep header with normal colors (disable transparent effect)',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No',
+                ),
+                array(
                     'key' => 'field_dynamic_hero_show_divider',
                     'label' => 'Show Title Divider',
                     'name' => 'show_divider',

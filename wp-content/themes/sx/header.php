@@ -68,16 +68,9 @@
         }
 
         /* Link colors for transparent header */
-        .header-transparent:not(.scrolled) .nav-desktop a {
+        .header-transparent:not(.scrolled) .nav-desktop a,
+        .header-transparent:not(.scrolled) .nav-desktop .text-white {
             color: #fff !important;
-        }
-
-        .header-transparent:not(.scrolled) .text-primary {
-            color: #fff !important;
-        }
-
-        .header-transparent:not(.scrolled) .text-white {
-            color: #1f2937 !important;
         }
 
         /* Contact links (email/phone) in orange for transparent header */
@@ -102,6 +95,7 @@
     $hero_block = null;
     $small = false;
     $has_dynamic_hero = false;
+    $disable_transparent_header = false;
 
     if (has_blocks($post->post_content)) {
         $blocks = parse_blocks($post->post_content);
@@ -111,6 +105,7 @@
                 if ($block['blockName'] === 'acf/dynamic-hero') {
                     $has_dynamic_hero = true;
                     $small = isset($block['attrs']['data']['small']) && $block['attrs']['data']['small'] == '1';
+                    $disable_transparent_header = isset($block['attrs']['data']['disable_transparent_header']) && $block['attrs']['data']['disable_transparent_header'] == '1';
                 } else {
                     $small = isset($block['attrs']['data']['small']) && $block['attrs']['data']['small'] == '1';
                 }
@@ -118,6 +113,9 @@
             }
         }
     }
+
+    // Only enable transparent header if dynamic hero exists AND it's not disabled
+    $has_dynamic_hero = $has_dynamic_hero && !$disable_transparent_header;
 
     // Get WordPress categories for product menu
     $product_categories = get_categories(array(
