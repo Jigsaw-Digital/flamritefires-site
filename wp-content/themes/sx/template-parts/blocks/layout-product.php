@@ -134,7 +134,7 @@ $title = get_the_title();
     </div>
 
     <!-- Where to Buy Modal/Slide-out -->
-    <div id="whereToBuyModal" class="fixed inset-0 z-50 hidden">
+    <div id="whereToBuyModal" class="fixed inset-0 z-[9999] hidden">
         <!-- Overlay -->
         <div id="whereToBuyOverlay" class="absolute inset-0  transition-opacity" style="background: rgba(0,0,0,0.3)"></div>
 

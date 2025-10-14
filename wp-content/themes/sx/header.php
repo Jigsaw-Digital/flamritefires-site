@@ -59,7 +59,7 @@
 
         /* Transparent header styles */
         .header-transparent {
-            background: linear-gradient(to bottom, black, transparent);            
+            background:  linear-gradient(to bottom, black 0%, black 10%, transparent 100%);  
         }
 
         .header-transparent.scrolled {
