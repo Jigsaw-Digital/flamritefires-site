@@ -67,17 +67,25 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                     <?php
                     $video_description = get_field('video_description', $video->ID);
                     $video_file = get_field('video_file', $video->ID);
-                    $featured_image = get_the_post_thumbnail_url($video->ID, 'large');
+                    $video_thumbnail = get_field('video_thumbnail', $video->ID);
 
-                    // Fallback to try different image sizes if large doesn't work
-                    if (!$featured_image) {
-                        $featured_image = get_the_post_thumbnail_url($video->ID, 'full');
-                    }
-                    if (!$featured_image) {
-                        $featured_image = get_the_post_thumbnail_url($video->ID, 'medium');
-                    }
-                    if (!$featured_image) {
-                        $featured_image = get_the_post_thumbnail_url($video->ID);
+                    // Use custom thumbnail if available, otherwise use featured image
+                    $featured_image = null;
+                    if ($video_thumbnail && isset($video_thumbnail['url'])) {
+                        $featured_image = $video_thumbnail['url'];
+                    } else {
+                        $featured_image = get_the_post_thumbnail_url($video->ID, 'large');
+
+                        // Fallback to try different image sizes if large doesn't work
+                        if (!$featured_image) {
+                            $featured_image = get_the_post_thumbnail_url($video->ID, 'full');
+                        }
+                        if (!$featured_image) {
+                            $featured_image = get_the_post_thumbnail_url($video->ID, 'medium');
+                        }
+                        if (!$featured_image) {
+                            $featured_image = get_the_post_thumbnail_url($video->ID);
+                        }
                     }
 
                     // Debug featured image
@@ -170,12 +178,12 @@ $modal_id_prefix = 'video-modal-' . uniqid();
 
                     <!-- Video Modal -->
                     <?php if ($video_url): ?>
-                        <div id="<?php echo esc_attr($modal_id); ?>" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80 opacity-0 invisible transition-all duration-300">
+                        <div id="<?php echo esc_attr($modal_id); ?>" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-80 opacity-0 invisible transition-all duration-300">
                             <div class="relative w-full h-full max-w-6xl max-h-[90vh] mx-4">
                                 <!-- Close Button -->
-                                <button type="button" class="absolute top-4 right-4 z-10 bg-black bg-opacity-50 hover:bg-opacity-70 text-white rounded-full p-2 transition-colors duration-200" onclick="closeVideoModal('<?php echo esc_js($modal_id); ?>')">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                <button type="button" class="absolute -top-2 -right-2 lg:top-4 lg:right-4 z-10 bg-white hover:bg-gray-100 text-gray-800 rounded-full p-3 lg:p-4 shadow-lg transition-all duration-200 hover:scale-110" onclick="closeVideoModal('<?php echo esc_js($modal_id); ?>')">
+                                    <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                                     </svg>
                                 </button>
 
