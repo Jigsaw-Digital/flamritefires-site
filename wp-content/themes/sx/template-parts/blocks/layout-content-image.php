@@ -28,7 +28,7 @@ $subtitle_color = $is_dark ? 'text-orange-400' : 'text-orange-600';
 $button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-primary text-white hover:bg-primary/90';
 ?>
 
-<section class="<?php echo $bg_class; ?> pb-8 pt-8 lg:py-24 relative px-6">
+<section class="<?php echo $bg_class; ?> pb-8 pt-8 lg:py-24 relative px-6 lg:px-10">
     
     <div class="<?php echo ($image_direction == 'left' ? 'lg:flex-row-reverse' : ''); ?> mx-auto max-w-8xl gap-14 lg:flex items-center justify-between max-w-[1600px] mx-auto">
         <div class="w-full lg:w-1/2 space-y-4 lg:space-y-8">
@@ -68,7 +68,7 @@ $button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-pri
         <div class="w-full lg:w-1/2 relative">
             <img src="<?php echo esc_url($main_image['url']); ?>" 
                  alt="<?php echo esc_attr($main_image['alt']); ?>"
-                 class="mt-8 lg:mt-0 rounded-xl lg:rounded-[35px] w-[80%] mx-auto object-cover max-h-[800px]">
+                 class="mt-8 lg:mt-0 rounded-xl lg:rounded-[35px] w-[90%] mx-auto object-cover max-h-[800px]">
             <?php if ($offset_image): ?>
                 <img src="<?php echo esc_url($offset_image['url']); ?>" 
                      alt="<?php echo esc_attr($offset_image['alt']); ?>"
