@@ -2728,6 +2728,11 @@
       height: 100vh;
     }
   }
+  .lg\:h-\[500px\] {
+    @media (width >= 64rem) {
+      height: 500px;
+    }
+  }
   .lg\:h-\[calc\(94vh-115px\)\] {
     @media (width >= 64rem) {
       height: calc(94vh - 115px);
