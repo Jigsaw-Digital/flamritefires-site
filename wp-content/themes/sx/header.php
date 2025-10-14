@@ -133,20 +133,21 @@
                     </svg>
                 </a>
 
-                <!-- Desktop: Text with icons -->
-                <a href="tel:01543251122" class="hidden lg:flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors font-medium text-sm xl:text-base">
-                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                    </svg>
-                    <span>01543 251122</span>
-                </a>
-                <a href="mailto:info@flameritefires.com" class="hidden lg:flex items-center gap-1.5 text-primary hover:text-primary/80 transition-colors font-medium text-sm xl:text-base">
-                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                    </svg>
-                    <span class="hidden xl:inline">info@flameritefires.com</span>
-                    <span class="xl:hidden">Email Us</span>
-                </a>
+                <!-- Desktop: Stacked text -->
+                <div class="hidden lg:flex flex-col gap-0.5 text-primary text-xs leading-tight">
+                    <a href="tel:01543251122" class="flex items-center gap-1 hover:text-primary/80 transition-colors">
+                        <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                        </svg>
+                        <span class="font-medium">01543 251122</span>
+                    </a>
+                    <a href="mailto:info@flameritefires.com" class="flex items-center gap-1 hover:text-primary/80 transition-colors">
+                        <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <span class="font-medium">info@flameritefires.com</span>
+                    </a>
+                </div>
 
                 <button type="button" class="nav-mobile right-4 z-[999] rounded-md <?php echo ($small ? 'text-primary' : 'text-white'); ?>" @click="mobileMenuOpen = true">
                     <span class="sr-only">Open main menu</span>
