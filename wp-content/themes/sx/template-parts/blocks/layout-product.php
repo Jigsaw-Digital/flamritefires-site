@@ -153,7 +153,7 @@ $title = get_the_title();
             </div>
 
             <!-- Iframe Content -->
-            <div class="p-6">
+            <div class="">
                 <iframe
                     src="https://api.leadconnectorhq.com/widget/form/ADxQOaLUD4qr1znHzjkr"
                     style="width:100%;height:1292px;border:none;border-radius:3px"
