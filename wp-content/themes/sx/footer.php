@@ -112,6 +112,29 @@
         </div>
     </div>
 
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-policy-banner" class="fixed bottom-0 left-0 right-0 bg-[#1e2938] z-[9999] shadow-lg transform transition-transform duration-300 ease-in-out border-t border-primary/20" style="display: none; transform: translateY(100%);">
+        <div class="container mx-auto px-4 py-4 md:py-6">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div class="flex-1">
+                    <h3 class="text-white font-semibold text-lg mb-1">Cookie Policy</h3>
+                    <p class="text-white/80 text-sm md:text-base">
+                        We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.
+                        By clicking "Accept All", you consent to our use of cookies. Visit our <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> for more information.
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 md:gap-3">
+                    <button id="cookie-policy-accept" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 whitespace-nowrap">
+                        Accept All
+                    </button>
+                    <button id="cookie-policy-decline" class="bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 whitespace-nowrap border border-white/30">
+                        Necessary Only
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
     // Handle transparent header scroll behavior
     document.addEventListener('DOMContentLoaded', function() {
@@ -134,6 +157,76 @@
             });
         }
     });
+
+    // Cookie consent banner functionality
+    (function() {
+        const banner = document.getElementById('cookie-policy-banner');
+        const acceptBtn = document.getElementById('cookie-policy-accept');
+        const declineBtn = document.getElementById('cookie-policy-decline');
+        const COOKIE_NAME = 'cookie_consent';
+        const COOKIE_EXPIRY_DAYS = 365;
+
+        // Check if user has already made a choice
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+            return null;
+        }
+
+        // Set cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = `expires=${date.toUTCString()}`;
+            document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax`;
+        }
+
+        // Show banner with animation
+        function showBanner() {
+            banner.style.display = 'block';
+            setTimeout(() => {
+                banner.style.transform = 'translateY(0)';
+            }, 10);
+        }
+
+        // Hide banner with animation
+        function hideBanner() {
+            banner.style.transform = 'translateY(100%)';
+            setTimeout(() => {
+                banner.style.display = 'none';
+            }, 300);
+        }
+
+        // Handle accept
+        function handleAccept() {
+            setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
+            hideBanner();
+            // Add any analytics or tracking scripts here
+            console.log('Cookies accepted');
+        }
+
+        // Handle decline
+        function handleDecline() {
+            setCookie(COOKIE_NAME, 'necessary', COOKIE_EXPIRY_DAYS);
+            hideBanner();
+            console.log('Only necessary cookies accepted');
+        }
+
+        // Check if banner should be shown
+        const consent = getCookie(COOKIE_NAME);
+        if (!consent) {
+            showBanner();
+        }
+
+        // Event listeners
+        if (acceptBtn) {
+            acceptBtn.addEventListener('click', handleAccept);
+        }
+        if (declineBtn) {
+            declineBtn.addEventListener('click', handleDecline);
+        }
+    })();
     </script>
 
     <?php wp_footer(); ?>
