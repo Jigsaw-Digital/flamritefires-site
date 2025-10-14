@@ -94,7 +94,21 @@ function register_layout_content_image_acf_fields() {
                     'ui' => 1,
                     'ajax' => 0,
                 ),
-                
+
+                // Disable Top Padding
+                array(
+                    'key' => 'field_content_image_disable_top_padding',
+                    'label' => 'Disable Top Padding',
+                    'name' => 'disable_top_padding',
+                    'type' => 'true_false',
+                    'instructions' => 'Remove top padding from this section',
+                    'required' => 0,
+                    'default_value' => 0,
+                    'ui' => 1,
+                    'ui_on_text' => 'Yes',
+                    'ui_off_text' => 'No',
+                ),
+
                 // Main Image
                 array(
                     'key' => 'field_content_image_main',

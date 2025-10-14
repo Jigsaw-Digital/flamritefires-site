@@ -3005,6 +3005,11 @@
       padding-block: calc(var(--spacing) * 24);
     }
   }
+  .lg\:\!pt-0 {
+    @media (width >= 64rem) {
+      padding-top: calc(var(--spacing) * 0) !important;
+    }
+  }
   .lg\:pr-\[200px\] {
     @media (width >= 64rem) {
       padding-right: 200px;
@@ -3013,6 +3018,11 @@
   .lg\:pb-0 {
     @media (width >= 64rem) {
       padding-bottom: calc(var(--spacing) * 0);
+    }
+  }
+  .lg\:pb-24 {
+    @media (width >= 64rem) {
+      padding-bottom: calc(var(--spacing) * 24);
     }
   }
   .lg\:pl-\[200px\] {
