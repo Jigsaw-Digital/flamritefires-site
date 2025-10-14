@@ -82,11 +82,6 @@
         .header-transparent:not(.scrolled) .text-white {
             color: #1f2937 !important;
         }
-
-        /* Remove main margin when transparent header is used */
-        body.has-transparent-header main {
-            margin-top: 0 !important;
-        }
     </style>
     <?php wp_head(); ?>
 </head>
@@ -255,4 +250,4 @@
         </div>
     </header>
 
-    <main class="mt-[70px] lg:mt-[110px]">
+    <main class="<?php echo $has_dynamic_hero ? '' : 'mt-[70px] lg:mt-[110px]'; ?>">
