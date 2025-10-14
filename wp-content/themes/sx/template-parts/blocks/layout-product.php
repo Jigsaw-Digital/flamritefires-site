@@ -12,39 +12,49 @@ $title = get_the_title();
 
 <div class="bg-tertiary py-8 lg:py-16 px-6 relative">
     <div class="lg:flex justify-center items-center w-full gap-12 mx-auto relative">
-        <div class="relative w-full lg:w-2/5  max-w-[700px]">
+        <div class="relative w-full lg:w-2/5 max-w-[700px]">
             <?php if ($data['image_slider']): ?>
-                <div class="swiper-container product-slider overflow-hidden" id="productSlider">
+                <!-- Main Image Slider -->
+                <div class="swiper-container product-slider overflow-hidden rounded-[35px] mb-4" id="productSlider">
                     <div class="swiper-wrapper">
                         <?php foreach ($data['image_slider'] as $slide): ?>
                             <div class="swiper-slide">
-                                <div class="rounded-[35px] transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
-                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[35px] transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
-                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="rounded-[35px] transition-transform duration-500 ease-in-out min-h-[380px] lg:min-h-[850px]"
-                                     style="background-image: url(<?php echo esc_url($slide['url']); ?>); background-position: center; background-size: cover;">
+                                <div class="aspect-[3/4] w-full overflow-hidden">
+                                    <img src="<?php echo esc_url($slide['url']); ?>"
+                                         alt="<?php echo esc_attr($title); ?>"
+                                         class="w-full h-full object-contain bg-gray-100">
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
-                </div>
-                <div class="flex gap-4 lg:gap-6 mt-6 lg:mt-8 justify-end absolute bottom-4 right-4 z-10">
-                    <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productPrev">
-                        <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
-                        </svg>
+
+                    <!-- Navigation Arrows -->
+                    <div class="flex gap-4 lg:gap-6 mt-6 lg:mt-8 justify-end absolute bottom-4 right-4 z-10">
+                        <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productPrev">
+                            <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8"/>
+                            </svg>
+                        </div>
+                        <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productNext">
+                            <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
+                            </svg>
+                        </div>
                     </div>
-                    <div class="bg-[#1e2938] p-1 lg:p-3 rounded-full group cursor-pointer" id="productNext">
-                        <svg class="text-primary text-2xl w-[40px] lg:w-[50px] group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 9l3 3m0 0l-3 3m3-3H8"/>
-                        </svg>
+                </div>
+
+                <!-- Thumbnail Slider -->
+                <div class="swiper-container thumbs-slider" id="thumbsSlider">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($data['image_slider'] as $index => $slide): ?>
+                            <div class="swiper-slide cursor-pointer">
+                                <div class="aspect-square rounded-lg overflow-hidden border-2 border-transparent hover:border-primary transition-colors duration-200">
+                                    <img src="<?php echo esc_url($slide['url']); ?>"
+                                         alt="<?php echo esc_attr($title); ?> thumbnail <?php echo $index + 1; ?>"
+                                         class="w-full h-full object-cover">
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             <?php endif; ?>
@@ -110,13 +120,35 @@ $title = get_the_title();
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Thumbnail slider
+    const thumbsSlider = new Swiper('#thumbsSlider', {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+        breakpoints: {
+            0: {
+                slidesPerView: 3,
+            },
+            640: {
+                slidesPerView: 4,
+            },
+            1024: {
+                slidesPerView: 5,
+            },
+        },
+    });
+
     // Main product slider
     const productSlider = new Swiper('#productSlider', {
         slidesPerView: 1,
-        spaceBetween: 40,
+        spaceBetween: 0,
         navigation: {
             nextEl: '#productNext',
             prevEl: '#productPrev',
+        },
+        thumbs: {
+            swiper: thumbsSlider,
         },
     });
 
@@ -151,6 +183,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+<style>
+    /* Active thumbnail styling */
+    #thumbsSlider .swiper-slide-thumb-active .aspect-square {
+        border-color: #c1a068 !important;
+    }
+</style>
 
 <?php
 // Get related products from the same category
