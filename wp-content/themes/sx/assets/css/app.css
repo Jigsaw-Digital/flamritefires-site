@@ -3092,7 +3092,6 @@ p {
   line-height: calc(var(--spacing) * 6);
   @media (width >= 80rem) {
     font-size: var(--text-lg);
-    line-height: var(--tw-leading, var(--text-lg--line-height));
   }
   @media (width >= 80rem) {
     --tw-leading: calc(var(--spacing) * 8);
