@@ -80,6 +80,18 @@ if (!function_exists('register_small_hero_acf_fields')) {
                             'placeholder' => ''
                         ),
                         array(
+                            'key' => 'field_small_hero_show_breadcrumbs',
+                            'label' => 'Show Breadcrumbs',
+                            'name' => 'show_breadcrumbs',
+                            'type' => 'true_false',
+                            'instructions' => 'Display breadcrumbs below the title (Home > Current Page)',
+                            'required' => 0,
+                            'default_value' => 0,
+                            'ui' => 1,
+                            'ui_on_text' => 'Yes',
+                            'ui_off_text' => 'No',
+                        ),
+                        array(
                             'key' => 'field_small_hero_height',
                             'label' => 'Section Height',
                             'name' => 'section_height',

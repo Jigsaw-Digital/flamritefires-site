@@ -194,46 +194,6 @@ if ($display_categories && $selected_category) {
 ?>
 
 <section class="bg-tertiary pb-16 pt-16 relative px-6 min-h-[calc(100vh-430px)]">
-    <div class="mx-auto container max-w-8xl gap-14 lg:flex justify-between space-y-4 lg:space-y-0 mb-4 lg:mb-12">
-        <div class="w-full lg:w-1/2 space-y-4">
-            <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
-                <?php echo esc_html($data['title']); ?>
-            </h1>
-
-            <!-- Breadcrumbs -->
-            <div class="space-x-2 font-montserrat">
-                <a href="<?php echo home_url('/'); ?>" class="uppercase hover:underline">Home</a>
-                <span>|</span>
-                <?php if ($data['sub_category']): ?>
-                    <a href="/product-category/<?php echo esc_attr($data['sub_category']); ?>" class="uppercase hover:underline">
-                        <?php echo esc_html(str_replace('-', ' ', $data['sub_category'])); ?>
-                    </a>
-                    <span>|</span>
-                <?php endif; ?>
-                <?php if ($brochures_category_filter): ?>
-                    <a href="<?php echo get_term_link($brochures_category_filter); ?>" class="uppercase hover:underline">
-                        <?php echo esc_html($brochures_category_filter->name); ?>
-                    </a>
-                    <span>|</span>
-                <?php elseif ($products_category_filter): ?>
-                    <a href="<?php echo get_term_link($products_category_filter); ?>" class="uppercase hover:underline">
-                        <?php echo esc_html($products_category_filter->name); ?>
-                    </a>
-                <?php elseif ($selected_category): ?>
-                    <a href="<?php echo get_term_link($selected_category); ?>" class="uppercase hover:underline">
-                        <?php echo esc_html($selected_category->name); ?>
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
-        <div class="w-full lg:w-1/2 max-w-[700px]">
-            <div class="lg:text-xl font-montserrat">
-                <?php echo wp_kses_post($data['description']); ?>
-            </div>
-        </div>
-    </div>
-
-
     <!-- Products Grid -->
     <?php if ($display_products): ?>
         <?php if (!empty($products)): ?>

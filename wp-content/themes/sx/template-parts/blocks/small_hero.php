@@ -11,6 +11,7 @@ $background_image = get_field('background_image');
 $overlay_opacity = get_field('overlay_opacity') ?: 50;
 $text_alignment = get_field('text_alignment') ?: 'center';
 $section_height = get_field('section_height') ?: 'medium';
+$show_breadcrumbs = get_field('show_breadcrumbs') ?: false;
 
 // Height classes mapping
 $height_classes = array(
@@ -50,6 +51,15 @@ $alignment_class = $alignment_classes[$text_alignment] ?? $alignment_classes['ce
             <div class="hero-title !text-2xl text-left !text-white">
                <div><?php echo $title; ?></div>
             </div>
+
+            <?php if ($show_breadcrumbs): ?>
+                <!-- Breadcrumbs -->
+                <div class="space-x-2 font-montserrat mt-4 text-white text-sm">
+                    <a href="<?php echo home_url('/'); ?>" class="uppercase hover:underline">Home</a>
+                    <span>|</span>
+                    <span class="uppercase"><?php echo get_the_title(); ?></span>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
