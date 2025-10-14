@@ -104,9 +104,9 @@ $title = get_the_title();
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
                 <div class="mb-2">
-                    <a href="tel:01543251122" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
-                        Call Our Showroom
-                    </a>
+                    <button id="whereToBuyBtn" class="bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md cursor-pointer">
+                        Where to Buy
+                    </button>
                 </div>
                 <div>
                     <a href="/contact-us/" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md">
@@ -130,6 +130,48 @@ $title = get_the_title();
             <video id="modalVideo" controls class="w-full h-auto">
                 <source src="" type="video/mp4">
             </video>
+        </div>
+    </div>
+
+    <!-- Where to Buy Modal/Slide-out -->
+    <div id="whereToBuyModal" class="fixed inset-0 z-50 hidden">
+        <!-- Overlay -->
+        <div id="whereToBuyOverlay" class="absolute inset-0 bg-black bg-opacity-50 transition-opacity"></div>
+
+        <!-- Modal Content - Full screen on mobile, slide-out on desktop -->
+        <div id="whereToBuyContent" class="absolute bg-white transition-transform duration-300 ease-in-out
+                                           inset-0 lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[600px] lg:max-w-[90vw]
+                                           overflow-y-auto transform translate-x-full">
+            <!-- Header -->
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
+                <h2 class="text-2xl font-bold text-primary">Where to Buy</h2>
+                <button id="closeWhereToBuy" class="text-gray-500 hover:text-gray-700 transition-colors">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Iframe Content -->
+            <div class="p-6">
+                <iframe
+                    src="https://api.leadconnectorhq.com/widget/form/ADxQOaLUD4qr1znHzjkr"
+                    style="width:100%;height:1292px;border:none;border-radius:3px"
+                    id="inline-ADxQOaLUD4qr1znHzjkr"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="Voucher Promo"
+                    data-height="1292"
+                    data-layout-iframe-id="inline-ADxQOaLUD4qr1znHzjkr"
+                    data-form-id="ADxQOaLUD4qr1znHzjkr"
+                    title="Voucher Promo">
+                </iframe>
+            </div>
         </div>
     </div>
                 </div>
@@ -215,8 +257,57 @@ document.addEventListener('DOMContentLoaded', function() {
             modalVideo.pause();
         }
     });
+
+    // Where to Buy modal functionality
+    const whereToBuyBtn = document.getElementById('whereToBuyBtn');
+    const whereToBuyModal = document.getElementById('whereToBuyModal');
+    const whereToBuyContent = document.getElementById('whereToBuyContent');
+    const whereToBuyOverlay = document.getElementById('whereToBuyOverlay');
+    const closeWhereToBuy = document.getElementById('closeWhereToBuy');
+
+    function openWhereToBuy() {
+        whereToBuyModal.classList.remove('hidden');
+        // Small delay to allow the display change to take effect before animation
+        setTimeout(() => {
+            whereToBuyContent.classList.remove('translate-x-full');
+            whereToBuyContent.classList.add('translate-x-0');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeWhereToBuyModal() {
+        whereToBuyContent.classList.add('translate-x-full');
+        whereToBuyContent.classList.remove('translate-x-0');
+        setTimeout(() => {
+            whereToBuyModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    if (whereToBuyBtn) {
+        whereToBuyBtn.addEventListener('click', openWhereToBuy);
+    }
+
+    if (closeWhereToBuy) {
+        closeWhereToBuy.addEventListener('click', closeWhereToBuyModal);
+    }
+
+    // Close when clicking overlay
+    if (whereToBuyOverlay) {
+        whereToBuyOverlay.addEventListener('click', closeWhereToBuyModal);
+    }
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !whereToBuyModal.classList.contains('hidden')) {
+            closeWhereToBuyModal();
+        }
+    });
 });
 </script>
+
+<!-- Load form embed script -->
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 <style>
     /* Active thumbnail styling */
