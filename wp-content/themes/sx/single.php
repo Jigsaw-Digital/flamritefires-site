@@ -15,9 +15,9 @@ if (have_posts()) :
         $categories = get_the_category();
 ?>
 
-<div class="progress-container">
+<!-- <div class="progress-container">
     <div class="progress-bar" id="readingProgress"></div>
-</div>
+</div> -->
 
 
 <!-- Post Content -->
@@ -206,12 +206,12 @@ get_footer();
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        window.addEventListener('scroll', function() {
-            const winScroll = window.pageYOffset || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight - 100;
-            const scrolled = (winScroll / height) * 100; 
-            document.getElementById("readingProgress").style.width = scrolled + "%";
-        });
-    });
+    // document.addEventListener('DOMContentLoaded', function() {
+    //     window.addEventListener('scroll', function() {
+    //         const winScroll = window.pageYOffset || document.documentElement.scrollTop;
+    //         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight - 100;
+    //         const scrolled = (winScroll / height) * 100; 
+    //         document.getElementById("readingProgress").style.width = scrolled + "%";
+    //     });
+    // });
 </script>
