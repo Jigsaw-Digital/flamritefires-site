@@ -2811,6 +2811,11 @@
       width: 600px;
     }
   }
+  .lg\:max-w-\[76rem\] {
+    @media (width >= 64rem) {
+      max-width: 76rem;
+    }
+  }
   .lg\:max-w-\[90vw\] {
     @media (width >= 64rem) {
       max-width: 90vw;
@@ -2819,6 +2824,16 @@
   .lg\:max-w-\[440px\] {
     @media (width >= 64rem) {
       max-width: 440px;
+    }
+  }
+  .lg\:max-w-\[1200px\] {
+    @media (width >= 64rem) {
+      max-width: 1200px;
+    }
+  }
+  .lg\:max-w-\[1300px\] {
+    @media (width >= 64rem) {
+      max-width: 1300px;
     }
   }
   .lg\:min-w-\[400px\] {
