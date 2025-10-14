@@ -68,7 +68,7 @@ $button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-pri
         <div class="w-full lg:w-1/2 relative">
             <img src="<?php echo esc_url($main_image['url']); ?>" 
                  alt="<?php echo esc_attr($main_image['alt']); ?>"
-                 class="mt-8 lg:mt-0 rounded-xl lg:rounded-[35px] w-[90%] mx-auto object-cover max-h-[800px]">
+                 class="mt-8 lg:mt-0 rounded-xl lg:rounded-[35px] w-full mx-auto object-cover max-h-[800px]">
             <?php if ($offset_image): ?>
                 <img src="<?php echo esc_url($offset_image['url']); ?>" 
                      alt="<?php echo esc_attr($offset_image['alt']); ?>"
