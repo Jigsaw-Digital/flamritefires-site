@@ -3,6 +3,13 @@
  * Layout Products by Category ACF Field Registration
  */
 
+// Clear ACF cache when fields are updated
+add_action('acf/init', function() {
+    if (function_exists('acf_get_instance')) {
+        delete_transient('acf_cache');
+    }
+}, 5);
+
 function register_layout_products_by_category_acf_fields() {
     if (function_exists('acf_add_local_field_group')) {
         acf_add_local_field_group(array(
