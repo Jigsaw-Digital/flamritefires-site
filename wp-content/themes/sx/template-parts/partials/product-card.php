@@ -10,19 +10,14 @@ if (!isset($product)) {
 }
 
 // Get product data
-$product_data = get_field('layout_product_data', $product->ID);
+$product_description = get_field('description', $product->ID);
+$product_price = get_field('price', $product->ID);
 $featured_image = get_the_post_thumbnail_url($product->ID, 'large');
 
-// Get price - check standalone field first, then data group
-$product_price = get_field('price', $product->ID);
-if (!$product_price && isset($product_data['price'])) {
-    $product_price = $product_data['price'];
-}
-
-// Get excerpt from Description 1 field
+// Get excerpt from description ACF field
 $excerpt = '';
-if (!empty($product_data['description_1'])) {
-    $excerpt = wp_trim_words(strip_tags($product_data['description_1']), 20, '...');
+if ($product_description) {
+    $excerpt = wp_trim_words(strip_tags($product_description), 20, '...');
 } elseif ($product->post_excerpt) {
     $excerpt = wp_trim_words($product->post_excerpt, 20, '...');
 } elseif ($product->post_content) {
