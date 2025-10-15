@@ -191,9 +191,31 @@ if ($display_categories && $selected_category) {
         'hide_empty' => false,
     ));
 }
+
+// Get title and description
+$title = $data['title'] ?? '';
+$description = $data['description'] ?? '';
 ?>
 
-<section class="bg-tertiary pb-16 pt-16 relative px-6 min-h-[calc(100vh-430px)]">
+<?php if ($title || $description): ?>
+<section class="bg-tertiary pb-8 pt-16 relative px-6">
+    <div class="mx-auto max-w-9xl container">
+        <?php if ($title): ?>
+            <h1 class="text-3xl lg:text-4xl font-bold text-primary mb-4">
+                <?php echo esc_html($title); ?>
+            </h1>
+        <?php endif; ?>
+
+        <?php if ($description): ?>
+            <div class="text-gray-600 lg:text-lg max-w-4xl">
+                <?php echo wp_kses_post($description); ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
+<?php endif; ?>
+
+<section class="bg-tertiary pb-16 <?php echo ($title || $description) ? 'pt-8' : 'pt-16'; ?> relative px-6 min-h-[calc(100vh-430px)]">
     <!-- Products Grid -->
     <?php if ($display_products): ?>
         <?php if (!empty($products)): ?>
