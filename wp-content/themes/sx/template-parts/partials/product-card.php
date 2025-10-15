@@ -9,10 +9,57 @@ if (!isset($product)) {
     return;
 }
 
-// Get product data using ACF
+// Get product data using ACF - try multiple methods since it's a Gutenberg block
 $product_data = get_field('layout_product_data', $product->ID);
-$product_price = $product_data['price'] ?? '';
-$product_description = $product_data['description_1'] ?? '';
+$product_price = '';
+$product_description = '';
+
+// Debug: Check what we got
+if (current_user_can('administrator')) {
+    echo '<!-- Product ID: ' . $product->ID . ' -->';
+    echo '<!-- Product Data: ' . print_r($product_data, true) . ' -->';
+}
+
+// Try to get data from the parsed blocks directly
+if (has_blocks($product->post_content)) {
+    $blocks = parse_blocks($product->post_content);
+    foreach ($blocks as $block) {
+        if ($block['blockName'] === 'acf/layout-product') {
+            // Get the block ID to retrieve ACF data
+            $block_id = $block['attrs']['id'] ?? null;
+
+            if ($block_id) {
+                // Try getting data with block ID
+                $block_data = get_field('layout_product_data', $block_id);
+                if ($block_data) {
+                    $product_price = $block_data['price'] ?? '';
+                    $product_description = $block_data['description_1'] ?? '';
+                }
+            }
+
+            // If that didn't work, try the attrs data directly
+            if (!$product_description && isset($block['attrs']['data'])) {
+                $product_price = $block['attrs']['data']['price'] ?? '';
+                $product_description = $block['attrs']['data']['description_1'] ?? '';
+            }
+
+            if (current_user_can('administrator')) {
+                echo '<!-- Block found. Block ID: ' . $block_id . ' -->';
+                echo '<!-- Block attrs: ' . print_r($block['attrs'], true) . ' -->';
+                echo '<!-- Description found: ' . ($product_description ? 'YES' : 'NO') . ' -->';
+            }
+
+            break;
+        }
+    }
+}
+
+// Fallback to standard ACF field if blocks didn't work
+if (!$product_description && $product_data) {
+    $product_price = $product_data['price'] ?? '';
+    $product_description = $product_data['description_1'] ?? '';
+}
+
 $featured_image = get_the_post_thumbnail_url($product->ID, 'large');
 
 // Get excerpt from description_1 field
