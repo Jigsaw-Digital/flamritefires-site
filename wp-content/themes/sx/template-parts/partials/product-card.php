@@ -9,29 +9,13 @@ if (!isset($product)) {
     return;
 }
 
-// Get product data from layout blocks
-$product_data = null;
-$product_price = '';
-$product_description = '';
-
-// Parse blocks to find the layout-product block
-if (has_blocks($product->post_content)) {
-    $blocks = parse_blocks($product->post_content);
-    foreach ($blocks as $block) {
-        if ($block['blockName'] === 'acf/layout-product') {
-            $product_data = $block['attrs']['data'] ?? null;
-            if ($product_data) {
-                $product_price = $product_data['price'] ?? '';
-                $product_description = $product_data['description_1'] ?? '';
-            }
-            break;
-        }
-    }
-}
-
+// Get product data using ACF
+$product_data = get_field('layout_product_data', $product->ID);
+$product_price = $product_data['price'] ?? '';
+$product_description = $product_data['description_1'] ?? '';
 $featured_image = get_the_post_thumbnail_url($product->ID, 'large');
 
-// Get excerpt from description field
+// Get excerpt from description_1 field
 $excerpt = '';
 if ($product_description) {
     $excerpt = wp_trim_words(strip_tags($product_description), 20, '...');
