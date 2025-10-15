@@ -1960,3 +1960,26 @@ if (!class_exists('Mobile_Walker_Nav_Menu')) {
         }
     }
 }
+
+// Fix REST API authentication for logged-in users
+add_filter('rest_authentication_errors', function($result) {
+    // If already an error, return it
+    if (is_wp_error($result)) {
+        return $result;
+    }
+
+    // If user is logged in, allow the request
+    if (is_user_logged_in()) {
+        return true;
+    }
+
+    return $result;
+});
+
+// Ensure REST API nonce is properly set for block editor
+add_action('admin_enqueue_scripts', function() {
+    wp_localize_script('wp-api-fetch', 'wpApiSettings', array(
+        'root' => esc_url_raw(rest_url()),
+        'nonce' => wp_create_nonce('wp_rest')
+    ));
+});
