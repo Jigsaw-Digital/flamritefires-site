@@ -1,7 +1,7 @@
 <div class="cta-fixed flex lg:hidden">
     <div class="cta-apointment" style="min-width:50px">
         <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
-            <img src="/icons/where_to_buy_c.svgcta-brochure"> 
+            <img src="/icons/where_to_buy.svg"> 
         </a>
         <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
             <span>Where To Buy</span>
@@ -92,7 +92,7 @@
     
     .cta-brochure img  {
         width:45px;
-        padding: 5px;
+        padding: 12px;
     }
 
     .cta-apointment span, .cta-brochure span  {
