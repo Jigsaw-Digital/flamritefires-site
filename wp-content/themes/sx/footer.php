@@ -1,3 +1,175 @@
+<div class="cta-fixed flex lg:hidden">
+    <div class="cta-apointment" style="min-width:50px">
+        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
+            <img src="/icons/where_to_buy_c.svg"> 
+        </a>
+        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
+            <span>Where To Buy</span>
+        </a>
+    </div>
+    <div class="cta-brochure">
+        <a href="/contact-us/">
+            <img src="/icons/contact_us_c.svg"> 
+        </a>
+        <a href="/contact-us/">
+            <span>Contact Us</span>
+        </a>
+    </div>
+</div>
+
+<div class="cta-fixed hidden lg:flex">
+    <div class="cta-apointment" style="min-width:50px">
+        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
+            <img src="/icons/where_to_buy_c.svg"> 
+        </a>
+        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
+            <span style="font-size:12px; color:#cccdc6">WHERE TO BUY</span>
+        </a>
+    </div>
+</div>
+
+<div class="cta-fixed mt-16 hidden lg:flex">
+    <div class="cta-brochure">
+        <a href="/contact-us/">
+            <img src="https://www.neatsmith.co.uk/wp-content/themes/neatsmith_new_showroom/assets/icons/brochure_sideNeatsmith.svg"> 
+        </a>
+        <a href=/contact-us/">
+            <span style="font-size:12px; color:#4b5058">CONTACT US</span> 
+        </a>
+    </div>
+</div>
+
+<style>
+    .cta-fixed {
+        position: fixed;
+        right: 0px;
+        top: 40%;
+        z-index: 99999;
+    }
+
+     /* .cta-fixed:hover {
+        width: 190px;
+     } */
+
+    .cta-apointment:hover   {
+        width: 220px;  
+    }
+
+    .cky-btn-revisit-wrapper {
+        display: none;
+    }
+    
+    .cta-brochure:hover  {
+        width: 190px;  
+    }
+
+    .cta-fixed:hover .cta-apointment img {
+        margin-left: 5px;
+    }
+
+     .cta-fixed:hover span {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 12px;;
+     }
+
+    .cta-apointment {
+        background-color: #E85319;
+        padding:4px;
+    }
+
+    .cta-brochure {
+        background-color: #1e2939;
+        padding:4px;
+    }
+
+    .cta-apointment img {
+        width: 45px;
+        margin: 0px auto;
+        padding: 5px;
+    }
+    
+    .cta-brochure img  {
+        width:45px;
+        padding: 5px;
+    }
+
+    .cta-apointment span, .cta-brochure span  {
+        display: none;
+        color: #fff;
+    }
+
+    .cta-apointment, .cta-brochure  {
+        z-index: 9999999999;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .cta-apointment:hover, .cta-brochure:hover  {
+        cursor: pointer;
+        opacity: 90%;
+    }
+
+@media (max-width: 768px) {
+    .cta-fixed {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: auto;
+        justify-content: space-between;
+    }
+
+    .cta-fixed:hover, .cta-fixed:hover .cta-apointment, .cta-fixed:hover .cta-brochure  {
+        width: unset!important;
+    }
+
+    .cta-apointment, .cta-brochure {
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        margin: 0;
+        opacity: 0.9;
+        padding: 10px 5px;
+    }
+
+    .cta-apointment img {
+        margin-left:10px;
+        width:38px;
+    }
+
+    .cta-fixed:hover span {
+        font-size: 12px;
+    }
+    
+    .cta-brochure img {
+        margin-left:10px;
+        width:35px;
+    }
+
+    .cta-apointment span {
+        color: #fff;
+    }
+
+    .cta-brochure span { 
+       
+    }
+
+     .cta-apointment span, .cta-brochure span {
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 12px;;
+        width: 100%;
+        text-align: center;
+    }
+}
+</style>
+    
+    
     </main>
 
     <div class="print:hidden pt-16 pb-16 bg-primary overflow-hidden px-6 lg:px-10">

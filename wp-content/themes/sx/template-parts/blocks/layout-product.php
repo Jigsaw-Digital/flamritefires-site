@@ -260,6 +260,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Where to Buy modal functionality
     const whereToBuyBtn = document.getElementById('whereToBuyBtn');
+    const whereToBuyBtn2 = document.getElementById('whereToBuyBtn2');
+    const whereToBuyBtn3 = document.getElementById('whereToBuyBtn3');
     const whereToBuyModal = document.getElementById('whereToBuyModal');
     const whereToBuyContent = document.getElementById('whereToBuyContent');
     const whereToBuyOverlay = document.getElementById('whereToBuyOverlay');
@@ -286,6 +288,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (whereToBuyBtn) {
         whereToBuyBtn.addEventListener('click', openWhereToBuy);
+    }
+
+
+    if (whereToBuyBtn2) {
+        whereToBuyBtn2.addEventListener('click', openWhereToBuy);
+    }
+
+    if (whereToBuyBtn3) {
+        whereToBuyBtn3.addEventListener('click', openWhereToBuy);
     }
 
     if (closeWhereToBuy) {
