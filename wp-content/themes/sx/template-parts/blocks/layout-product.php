@@ -103,14 +103,14 @@ $title = get_the_title();
                  <div class="lg:text-lg max-w-[440px] content mt-8 lg:mt-0">
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
-                <div class="mb-2">
-                    <button id="whereToBuyBtn" class="bg-white text-primary outline-2 outline-primary hover:bg-primary hover:text-white inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md cursor-pointer">
-                        Where to Buy
+                <div class="flex flex-col gap-3 mt-6 max-w-[280px]">
+                    <button id="whereToBuyBtn" class="bg-primary text-white hover:bg-primary/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 cursor-pointer w-full">
+                        <img src="/icons/where_to_buy.svg" alt="Where to Buy" class="w-6 h-6">
+                        <span class="text-sm uppercase tracking-wider">WHERE TO BUY</span>
                     </button>
-                </div>
-                <div>
-                    <a href="/contact-us/" class="bg-primary text-white hover:bg-primary/90 inline-block px-6 py-3 font-semibold transition duration-300 lg:text-md cursor-pointer">
-                        Contact Us
+                    <a href="/contact-us/" class="bg-[#1e2938] text-white hover:bg-[#1e2938]/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 w-full">
+                        <img src="/icons/contact_us.svg" alt="Contact Us" class="w-6 h-6">
+                        <span class="text-sm uppercase tracking-wider">CONTACT US</span>
                     </a>
                 </div>
             </div>
