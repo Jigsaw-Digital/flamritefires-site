@@ -103,7 +103,7 @@ $title = get_the_title();
                  <div class="lg:text-lg max-w-[440px] content mt-8 lg:mt-0">
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
-                <div class="flex flex-col gap-3 mt-6 max-w-[280px]">
+                <div class="flex flex-col gap-3 mt-6 max-w-[210px]">
                     <button id="whereToBuyBtn" class="bg-primary text-white hover:bg-primary/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 cursor-pointer w-full">
                         <img src="/icons/where_to_buy.svg" alt="Where to Buy" class="w-6 h-6">
                         <span class="text-sm uppercase tracking-wider">WHERE TO BUY</span>
