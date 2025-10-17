@@ -139,6 +139,11 @@
     .cta-apointment img {
         margin-left:10px;
         width:38px;
+        padding: 12px;
+    }
+
+    .cta-brochure img {
+        padding:8px!important;
     }
 
     .cta-fixed:hover span {
