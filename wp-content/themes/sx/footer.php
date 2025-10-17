@@ -60,7 +60,7 @@
     }
     
     .cta-brochure:hover  {
-        width: 190px;  
+        width: 140px;  
     }
 
     .cta-fixed:hover .cta-apointment img {
