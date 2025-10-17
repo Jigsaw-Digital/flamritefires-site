@@ -1,7 +1,7 @@
 <div class="cta-fixed flex lg:hidden">
     <div class="cta-apointment" style="min-width:50px">
         <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
-            <img src="/icons/where_to_buy_c.svg"> 
+            <img src="/icons/where_to_buy_c.svgcta-brochure"> 
         </a>
         <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
             <span>Where To Buy</span>
@@ -9,7 +9,7 @@
     </div>
     <div class="cta-brochure">
         <a href="/contact-us/">
-            <img src="/icons/contact_us_c.svg"> 
+            <img src="/icons/contact_us.svg"> 
         </a>
         <a href="/contact-us/">
             <span>Contact Us</span>
@@ -23,7 +23,7 @@
             <img src="/icons/where_to_buy_c.svg"> 
         </a>
         <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
-            <span style="font-size:12px; color:#cccdc6">WHERE TO BUY</span>
+            <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
         </a>
     </div>
 </div>
@@ -31,10 +31,10 @@
 <div class="cta-fixed mt-16 hidden lg:flex">
     <div class="cta-brochure">
         <a href="/contact-us/">
-            <img src="https://www.neatsmith.co.uk/wp-content/themes/neatsmith_new_showroom/assets/icons/brochure_sideNeatsmith.svg"> 
+            <img src="/icons/contact_us.svg"> 
         </a>
         <a href=/contact-us/">
-            <span style="font-size:12px; color:#4b5058">CONTACT US</span> 
+            <span style="font-size:12px; color:#fff">CONTACT US</span> 
         </a>
     </div>
 </div>
@@ -52,7 +52,7 @@
      } */
 
     .cta-apointment:hover   {
-        width: 220px;  
+        width: 170px;  
     }
 
     .cky-btn-revisit-wrapper {
