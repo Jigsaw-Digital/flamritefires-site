@@ -18,25 +18,17 @@
 </div>
 
 <div class="cta-fixed hidden lg:flex">
-    <div class="cta-apointment">
-        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
-            <img src="/icons/new-right-2.svg">
-        </a>
-        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
-            <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
-        </a>
-    </div>
+    <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier" class="cta-apointment">
+        <img src="/icons/new-right-2.svg">
+        <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
+    </a>
 </div>
 
 <div class="cta-fixed mt-16 hidden lg:flex">
-    <div class="cta-brochure">
-        <a href="/contact-us/">
-            <img src="/icons/new-right-1.svg">
-        </a>
-        <a href="/contact-us/">
-            <span style="font-size:12px; color:#fff">CONTACT US</span>
-        </a>
-    </div>
+    <a href="/contact-us/" class="cta-brochure">
+        <img src="/icons/new-right-1.svg">
+        <span style="font-size:12px; color:#fff">CONTACT US</span>
+    </a>
 </div>
 
 <style>
@@ -80,28 +72,34 @@
         background-color: #E85319;
         padding: 0;
         margin: 0;
-        display: block;
+        display: flex;
+        align-items: center;
         width: 60px;
         height: 60px;
         border-radius: 10px 0 0 10px;
-        overflow: visible;
+        overflow: hidden;
         border: none;
         outline: none;
         box-sizing: border-box;
+        text-decoration: none;
+        transition: width 0.3s ease;
     }
 
     .cta-brochure {
         background-color: #1e2939;
         padding: 0;
         margin: 0;
-        display: block;
+        display: flex;
+        align-items: center;
         width: 60px;
         height: 60px;
         border-radius: 10px 0 0 10px;
-        overflow: visible;
+        overflow: hidden;
         border: none;
         outline: none;
         box-sizing: border-box;
+        text-decoration: none;
+        transition: width 0.3s ease;
     }
 
     .cta-apointment img {
@@ -115,6 +113,7 @@
         outline: none !important;
         box-sizing: border-box !important;
         object-fit: cover !important;
+        flex-shrink: 0 !important;
     }
 
     .cta-brochure img  {
@@ -128,18 +127,7 @@
         outline: none !important;
         box-sizing: border-box !important;
         object-fit: cover !important;
-    }
-
-    .cta-apointment a, .cta-brochure a {
-        display: block !important;
-        line-height: 0 !important;
-        border: none !important;
-        outline: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        width: 60px !important;
-        height: 60px !important;
-        box-sizing: border-box !important;
+        flex-shrink: 0 !important;
     }
 
     .cta-apointment span, .cta-brochure span  {
