@@ -78,7 +78,11 @@ function sx_theme_setup() {
 // Menus
 add_action('init', 'sx_custom_new_menu');
 function sx_custom_new_menu(){
-    register_nav_menu('main-menu', 'Main Menu');
+    register_nav_menus(array(
+        'main-menu' => 'Main Menu',
+        'footer-products' => 'Footer Products',
+        'footer-other' => 'Footer Other'
+    ));
 }
 
 // Menu Walker Classes for Greycaine Theme

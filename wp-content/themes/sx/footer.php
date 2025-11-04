@@ -172,6 +172,40 @@
         text-align: center;
     }
 }
+
+/* Footer Menu Styling */
+.footer-menu-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-menu-items li {
+    margin: 0;
+    padding: 0;
+}
+
+.footer-menu-items li a {
+    display: block;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1875rem;
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.footer-menu-items li a:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media (min-width: 1024px) {
+    .footer-menu-items li a {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
 </style>
     
     
@@ -193,23 +227,53 @@
 
                 <div class="space-y-2">
                     <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Products</h3>
-                    <a href="<?php echo esc_url(home_url('/e-fx-built-in-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">E-FX Built In Fires</a>
-                    <a href="<?php echo esc_url(home_url('/e-fx-fireplace-suites/')); ?>" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">E-FX Fireplace Suites</a>
-                    <a href="<?php echo esc_url(home_url('/hearth-inset-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">Hearth &amp; Inset Fires</a>
-                    <a href="<?php echo esc_url(home_url('/e-ridium-holographic-fires/')); ?>" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">E-RIDIUM Holographic Fires</a>
+                    <?php
+                    if (has_nav_menu('footer-products')) {
+                        wp_nav_menu(array(
+                            'theme_location' => 'footer-products',
+                            'container' => false,
+                            'menu_class' => 'footer-menu-items',
+                            'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+                            'link_before' => '',
+                            'link_after' => '',
+                            'fallback_cb' => false,
+                            'item_spacing' => 'discard',
+                        ));
+                    } else {
+                        // Fallback to hardcoded links if menu not set
+                        echo '<a href="' . esc_url(home_url('/e-fx-built-in-fires/')) . '" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">E-FX Built In Fires</a>';
+                        echo '<a href="' . esc_url(home_url('/e-fx-fireplace-suites/')) . '" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">E-FX Fireplace Suites</a>';
+                        echo '<a href="' . esc_url(home_url('/hearth-inset-fires/')) . '" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">Hearth &amp; Inset Fires</a>';
+                        echo '<a href="' . esc_url(home_url('/e-ridium-holographic-fires/')) . '" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">E-RIDIUM Holographic Fires</a>';
+                    }
+                    ?>
                </div>
 
                 <div class="space-y-2">
                     <h3 class="font-semibold lg:px-4 mb-3 uppercase text-white">Other</h3>
                     <?php
-                    $other_links = array(
-                        array('name' => 'Bespoke', 'href' => home_url('/bespoke')),
-                        array('name' => 'About Us', 'href' => home_url('/about-us')),
-                        array('name' => 'Privacy Policy', 'href' => home_url('/privacy-policy'))
-                    );
-                    
-                    foreach ($other_links as $link) {
-                        echo '<a href="' . esc_url($link['href']) . '" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">' . esc_html($link['name']) . '</a>';
+                    if (has_nav_menu('footer-other')) {
+                        wp_nav_menu(array(
+                            'theme_location' => 'footer-other',
+                            'container' => false,
+                            'menu_class' => 'footer-menu-items',
+                            'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+                            'link_before' => '',
+                            'link_after' => '',
+                            'fallback_cb' => false,
+                            'item_spacing' => 'discard',
+                        ));
+                    } else {
+                        // Fallback to hardcoded links if menu not set
+                        $other_links = array(
+                            array('name' => 'Bespoke', 'href' => home_url('/bespoke')),
+                            array('name' => 'About Us', 'href' => home_url('/about-us')),
+                            array('name' => 'Privacy Policy', 'href' => home_url('/privacy-policy'))
+                        );
+
+                        foreach ($other_links as $link) {
+                            echo '<a href="' . esc_url($link['href']) . '" class="lg:px-4 text-sm uppercase tracking-[3px] text-white hover:text-white/70 block">' . esc_html($link['name']) . '</a>';
+                        }
                     }
                     ?>
                 </div>
