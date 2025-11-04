@@ -18,7 +18,7 @@
 </div>
 
 <div class="cta-fixed hidden lg:flex">
-    <div class="cta-apointment" style="min-width:50px">
+    <div class="cta-apointment">
         <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
             <img src="/icons/new-right-2.svg">
         </a>
@@ -79,6 +79,8 @@
         padding: 0;
         display: flex;
         align-items: center;
+        border-radius: 0;
+        width: 60px;
     }
 
     .cta-brochure {
@@ -86,6 +88,8 @@
         padding: 0;
         display: flex;
         align-items: center;
+        border-radius: 0;
+        width: 60px;
     }
 
     .cta-apointment img {
@@ -94,6 +98,7 @@
         margin: 0;
         padding: 0;
         display: block;
+        border-radius: 0;
     }
 
     .cta-brochure img  {
@@ -102,6 +107,12 @@
         margin: 0;
         padding: 0;
         display: block;
+        border-radius: 0;
+    }
+
+    .cta-apointment a, .cta-brochure a {
+        display: block;
+        line-height: 0;
     }
 
     .cta-apointment span, .cta-brochure span  {
