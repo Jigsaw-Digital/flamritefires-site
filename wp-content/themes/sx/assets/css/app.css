@@ -2812,6 +2812,11 @@
       min-width: 400px;
     }
   }
+  .lg\:min-w-\[500px\] {
+    @media (width >= 64rem) {
+      min-width: 500px;
+    }
+  }
   .lg\:grid-cols-1 {
     @media (width >= 64rem) {
       grid-template-columns: repeat(1, minmax(0, 1fr));

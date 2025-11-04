@@ -14,22 +14,20 @@ if (!$title || !$slides_count) return;
 ?>
 
 <section class="bg-tertiary py-8 lg:py-24 px-6 lg:px-12 relative">
-    <div class="lg:mx-auto max-w-7xl lg:flex justify-between gap-24 rounded-xl lg:rounded-[35px] text-primary mb-8">
-        <div class="lg:min-w-[400px]">
-            <h2 class="text-4xl lg:text-5xl text-[#1e2938]"><?php echo esc_html($title); ?></h2>
-            <?php if ($sub_title): ?>
-                <h3 class="mt-3 lg:mt-6 text-lg lg:text-xl text-[#1e2938]">
-                    <?php echo esc_html($sub_title); ?>
-                </h3>
-            <?php endif; ?>
-        </div>
-        <?php if ($description): ?>
-            <div class="max-w-[700px]">
-                <p class="mt-3 lg:mt-0 lg:text-xl text-[#1e2938] lg:tracking-[0.1rem] lg:leading-8">
+    <div class="lg:mx-auto max-w-8xl lg:flex justify-between items-start gap-24 rounded-xl lg:rounded-[35px] mb-8">
+        <div class="lg:min-w-[500px]">
+            <h2 class="text-3xl lg:text-5xl text-[#1e2938]">
+                <?php echo esc_html($title); ?>
+                <?php if ($sub_title): ?>
+                    <span class="text-primary"><?php echo esc_html($sub_title); ?></span>
+                <?php endif; ?>
+            </h2>
+            <?php if ($description): ?>
+                <p class="mt-2 text-sm lg:text-base text-[#1e2938] uppercase tracking-wider">
                     <?php echo esc_html($description); ?>
                 </p>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
     </div>
     
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 justify-center relative max-w-[1800px] mx-auto">
