@@ -69,9 +69,11 @@
 
      .cta-fixed:hover span {
         display: block;
-        width: 100%;
-        text-align: center;
-        font-size: 12px;;
+        width: auto;
+        text-align: left;
+        font-size: 12px;
+        padding-left: 8px;
+        white-space: nowrap;
      }
 
     .cta-apointment {
@@ -81,7 +83,7 @@
         display: block;
         width: 60px;
         height: 60px;
-        border-radius: 0;
+        border-radius: 5px 0 0 5px;
         overflow: hidden;
         border: none;
         outline: none;
@@ -95,7 +97,7 @@
         display: block;
         width: 60px;
         height: 60px;
-        border-radius: 0;
+        border-radius: 5px 0 0 5px;
         overflow: hidden;
         border: none;
         outline: none;
@@ -149,9 +151,10 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        gap: 8px;
+        gap: 0;
         width: auto;
-        height: auto;
+        height: 60px;
+        padding-right: 12px;
     }
 
     .cta-apointment:hover, .cta-brochure:hover  {
