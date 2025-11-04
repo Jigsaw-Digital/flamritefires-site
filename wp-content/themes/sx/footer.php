@@ -344,7 +344,7 @@
             </div>
         </div>
         <div class="max-w-7xl px-6 lg:px-0 mx-auto flex flex-col sm:flex-row justify-between items-center text-white/60 mt-8 lg:mt-16 text-sm">
-            <p class="copyright">All Rights Reserved. <?php echo date('Y'); ?>.</p>
+            <p class="copyright">All Rights Reserved. <?php echo date('Y'); ?>. Company Number: 15924494</p>
             <div class="flex items-center gap-4 mt-2 sm:mt-0 text-xs">
                 <a href="<?php echo esc_url(home_url('/cookie-policy/')); ?>" class="hover:text-white/80 transition-colors">Cookie Policy</a>
                 <span class="text-white/40">|</span>
