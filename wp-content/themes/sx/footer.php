@@ -81,6 +81,9 @@
         align-items: center;
         border-radius: 0;
         width: 60px;
+        overflow: hidden;
+        border: none;
+        outline: none;
     }
 
     .cta-brochure {
@@ -90,6 +93,9 @@
         align-items: center;
         border-radius: 0;
         width: 60px;
+        overflow: hidden;
+        border: none;
+        outline: none;
     }
 
     .cta-apointment img {
@@ -113,6 +119,10 @@
     .cta-apointment a, .cta-brochure a {
         display: block;
         line-height: 0;
+        border: none;
+        outline: none;
+        margin: 0;
+        padding: 0;
     }
 
     .cta-apointment span, .cta-brochure span  {
