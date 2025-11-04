@@ -30,7 +30,7 @@ $subtitle_color = $is_dark ? 'text-orange-400' : 'text-orange-600';
 $button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-primary text-white hover:bg-primary/90';
 
 // Padding classes
-$padding_class = $disable_top_padding ? 'pb-8 pt-8 lg:pb-24 lg:!pt-0' : 'pb-8 pt-8 lg:py-24';
+$padding_class = $disable_top_padding ? 'pb-8 pt-8 lg:pb-16 lg:!pt-0' : 'pb-8 pt-8 lg:py-16';
 ?>
 
 <section class="<?php echo $bg_class; ?> <?php echo $padding_class; ?> relative px-6 lg:px-10">

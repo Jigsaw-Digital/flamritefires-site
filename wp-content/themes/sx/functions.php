@@ -1846,6 +1846,17 @@ function sx_block_init()
     ));
 
     acf_register_block_type(array(
+        'name'              => 'layout-selected-videos',
+        'title'             => __('Layout Selected Videos'),
+        'description'       => __('Display specific selected videos in a grid layout with modal popup.'),
+        'render_template'   => 'template-parts/blocks/layout-selected-videos.php',
+        'category'          => 'layout',
+        'icon'              => 'video-alt2',
+        'keywords'          => array('videos', 'selected', 'media', 'modal', 'product'),
+        'supports'          => $supports,
+    ));
+
+    acf_register_block_type(array(
         'name'              => 'layout-warranty',
         'title'             => __('Layout Warranty'),
         'description'       => __('Extended warranty information and application form.'),
