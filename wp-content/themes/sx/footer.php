@@ -77,52 +77,67 @@
     .cta-apointment {
         background-color: #E85319;
         padding: 0;
-        display: flex;
-        align-items: center;
-        border-radius: 0;
+        margin: 0;
+        display: block;
         width: 60px;
+        height: 60px;
+        border-radius: 0;
         overflow: hidden;
         border: none;
         outline: none;
+        box-sizing: border-box;
     }
 
     .cta-brochure {
         background-color: #1e2939;
         padding: 0;
-        display: flex;
-        align-items: center;
-        border-radius: 0;
+        margin: 0;
+        display: block;
         width: 60px;
+        height: 60px;
+        border-radius: 0;
         overflow: hidden;
         border: none;
         outline: none;
+        box-sizing: border-box;
     }
 
     .cta-apointment img {
-        width: 60px;
-        height: 60px;
-        margin: 0;
-        padding: 0;
-        display: block;
-        border-radius: 0;
+        width: 60px !important;
+        height: 60px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        border-radius: 0 !important;
+        border: none !important;
+        outline: none !important;
+        box-sizing: border-box !important;
+        object-fit: cover !important;
     }
 
     .cta-brochure img  {
-        width: 60px;
-        height: 60px;
-        margin: 0;
-        padding: 0;
-        display: block;
-        border-radius: 0;
+        width: 60px !important;
+        height: 60px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        border-radius: 0 !important;
+        border: none !important;
+        outline: none !important;
+        box-sizing: border-box !important;
+        object-fit: cover !important;
     }
 
     .cta-apointment a, .cta-brochure a {
-        display: block;
-        line-height: 0;
-        border: none;
-        outline: none;
-        margin: 0;
-        padding: 0;
+        display: block !important;
+        line-height: 0 !important;
+        border: none !important;
+        outline: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 60px !important;
+        height: 60px !important;
+        box-sizing: border-box !important;
     }
 
     .cta-apointment span, .cta-brochure span  {
@@ -130,12 +145,13 @@
         color: #fff;
     }
 
-    .cta-apointment, .cta-brochure  {
-        z-index: 9999999999;
+    .cta-apointment:hover, .cta-brochure:hover  {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         gap: 8px;
+        width: auto;
+        height: auto;
     }
 
     .cta-apointment:hover, .cta-brochure:hover  {
