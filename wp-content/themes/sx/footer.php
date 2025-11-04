@@ -64,7 +64,7 @@
     }
 
     .cta-fixed:hover .cta-apointment img {
-        margin-left: 5px;
+        margin-left: 0;
     }
 
      .cta-fixed:hover span {
@@ -76,23 +76,32 @@
 
     .cta-apointment {
         background-color: #E85319;
-        padding:4px;
+        padding: 0;
+        display: flex;
+        align-items: center;
     }
 
     .cta-brochure {
         background-color: #1e2939;
-        padding:4px;
+        padding: 0;
+        display: flex;
+        align-items: center;
     }
 
     .cta-apointment img {
-        width: 45px;
-        margin: 0px auto;
-        padding: 5px;
+        width: 60px;
+        height: 60px;
+        margin: 0;
+        padding: 0;
+        display: block;
     }
-    
+
     .cta-brochure img  {
-        width:45px;
-        padding: 12px;
+        width: 60px;
+        height: 60px;
+        margin: 0;
+        padding: 0;
+        display: block;
     }
 
     .cta-apointment span, .cta-brochure span  {
@@ -103,9 +112,9 @@
     .cta-apointment, .cta-brochure  {
         z-index: 9999999999;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
-
+        gap: 8px;
     }
 
     .cta-apointment:hover, .cta-brochure:hover  {
