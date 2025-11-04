@@ -28,29 +28,21 @@ if ($columns === '2') {
 $modal_id_prefix = 'video-modal-' . uniqid();
 ?>
 
-<section class="py-16 bg-tertiary">
-    <?php if ($title || $description): ?>
-        <!-- Header Section -->
-        <div class="mx-auto max-w-9xl container px-6 lg:px-8 mb-12">
-            <div class="max-w-4xl">
-                <?php if ($title): ?>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-primary">
-                        <?php echo esc_html($title); ?>
-                    </h2>
-                <?php endif; ?>
+<section class="bg-tertiary py-16 px-6">
+    <div class="mx-auto container max-w-9xl">
+        <?php if ($title): ?>
+            <h2 class="text-3xl lg:text-4xl font-bold text-primary mb-8">
+                <?php echo esc_html($title); ?>
+            </h2>
+        <?php endif; ?>
 
-                <?php if ($description): ?>
-                    <div class="text-lg text-gray-600 font-montserrat">
-                        <?php echo wp_kses_post($description); ?>
-                    </div>
-                <?php endif; ?>
+        <?php if ($description): ?>
+            <div class="text-lg text-gray-600 font-montserrat mb-8">
+                <?php echo wp_kses_post($description); ?>
             </div>
-        </div>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <!-- Videos Grid -->
-    <div class="mx-auto max-w-9xl container px-6 lg:px-8">
-        <div class="grid grid-cols-1 <?php echo esc_attr($grid_cols); ?> gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             <?php foreach ($videos as $index => $video): ?>
                 <?php
                 $video_description = get_field('video_description', $video->ID);
