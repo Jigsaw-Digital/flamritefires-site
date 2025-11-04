@@ -86,7 +86,7 @@
     }
 
     .cta-brochure {
-        background-color: #1e2939;
+        background-color: #99320a;
         padding: 0;
         margin: 0;
         display: flex;
