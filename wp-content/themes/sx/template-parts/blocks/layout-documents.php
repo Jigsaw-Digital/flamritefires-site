@@ -90,7 +90,7 @@ if (!function_exists('get_file_type_label')) {
 <section class="py-16 bg-white">
     <!-- Header Section -->
     <div class="mx-auto max-w-9xl container px-6 lg:px-8 mb-12">
-        <div class="text-center max-w-4xl mx-auto">
+        <div class="max-w-4xl">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                 <?php echo esc_html($title); ?>
             </h1>
