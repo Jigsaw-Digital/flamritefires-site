@@ -83,8 +83,8 @@
         display: block;
         width: 60px;
         height: 60px;
-        border-radius: 5px 0 0 5px;
-        overflow: hidden;
+        border-radius: 10px 0 0 10px;
+        overflow: visible;
         border: none;
         outline: none;
         box-sizing: border-box;
@@ -97,8 +97,8 @@
         display: block;
         width: 60px;
         height: 60px;
-        border-radius: 5px 0 0 5px;
-        overflow: hidden;
+        border-radius: 10px 0 0 10px;
+        overflow: visible;
         border: none;
         outline: none;
         box-sizing: border-box;
@@ -154,7 +154,13 @@
         gap: 0;
         width: auto;
         height: 60px;
-        padding-right: 12px;
+        padding-right: 16px;
+        overflow: visible;
+    }
+
+    .cta-apointment:hover span, .cta-brochure:hover span {
+        display: block !important;
+        padding-left: 12px;
     }
 
     .cta-apointment:hover, .cta-brochure:hover  {
