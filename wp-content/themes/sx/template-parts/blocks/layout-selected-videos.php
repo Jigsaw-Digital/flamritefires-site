@@ -34,7 +34,7 @@ $modal_id_prefix = 'video-modal-' . uniqid();
         <div class="mx-auto max-w-9xl container px-6 lg:px-8 mb-12">
             <div class="max-w-4xl">
                 <?php if ($title): ?>
-                    <h2 class="text-3xl lg:text-4xl font-bold text-primary mb-4">
+                    <h2 class="text-3xl lg:text-4xl font-bold text-primary">
                         <?php echo esc_html($title); ?>
                     </h2>
                 <?php endif; ?>
@@ -62,10 +62,25 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                 if ($video_thumbnail && is_array($video_thumbnail) && isset($video_thumbnail['url'])) {
                     $featured_image = $video_thumbnail['url'];
                 } else {
+                    // Try featured image first
                     $featured_image = get_the_post_thumbnail_url($video->ID, 'large');
+
+                    // Fallback to try different image sizes if large doesn't work
                     if (!$featured_image) {
                         $featured_image = get_the_post_thumbnail_url($video->ID, 'full');
                     }
+                    if (!$featured_image) {
+                        $featured_image = get_the_post_thumbnail_url($video->ID, 'medium');
+                    }
+                    if (!$featured_image) {
+                        $featured_image = get_the_post_thumbnail_url($video->ID);
+                    }
+                }
+
+                // Debug output for admins
+                if (current_user_can('administrator')) {
+                    error_log('Selected Video ID ' . $video->ID . ': Thumbnail URL = ' . ($featured_image ?: 'NONE'));
+                    echo '<!-- Video ID: ' . $video->ID . ', Has Thumbnail: ' . ($featured_image ? 'YES' : 'NO') . ', URL: ' . ($featured_image ?: 'NONE') . ' -->';
                 }
 
                 // Create excerpt from description or post content
@@ -89,12 +104,16 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                     <?php endif; ?>
 
                         <!-- Video Thumbnail -->
+                        <?php if (current_user_can('administrator')): ?>
+                            <!-- Debug: Video ID: <?php echo $video->ID; ?>, Has Featured Image: <?php echo $featured_image ? 'YES' : 'NO'; ?>, URL: <?php echo $featured_image ?: 'NONE'; ?> -->
+                        <?php endif; ?>
                         <div class="relative">
                             <?php if ($featured_image): ?>
                                 <div class="aspect-video overflow-hidden bg-gray-50">
                                     <img src="<?php echo esc_url($featured_image); ?>"
                                          alt="<?php echo esc_attr($video->post_title); ?>"
-                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                         onerror="console.error('Failed to load image:', this.src)">
                                 </div>
                             <?php else: ?>
                                 <div class="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
