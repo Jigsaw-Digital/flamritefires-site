@@ -13,6 +13,7 @@ $documents_type_filter = $data['documents_type_filter'] ?? '';
 $documents_limit = $data['documents_limit'] ?? 12;
 $show_file_type = $data['show_file_type'] ?? true;
 $columns = $data['columns'] ?? '3';
+$disable_top_padding = $data['disable_top_padding'] ?? false;
 
 // Get documents based on selection
 $documents = array();
@@ -85,9 +86,12 @@ if (!function_exists('get_file_type_label')) {
         return $labels[$file_type] ?? 'FILE';
     }
 }
+
+// Determine padding class
+$padding_class = $disable_top_padding ? 'pb-16' : 'py-16';
 ?>
 
-<section class="py-16 bg-white">
+<section class="<?php echo esc_attr($padding_class); ?> bg-white">
     <!-- Header Section -->
     <div class="mx-auto max-w-9xl container px-6 lg:px-8 mb-12">
         <div class="max-w-4xl">
