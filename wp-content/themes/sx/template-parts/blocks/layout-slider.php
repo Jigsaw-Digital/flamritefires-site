@@ -14,7 +14,7 @@ if (!$title || !$slides_count) return;
 ?>
 
 <section class="bg-tertiary py-8 lg:py-24 px-6 lg:px-12 relative">
-    <div class="lg:mx-auto max-w-7xl lg:flex justify-between gap-24 rounded-xl lg:px-12 lg:rounded-[35px] text-primary mb-8">
+    <div class="lg:mx-auto max-w-7xl lg:flex justify-between gap-24 rounded-xl lg:rounded-[35px] text-primary mb-8">
         <div class="lg:min-w-[400px]">
             <h2 class="text-4xl lg:text-5xl text-[#1e2938]"><?php echo esc_html($title); ?></h2>
             <?php if ($sub_title): ?>
