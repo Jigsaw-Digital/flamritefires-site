@@ -42,7 +42,7 @@ $padding_class = $disable_top_padding ? 'pb-8 pt-8 lg:pb-24 lg:!pt-0' : 'pb-8 pt
                 <div class="text-center mb-4 lg:mb-6">
                     <img src="<?php echo esc_url($header_image['url']); ?>" 
                         alt="<?php echo esc_attr($header_image['alt']); ?>"
-                        class=" rounded-xl  max-h-[50px] object-cover">
+                        class=" rounded-xl max-h-[100px] object-cover">
                 </div>
             <?php endif; ?>
 

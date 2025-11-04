@@ -689,6 +689,9 @@
   .max-h-\[90vh\] {
     max-height: 90vh;
   }
+  .max-h-\[100px\] {
+    max-height: 100px;
+  }
   .max-h-\[350px\] {
     max-height: 350px;
   }
@@ -2713,6 +2716,11 @@
   .lg\:h-full {
     @media (width >= 64rem) {
       height: 100%;
+    }
+  }
+  .lg\:max-h-\[100px\] {
+    @media (width >= 64rem) {
+      max-height: 100px;
     }
   }
   .lg\:max-h-\[700px\] {
