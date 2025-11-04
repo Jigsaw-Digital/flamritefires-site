@@ -86,10 +86,10 @@ $slider_id = 'testimonials-slider-' . uniqid();
 ?>
 
 <?php if ($testimonials->have_posts()): ?>
-<section class="py-6 lg:py-12 bg-gray-800">
+<section class="py-6 lg:pt-12 lg:pb-8 bg-gray-800">
     <div class="container mx-auto px-6 lg:px-12">
         <!-- Section Header -->
-        <div class="text-center mb-8 lg:mb-10">
+        <div class="text-center mb-8">
             <?php if ($section_subtitle): ?>
                 <p class="<?php echo $subtitle_class; ?> text-xs lg:text-sm font-medium tracking-[0.2em] mb-3">
                     <?php echo esc_html($section_subtitle); ?>
@@ -118,7 +118,7 @@ $slider_id = 'testimonials-slider-' . uniqid();
                     ?>
                     
                     <div class="swiper-slide">
-                        <div class="text-center max-w-3xl mx-auto px-4">
+                        <div class="text-center max-w-7xl mx-auto px-4">
                             <!-- Star Rating -->
                             <?php if ($show_stars && $star_rating): ?>
                                 <div class="flex justify-center mb-4">
