@@ -135,25 +135,25 @@
         color: #fff;
     }
 
-    .cta-apointment:hover, .cta-brochure:hover  {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 0;
-        width: auto;
-        height: 60px;
-        padding-right: 16px;
+    .cta-apointment:hover  {
+        width: 170px;
+        cursor: pointer;
+        opacity: 90%;
         overflow: visible;
     }
 
-    .cta-apointment:hover span, .cta-brochure:hover span {
-        display: block !important;
-        padding-left: 12px;
-    }
-
-    .cta-apointment:hover, .cta-brochure:hover  {
+    .cta-brochure:hover  {
+        width: 170px;
         cursor: pointer;
         opacity: 90%;
+        overflow: visible;
+        background-color: #99320a;
+    }
+
+    .cta-apointment:hover span, .cta-brochure:hover span {
+        display: inline-block !important;
+        padding-left: 12px;
+        padding-right: 12px;
     }
 
 @media (max-width: 768px) {
