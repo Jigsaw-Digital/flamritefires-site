@@ -207,7 +207,7 @@ $description = $data['description'] ?? '';
         <?php endif; ?>
 
         <?php if ($description): ?>
-            <div class="text-gray-600 lg:text-lg max-w-4xl">
+            <div class="text-gray-600 lg:text-lg">
                 <?php echo wp_kses_post($description); ?>
             </div>
         <?php endif; ?>
