@@ -166,6 +166,161 @@ $slider_id = 'testimonials-slider-' . uniqid();
         </div>
     </div>
 </section>
+
+<script>
+// Initialize testimonials slider
+(function() {
+    function initTestimonialsSlider() {
+        console.log('=== Testimonials Slider Init START ===');
+        console.log('Swiper available?', typeof Swiper !== 'undefined');
+
+        if (typeof Swiper === 'undefined') {
+            console.warn('Swiper not loaded yet, retrying in 100ms...');
+            setTimeout(initTestimonialsSlider, 100);
+            return;
+        }
+
+        const sliderId = '<?php echo $slider_id; ?>';
+        const swiperElement = document.getElementById(sliderId);
+
+        console.log('Looking for element with ID:', sliderId);
+        console.log('Element found:', !!swiperElement);
+
+        if (!swiperElement) {
+            console.error('Swiper element not found!');
+            return;
+        }
+
+        const slideCount = swiperElement.querySelectorAll('.swiper-slide').length;
+        const hasWrapper = !!swiperElement.querySelector('.swiper-wrapper');
+
+        console.log('Slides found:', slideCount);
+        console.log('Has wrapper:', hasWrapper);
+        console.log('Element classes:', swiperElement.className);
+
+        if (slideCount > 0) {
+            try {
+                console.log('Creating Swiper instance...');
+                const swiper = new Swiper('#' + sliderId, {
+                    slidesPerView: 1,
+                    spaceBetween: 30,
+                    loop: true,
+                    centeredSlides: true,
+                    <?php if ($autoplay): ?>
+                    autoplay: {
+                        delay: <?php echo intval($autoplay_delay); ?>,
+                        disableOnInteraction: false,
+                    },
+                    <?php endif; ?>
+                    pagination: {
+                        el: '#' + sliderId + ' .swiper-pagination',
+                        clickable: true,
+                        dynamicBullets: false,
+                    },
+                    navigation: {
+                        nextEl: '#' + sliderId + ' .swiper-button-next',
+                        prevEl: '#' + sliderId + ' .swiper-button-prev',
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1,
+                        },
+                        1024: {
+                            slidesPerView: 1,
+                        },
+                    },
+                    on: {
+                        init: function() {
+                            console.log('✅ Swiper initialized successfully!');
+                            console.log('Total slides:', this.slides.length);
+                            console.log('Loop enabled:', this.params.loop);
+                        },
+                        slideChange: function() {
+                            console.log('Slide changed to:', this.activeIndex);
+                        },
+                        error: function(error) {
+                            console.error('Swiper error:', error);
+                        }
+                    }
+                });
+
+                console.log('✅ Swiper instance created:', swiper);
+                console.log('Swiper params:', swiper.params);
+
+            } catch (error) {
+                console.error('❌ Error creating Swiper:', error);
+            }
+        } else {
+            console.warn('⚠️ No slides found in testimonials slider');
+        }
+
+        console.log('=== Testimonials Slider Init END ===');
+    }
+
+    // Start initialization when DOM is ready
+    console.log('Document readyState:', document.readyState);
+
+    if (document.readyState === 'loading') {
+        console.log('Waiting for DOMContentLoaded...');
+        document.addEventListener('DOMContentLoaded', initTestimonialsSlider);
+    } else {
+        console.log('DOM already loaded, initializing now...');
+        initTestimonialsSlider();
+    }
+})();
+</script>
+
+<style>
+#<?php echo $slider_id; ?> .swiper-button-next,
+#<?php echo $slider_id; ?> .swiper-button-prev {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-top: -20px;
+    transition: all 0.3s ease;
+    color: <?php echo $background_color === 'light' ? '#374151' : '#fff'; ?>;
+}
+
+#<?php echo $slider_id; ?> .swiper-button-next:hover,
+#<?php echo $slider_id; ?> .swiper-button-prev:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+#<?php echo $slider_id; ?> .swiper-button-next:after,
+#<?php echo $slider_id; ?> .swiper-button-prev:after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#<?php echo $slider_id; ?> .swiper-pagination {
+    bottom: -40px;
+}
+
+#<?php echo $slider_id; ?> .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+#<?php echo $slider_id; ?> .swiper-pagination-bullet-active {
+    background: <?php echo $background_color === 'light' ? '#ea580c' : '#fb923c'; ?>;
+    transform: scale(1.2);
+}
+
+/* Ensure slides are visible */
+#<?php echo $slider_id; ?> .swiper-slide {
+    height: auto;
+    display: flex;
+    align-items: center;
+}
+</style>
+
 <?php else: ?>
 <section class="<?php echo $bg_class; ?> py-12 lg:py-16">
     <div class="container mx-auto px-6 lg:px-12">
@@ -194,22 +349,37 @@ $slider_id = 'testimonials-slider-' . uniqid();
 // Initialize testimonials slider
 (function() {
     function initTestimonialsSlider() {
+        console.log('=== Testimonials Slider Init START ===');
+        console.log('Swiper available?', typeof Swiper !== 'undefined');
+
         if (typeof Swiper === 'undefined') {
-            console.log('Swiper not loaded yet, retrying...');
+            console.warn('Swiper not loaded yet, retrying in 100ms...');
             setTimeout(initTestimonialsSlider, 100);
             return;
         }
 
-        const swiperElement = document.getElementById('<?php echo $slider_id; ?>');
-        console.log('Looking for element:', '<?php echo $slider_id; ?>');
-        console.log('Found element:', swiperElement);
+        const sliderId = '<?php echo $slider_id; ?>';
+        const swiperElement = document.getElementById(sliderId);
 
-        if (swiperElement) {
-            const slideCount = swiperElement.querySelectorAll('.swiper-slide').length;
-            console.log('Slides found:', slideCount);
+        console.log('Looking for element with ID:', sliderId);
+        console.log('Element found:', !!swiperElement);
 
-            if (slideCount > 0) {
-                const swiper = new Swiper('#<?php echo $slider_id; ?>', {
+        if (!swiperElement) {
+            console.error('Swiper element not found!');
+            return;
+        }
+
+        const slideCount = swiperElement.querySelectorAll('.swiper-slide').length;
+        const hasWrapper = !!swiperElement.querySelector('.swiper-wrapper');
+
+        console.log('Slides found:', slideCount);
+        console.log('Has wrapper:', hasWrapper);
+        console.log('Element classes:', swiperElement.className);
+
+        if (slideCount > 0) {
+            try {
+                console.log('Creating Swiper instance...');
+                const swiper = new Swiper('#' + sliderId, {
                     slidesPerView: 1,
                     spaceBetween: 30,
                     loop: true,
@@ -239,27 +409,40 @@ $slider_id = 'testimonials-slider-' . uniqid();
                     },
                     on: {
                         init: function() {
-                            console.log('Testimonials Swiper initialized successfully');
+                            console.log('✅ Swiper initialized successfully!');
                             console.log('Total slides:', this.slides.length);
+                            console.log('Loop enabled:', this.params.loop);
                         },
                         slideChange: function() {
                             console.log('Slide changed to:', this.activeIndex);
+                        },
+                        error: function(error) {
+                            console.error('Swiper error:', error);
                         }
                     }
                 });
-                console.log('Swiper instance created');
-            } else {
-                console.warn('No slides found in testimonials slider');
+
+                console.log('✅ Swiper instance created:', swiper);
+                console.log('Swiper params:', swiper.params);
+
+            } catch (error) {
+                console.error('❌ Error creating Swiper:', error);
             }
         } else {
-            console.error('Testimonials slider element not found with ID:', '<?php echo $slider_id; ?>');
+            console.warn('⚠️ No slides found in testimonials slider');
         }
+
+        console.log('=== Testimonials Slider Init END ===');
     }
 
     // Start initialization when DOM is ready
+    console.log('Document readyState:', document.readyState);
+
     if (document.readyState === 'loading') {
+        console.log('Waiting for DOMContentLoaded...');
         document.addEventListener('DOMContentLoaded', initTestimonialsSlider);
     } else {
+        console.log('DOM already loaded, initializing now...');
         initTestimonialsSlider();
     }
 })();
