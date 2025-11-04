@@ -49,30 +49,40 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                 $video_file = get_field('video_file', $video->ID);
                 $video_thumbnail = get_field('video_thumbnail', $video->ID);
 
+                // Debug what we got
+                if (current_user_can('administrator')) {
+                    error_log('Video ID ' . $video->ID . ' - Thumbnail field value: ' . print_r($video_thumbnail, true));
+                }
+
                 // Use custom thumbnail if available, otherwise use featured image
                 $featured_image = null;
-                if ($video_thumbnail && is_array($video_thumbnail) && isset($video_thumbnail['url'])) {
-                    $featured_image = $video_thumbnail['url'];
-                } else {
-                    // Try featured image first
+                if ($video_thumbnail) {
+                    if (is_array($video_thumbnail) && isset($video_thumbnail['url'])) {
+                        $featured_image = $video_thumbnail['url'];
+                    } elseif (is_string($video_thumbnail)) {
+                        // In case it returns a URL string directly
+                        $featured_image = $video_thumbnail;
+                    } elseif (is_numeric($video_thumbnail)) {
+                        // In case it returns an ID
+                        $featured_image = wp_get_attachment_url($video_thumbnail);
+                    }
+                }
+
+                // If no custom thumbnail, try featured image
+                if (!$featured_image) {
                     $featured_image = get_the_post_thumbnail_url($video->ID, 'large');
 
-                    // Fallback to try different image sizes if large doesn't work
                     if (!$featured_image) {
                         $featured_image = get_the_post_thumbnail_url($video->ID, 'full');
                     }
                     if (!$featured_image) {
                         $featured_image = get_the_post_thumbnail_url($video->ID, 'medium');
                     }
-                    if (!$featured_image) {
-                        $featured_image = get_the_post_thumbnail_url($video->ID);
-                    }
                 }
 
                 // Debug output for admins
                 if (current_user_can('administrator')) {
-                    error_log('Selected Video ID ' . $video->ID . ': Thumbnail URL = ' . ($featured_image ?: 'NONE'));
-                    echo '<!-- Video ID: ' . $video->ID . ', Has Thumbnail: ' . ($featured_image ? 'YES' : 'NO') . ', URL: ' . ($featured_image ?: 'NONE') . ' -->';
+                    error_log('Selected Video ID ' . $video->ID . ': Final Thumbnail URL = ' . ($featured_image ?: 'NONE'));
                 }
 
                 // Create excerpt from description or post content
@@ -96,9 +106,16 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                     <?php endif; ?>
 
                         <!-- Video Thumbnail -->
-                        <?php if (current_user_can('administrator')): ?>
-                            <!-- Debug: Video ID: <?php echo $video->ID; ?>, Has Featured Image: <?php echo $featured_image ? 'YES' : 'NO'; ?>, URL: <?php echo $featured_image ?: 'NONE'; ?> -->
-                        <?php endif; ?>
+                        <?php
+                        // Debug output
+                        if (current_user_can('administrator')) {
+                            echo '<!-- DEBUG START -->';
+                            echo '<!-- Video ID: ' . $video->ID . ' -->';
+                            echo '<!-- Featured Image Variable: ' . var_export($featured_image, true) . ' -->';
+                            echo '<!-- Condition Result: ' . ($featured_image ? 'TRUE' : 'FALSE') . ' -->';
+                            echo '<!-- DEBUG END -->';
+                        }
+                        ?>
                         <div class="relative">
                             <?php if ($featured_image): ?>
                                 <div class="aspect-video overflow-hidden bg-gray-50">
