@@ -91,11 +91,11 @@ if (!function_exists('get_file_type_label')) {
 $padding_class = $disable_top_padding ? 'pb-16' : 'py-16';
 ?>
 
-<section class="<?php echo esc_attr($padding_class); ?> bg-white">
+<section class="<?php echo esc_attr($padding_class); ?> bg-white"> 
     <!-- Header Section -->
     <div class="mx-auto max-w-9xl container px-6 lg:px-8 mb-12">
         <div class="max-w-4xl">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
                 <?php echo esc_html($title); ?>
             </h1>
 
