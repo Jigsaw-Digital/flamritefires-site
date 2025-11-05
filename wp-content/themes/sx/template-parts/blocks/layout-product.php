@@ -44,9 +44,9 @@ $title = get_the_title();
                 </div>
 
                 <!-- Thumbnail Slider -->
-                <div class="mt-3">
-                    <div class="swiper-container thumbs-slider" id="thumbsSlider">
-                        <div class="swiper-wrapper">
+                <div class="mt-3 max-w-full">
+                    <div class="swiper-container thumbs-slider max-w-full" id="thumbsSlider">
+                        <div class="swiper-wrapper max-w-full">
                             <?php foreach ($data['image_slider'] as $index => $slide): ?>
                                 <div class="swiper-slide cursor-pointer">
                                     <div class="aspect-square rounded-lg overflow-hidden border-2 border-gray-300 hover:border-primary transition-colors duration-200">
@@ -323,13 +323,20 @@ document.addEventListener('DOMContentLoaded', function() {
 <style>
     /* Active thumbnail styling */
     #thumbsSlider .swiper-slide-thumb-active div {
-        border-color: #c1a068 !important;
-        box-shadow: 0 0 0 1px #c1a068;
+        border-color: #e85319 !important;
+        box-shadow: 0 0 0 2px #e85319;
     }
 
     /* Ensure proper spacing and layout */
     .thumbs-slider {
         padding: 0;
+        max-width: 100%;
+    }
+
+    /* Constrain thumbnail slider to match main image width */
+    #thumbsSlider {
+        max-width: 100%;
+        overflow: hidden;
     }
 </style>
 
