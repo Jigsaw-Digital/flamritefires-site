@@ -1493,6 +1493,7 @@ function sx_block_init()
         'icon'              => 'cover-image',
         'keywords'          => array('hero', 'banner', 'header'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1504,6 +1505,7 @@ function sx_block_init()
         'icon'              => 'align-pull-left',
         'keywords'          => array('welcome', 'intro', 'image', 'text'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1515,6 +1517,7 @@ function sx_block_init()
         'icon'              => 'heading',
         'keywords'          => array('header', 'title', 'section'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1526,6 +1529,7 @@ function sx_block_init()
         'icon'              => 'info',
         'keywords'          => array('about', 'content', 'images'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1537,6 +1541,7 @@ function sx_block_init()
         'icon'              => 'chart-bar',
         'keywords'          => array('stats', 'numbers', 'counters'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1548,6 +1553,7 @@ function sx_block_init()
         'icon'              => 'groups',
         'keywords'          => array('customers', 'clients', 'logos'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1559,6 +1565,7 @@ function sx_block_init()
         'icon'              => 'editor-help',
         'keywords'          => array('faq', 'questions', 'accordion'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1570,6 +1577,7 @@ function sx_block_init()
         'icon'              => 'align-left',
         'keywords'          => array('intro', 'welcome', 'video', 'media'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1581,6 +1589,7 @@ function sx_block_init()
         'icon'              => 'images-alt2',
         'keywords'          => array('images', 'grid', 'hover', 'rollovers'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1592,6 +1601,7 @@ function sx_block_init()
         'icon'              => 'awards',
         'keywords'          => array('awards', 'achievements', 'recognition'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1603,6 +1613,7 @@ function sx_block_init()
         'icon'              => 'location-alt',
         'keywords'          => array('coverage', 'engineers', 'map', 'postcode'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1614,6 +1625,7 @@ function sx_block_init()
         'icon'              => 'editor-ul',
         'keywords'          => array('features', 'benefits', 'columns', 'icons'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1625,6 +1637,7 @@ function sx_block_init()
         'icon'              => 'format-image',
         'keywords'          => array('hero', 'banner', 'header', 'small'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1636,6 +1649,7 @@ function sx_block_init()
         'icon'              => 'testimonial',
         'keywords'          => array('reviews', 'testimonials', 'slider', 'quotes'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1647,6 +1661,7 @@ function sx_block_init()
         'icon'              => 'businessperson',
         'keywords'          => array('careers', 'jobs', 'positions', 'employment', 'hiring'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1658,6 +1673,7 @@ function sx_block_init()
         'icon'              => 'welcome-write-blog',
         'keywords'          => array('blog', 'posts', 'articles', 'news', 'insights'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1669,6 +1685,7 @@ function sx_block_init()
         'icon'              => 'portfolio',
         'keywords'          => array('projects', 'portfolio', 'work', 'case studies'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1680,6 +1697,7 @@ function sx_block_init()
         'icon'              => 'images-alt2',
         'keywords'          => array('coverage', 'images', 'title', 'overlay'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1691,6 +1709,7 @@ function sx_block_init()
         'icon'              => 'car',
         'keywords'          => array('maintenance', 'planned', 'vehicle', 'timeline', 'grid'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1702,6 +1721,7 @@ function sx_block_init()
         'icon'              => 'location',
         'keywords'          => array('delivery', 'features', 'icons', 'positioned'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1713,6 +1733,7 @@ function sx_block_init()
         'icon'              => 'clock',
         'keywords'          => array('reactive', 'maintenance', 'timeline', 'rollover', 'hover'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     // Greycaine Layout Blocks
@@ -1725,6 +1746,7 @@ function sx_block_init()
         'icon'              => 'format-video',
         'keywords'          => array('hero', 'video', 'slider', 'contact', 'form', 'advanced', 'dynamic'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1736,6 +1758,7 @@ function sx_block_init()
         'icon'              => 'cover-image',
         'keywords'          => array('hero', 'slider', 'contact', 'form', 'legacy'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1747,6 +1770,7 @@ function sx_block_init()
         'icon'              => 'video-alt3',
         'keywords'          => array('hero', 'video', 'contact', 'form'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1758,6 +1782,7 @@ function sx_block_init()
         'icon'              => 'align-pull-left',
         'keywords'          => array('content', 'image', 'text', 'offset'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1769,6 +1794,7 @@ function sx_block_init()
         'icon'              => 'images-alt2',
         'keywords'          => array('slider', 'images', 'categories', 'grid'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1780,6 +1806,7 @@ function sx_block_init()
         'icon'              => 'products',
         'keywords'          => array('product', 'showcase', 'slider', 'gallery'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1791,6 +1818,7 @@ function sx_block_init()
         'icon'              => 'category',
         'keywords'          => array('products', 'category', 'grid', 'breadcrumbs'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
     
     acf_register_block_type(array(
@@ -1802,6 +1830,7 @@ function sx_block_init()
         'icon'              => 'email-alt',
         'keywords'          => array('contact', 'section'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1813,6 +1842,7 @@ function sx_block_init()
         'icon'              => 'feedback',
         'keywords'          => array('form', 'general', 'download', 'brochure'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1824,6 +1854,7 @@ function sx_block_init()
         'icon'              => 'location',
         'keywords'          => array('where', 'buy', 'dealer', 'locator', 'form'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1835,6 +1866,7 @@ function sx_block_init()
         'icon'              => 'format-quote',
         'keywords'          => array('testimonials', 'slider', 'reviews', 'quotes', 'customers'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1846,6 +1878,7 @@ function sx_block_init()
         'icon'              => 'media-document',
         'keywords'          => array('documents', 'files', 'pdf', 'layout'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1857,6 +1890,7 @@ function sx_block_init()
         'icon'              => 'video-alt3',
         'keywords'          => array('videos', 'media', 'modal', 'layout'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1868,6 +1902,7 @@ function sx_block_init()
         'icon'              => 'video-alt2',
         'keywords'          => array('videos', 'selected', 'media', 'modal', 'product'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1879,6 +1914,7 @@ function sx_block_init()
         'icon'              => 'shield',
         'keywords'          => array('warranty', 'form', 'extended', 'protection'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 
     acf_register_block_type(array(
@@ -1890,6 +1926,7 @@ function sx_block_init()
         'icon'              => 'editor-alignleft',
         'keywords'          => array('text', 'content', 'terms', 'policy', 'full-width'),
         'supports'          => $supports,
+        'mode'            => 'edit',
     ));
 }
 
