@@ -1469,6 +1469,14 @@ function sx_disable_acf_json_save($path) {
 
 // ACF Blocks
 // Hook into acf/init which runs after ACF has been initialized
+add_action('enqueue_block_editor_assets', function() {
+    wp_add_inline_script(
+        'wp-blocks',
+        'wp.blocks.unregisterBlockType("acf/small-hero-section");',
+        'after'
+    );
+});
+
 add_filter('acf/blocks/is_preview_disabled', '__return_true');
 add_action('acf/init', 'sx_block_init');
 function sx_block_init()
