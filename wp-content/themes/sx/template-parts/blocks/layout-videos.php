@@ -47,7 +47,7 @@ $modal_id_prefix = 'video-modal-' . uniqid();
     <!-- Header Section -->
     <div class="mx-auto max-w-9xl container px-6 lg:px-8 mb-12">
         <div class="text-center max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 class="text-2xl md:text-3xl lg:text-4xl  font-bold text-gray-900 mb-6">
                 <?php echo esc_html($title); ?>
             </h1>
 
