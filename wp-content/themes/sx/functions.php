@@ -1483,6 +1483,16 @@ function sx_disable_acf_json_save($path) {
 //     }
 // }, 5); // Run early, before re-registering your blocks
 
+add_action('init', function() {
+    if (function_exists('wp_cache_flush')) {
+        wp_cache_flush(); // clear object cache
+    }
+
+    global $wpdb;
+    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_%'");
+    $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_site_transient_%'");
+});
+
 
 add_action('acf/init', function() {
     add_filter('acf/blocks/is_preview_enabled', '__return_false');
