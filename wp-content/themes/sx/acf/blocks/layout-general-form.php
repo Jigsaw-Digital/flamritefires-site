@@ -47,6 +47,7 @@ function register_layout_general_form_acf_fields() {
                             'required' => 1,
                             'choices' => array(
                                 'download-brochure' => 'Download a Brochure',
+                                'where-to-buy' => 'Where to Buy',
                             ),
                             'default_value' => 'download-brochure',
                             'allow_null' => 0,

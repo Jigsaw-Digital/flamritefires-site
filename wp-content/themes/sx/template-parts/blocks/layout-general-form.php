@@ -45,6 +45,25 @@ $form_type = $data['form_type'] ?? 'download-brochure';
                     data-form-id="ssScBGTkUfO0ddTPycRS"
                     title="Download Brochure">
                 </iframe>
+            <?php elseif ($form_type === 'where-to-buy'): ?>
+                <!-- Where to Buy Form -->
+                <iframe
+                    src="https://api.leadconnectorhq.com/widget/form/ADxQOaLUD4qr1znHzjkr"
+                    style="width:100%;height:1292px;border:none;border-radius:3px"
+                    id="inline-ADxQOaLUD4qr1znHzjkr"
+                    data-layout="{'id':'INLINE'}"
+                    data-trigger-type="alwaysShow"
+                    data-trigger-value=""
+                    data-activation-type="alwaysActivated"
+                    data-activation-value=""
+                    data-deactivation-type="neverDeactivate"
+                    data-deactivation-value=""
+                    data-form-name="Where to Buy"
+                    data-height="1292"
+                    data-layout-iframe-id="inline-ADxQOaLUD4qr1znHzjkr"
+                    data-form-id="ADxQOaLUD4qr1znHzjkr"
+                    title="Where to Buy">
+                </iframe>
             <?php endif; ?>
         </div>
     </div>
