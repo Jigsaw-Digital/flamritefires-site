@@ -1475,7 +1475,9 @@ add_action('init', function() {
     delete_transient('acf_blocks');
 });
 
-add_filter('acf/blocks/is_preview_disabled', '__return_true');
+add_action('acf/init', function() {
+    add_filter('acf/blocks/is_preview_enabled', '__return_false');
+});
 add_action('acf/init', 'sx_block_init');
 function sx_block_init()
 {
