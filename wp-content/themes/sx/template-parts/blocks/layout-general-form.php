@@ -25,7 +25,7 @@ $form_type = $data['form_type'] ?? 'download-brochure';
         <?php endif; ?>
 
         <!-- Form Container -->
-        <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+        <div class="max-w-3xl mx-auto">
             <?php if ($form_type === 'download-brochure'): ?>
                 <!-- Download Brochure Form -->
                 <iframe
