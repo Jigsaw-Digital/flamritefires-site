@@ -8,29 +8,6 @@ $data = get_field('layout_contact_data');
 
 <section class="bg-tertiary pb-16 pt-16 relative px-6 min-h-[calc(100vh-430px)]">
     <div class="mx-auto max-w-[1200px]">
-        
-        <!-- Block Header -->
-        <?php if (!empty($data['title'])): ?>
-            <div class="text-center mb-12"> 
-                <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
-                    <?php echo esc_html($data['title']); ?>
-                </h1>
-                <?php if (!empty($data['description'])): ?>
-                    <div class="text-lg text-gray-700 max-w-2xl mx-auto">
-                        <?php echo wp_kses_post($data['description']); ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-        <?php else: ?>
-            <div class="text-center mb-12">
-                <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
-                    Contact Us
-                </h1>
-                <div class="text-lg text-gray-700 max-w-2xl mx-auto">
-                    <p>Get in touch with us for more information about our products and services.</p>
-                </div>
-            </div>
-        <?php endif; ?>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
             
