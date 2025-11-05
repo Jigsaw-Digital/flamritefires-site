@@ -1470,10 +1470,19 @@ function sx_disable_acf_json_save($path) {
 // ACF Blocks
 // Hook into acf/init which runs after ACF has been initialized
 
-
+ 
 add_action('init', function() {
-    delete_transient('acf_blocks');
-});
+    if (function_exists('acf_get_block_types') && function_exists('acf_unregister_block_type')) {
+        $blocks = acf_get_block_types();
+
+        if ($blocks && is_array($blocks)) {
+            foreach ($blocks as $block_name => $block_data) {
+                acf_unregister_block_type($block_name);
+            }
+        }
+    }
+}, 5); // Run early, before re-registering your blocks
+
 
 add_action('acf/init', function() {
     add_filter('acf/blocks/is_preview_enabled', '__return_false');
