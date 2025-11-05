@@ -1486,7 +1486,11 @@ function sx_disable_acf_json_save($path) {
 
 add_action('acf/init', function() {
     add_filter('acf/blocks/is_preview_enabled', '__return_false');
+    add_filter('acf/blocks/force_edit_mode', '__return_true');
+
 });
+add_filter('acf/blocks/force_edit_mode', '__return_true');
+
 add_action('acf/init', 'sx_block_init');
 function sx_block_init()
 {
