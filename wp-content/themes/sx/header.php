@@ -11,8 +11,8 @@
     <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.png">
-    <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
+    <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
