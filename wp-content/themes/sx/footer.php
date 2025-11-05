@@ -1,4 +1,4 @@
-<div class="cta-fixed flex lg:hidden">
+<!-- <div class="cta-fixed flex lg:hidden">
     <div class="cta-apointment" style="min-width:50px">
         <a href="/where-to-buy">
             <img src="/icons/where_to_buy.svg"> 
@@ -15,7 +15,7 @@
             <span>Contact Us</span>
         </a>
     </div>
-</div>
+</div> -->
 
 <div class="cta-fixed hidden lg:flex">
     <a href="/where-to-buy" class="cta-apointment">
