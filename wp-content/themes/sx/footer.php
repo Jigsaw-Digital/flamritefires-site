@@ -226,6 +226,11 @@
 .footer-menu-items li {
     margin: 0;
     padding: 0;
+    margin-bottom: 0.5rem;
+}
+
+.footer-menu-items li:last-child {
+    margin-bottom: 0;
 }
 
 .footer-menu-items li a {
