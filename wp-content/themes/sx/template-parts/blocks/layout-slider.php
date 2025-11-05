@@ -13,7 +13,7 @@ $slides_count = get_field('slider_slides_count');
 if (!$title || !$slides_count) return;
 ?>
 
-<section class="bg-tertiary py-8 lg:py-24 px-6 lg:px-12 relative">
+<section class="bg-tertiary py-8 lg:py-24 px-6 lg:px-12 relative max-w-[1600px] mx-auto">
     <div class="lg:mx-auto max-w-8xl lg:flex justify-between items-start gap-24 rounded-xl lg:rounded-[35px] mb-8">
         <div class="lg:min-w-[500px]">
             <h2 class="text-3xl lg:text-5xl text-[#1e2938] font-thin">
