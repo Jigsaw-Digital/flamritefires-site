@@ -15,6 +15,9 @@ require_once get_template_directory() . '/acf/blocks/testimonials-slider.php';
 // Include layout products by category ACF fields
 require_once get_template_directory() . '/acf/blocks/layout-products-by-category.php';
 
+// Include layout where to buy ACF fields
+require_once get_template_directory() . '/acf/blocks/layout-where-to-buy.php';
+
 // Include documents ACF fields
 require_once get_template_directory() . '/acf/documents.php';
 
@@ -1809,6 +1812,17 @@ function sx_block_init()
         'category'          => 'layout',
         'icon'              => 'feedback',
         'keywords'          => array('form', 'general', 'download', 'brochure'),
+        'supports'          => $supports,
+    ));
+
+    acf_register_block_type(array(
+        'name'              => 'layout-where-to-buy',
+        'title'             => __('Layout Where to Buy'),
+        'description'       => __('Where to buy form layout with dealer locator.'),
+        'render_template'   => 'template-parts/blocks/layout-where-to-buy.php',
+        'category'          => 'layout',
+        'icon'              => 'location',
+        'keywords'          => array('where', 'buy', 'dealer', 'locator', 'form'),
         'supports'          => $supports,
     ));
 
