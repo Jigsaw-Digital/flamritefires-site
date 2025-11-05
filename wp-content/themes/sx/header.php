@@ -135,7 +135,7 @@
     ?>
 
     <header id="header" class="<?php echo esc_attr($header_classes); ?>" data-has-dynamic-hero="<?php echo $has_dynamic_hero ? 'true' : 'false'; ?>">
-        <div class="mx-auto flex max-w-6xl justify-between px-6 lg:max-w-[1300px]">
+        <div class="mx-auto flex max-w-6xl justify-between px-6 lg:max-w-9xl">
             <div class="flex w-[200px] items-center xl:w-[200px]"> 
                 <a href="<?php echo home_url('/'); ?>">
                     <?php 
