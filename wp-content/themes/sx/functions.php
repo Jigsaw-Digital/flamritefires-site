@@ -1960,6 +1960,18 @@ function sx_block_init()
         'supports'          => $supports,
         'mode'            => 'edit',
     ));
+
+    acf_register_block_type(array(
+        'name'              => 'layout-article',
+        'title'             => __('Layout Article'),
+        'description'       => __('Article layout with inline image support for blog-style content.'),
+        'render_template'   => 'template-parts/blocks/layout-article.php',
+        'category'          => 'layout',
+        'icon'              => 'media-text',
+        'keywords'          => array('article', 'blog', 'content', 'inline', 'images'),
+        'supports'          => $supports,
+        'mode'            => 'edit',
+    ));
 }
 
 // Custom Walker Class for Desktop Menu
