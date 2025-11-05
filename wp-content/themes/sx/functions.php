@@ -1487,7 +1487,7 @@ add_action('init', function() {
 add_action('acf/init', function() {
     add_filter('acf/blocks/is_preview_enabled', '__return_false');
 });
-add_action('acf/init', 'sx_block_init');
+// add_action('acf/init', 'sx_block_init');
 function sx_block_init()
 {
     // Check if function exists to avoid errors
