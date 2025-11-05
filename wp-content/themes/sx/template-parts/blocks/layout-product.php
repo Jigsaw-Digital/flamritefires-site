@@ -8,48 +8,9 @@ if (!$data) return;
 
 global $post;
 $title = get_the_title();
-
-// Get product category for breadcrumbs
-$product_categories = get_the_terms(get_the_ID(), 'product_category');
-$category_name = '';
-$category_url = '';
-
-if ($product_categories && !is_wp_error($product_categories)) {
-    $category = $product_categories[0]; // Get first category
-    $category_name = $category->name;
-    $category_slug = $category->slug;
-
-    // Map category slugs to their URLs
-    $category_urls = array(
-        'e-fx-built-in-fires' => '/e-fx-built-in-fires/',
-        'e-fx-fireplace-suites' => '/e-fx-fireplace-suites/',
-        'hearth-inset-fires' => '/hearth-inset-fires/',
-        'e-ridum-holographic-fires' => '/e-ridium-holographic-fires/',
-    );
-
-    $category_url = isset($category_urls[$category_slug]) ? $category_urls[$category_slug] : home_url('/');
-}
 ?>
 
 <div class="bg-tertiary py-8 lg:py-16 px-6 relative">
-    <!-- Breadcrumbs -->
-    <div class="max-w-7xl mx-auto mb-6">
-        <nav class="flex items-center space-x-2 text-sm">
-            <a href="<?php echo home_url('/'); ?>" class="text-gray-600 hover:text-primary transition-colors">
-                Home
-            </a>
-            <?php if ($category_name && $category_url): ?>
-                <span class="text-gray-400">/</span>
-                <a href="<?php echo esc_url($category_url); ?>" class="text-gray-600 hover:text-primary transition-colors">
-                    <?php echo esc_html($category_name); ?>
-                </a>
-            <?php endif; ?>
-            <span class="text-gray-400">/</span>
-            <span class="text-gray-900 font-medium">
-                <?php echo esc_html($title); ?>
-            </span>
-        </nav>
-    </div>
     <div class="lg:flex justify-center items-start w-full gap-12 mx-auto relative max-w-7xl">
         <div class="relative w-full lg:w-2/5 max-w-[600px] lg:sticky lg:top-32 lg:self-start">
             <?php if ($data['image_slider']): ?>

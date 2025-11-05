@@ -54,9 +54,40 @@ $alignment_class = $alignment_classes[$text_alignment] ?? $alignment_classes['ce
 
             <?php if ($show_breadcrumbs): ?>
                 <!-- Breadcrumbs -->
-                <div class="text-left space-x-2  mt-4 text-white text-sm">
+                <div class="text-left space-x-2 mt-4 text-white text-sm">
                     <a href="<?php echo home_url('/'); ?>" class="uppercase hover:underline">Home</a>
                     <span>|</span>
+
+                    <?php
+                    // Check if this is a product post type
+                    if (get_post_type() === 'products') {
+                        // Get product category for breadcrumbs
+                        $product_categories = get_the_terms(get_the_ID(), 'product_category');
+
+                        if ($product_categories && !is_wp_error($product_categories)) {
+                            $category = $product_categories[0]; // Get first category
+                            $category_name = $category->name;
+                            $category_slug = $category->slug;
+
+                            // Map category slugs to their URLs
+                            $category_urls = array(
+                                'e-fx-built-in-fires' => '/e-fx-built-in-fires/',
+                                'e-fx-fireplace-suites' => '/e-fx-fireplace-suites/',
+                                'hearth-inset-fires' => '/hearth-inset-fires/',
+                                'e-ridum-holographic-fires' => '/e-ridium-holographic-fires/',
+                            );
+
+                            $category_url = isset($category_urls[$category_slug]) ? $category_urls[$category_slug] : home_url('/');
+                            ?>
+                            <a href="<?php echo esc_url($category_url); ?>" class="uppercase hover:underline">
+                                <?php echo esc_html($category_name); ?>
+                            </a>
+                            <span>|</span>
+                            <?php
+                        }
+                    }
+                    ?>
+
                     <span class="uppercase"><?php echo get_the_title(); ?></span>
                 </div>
             <?php endif; ?>
