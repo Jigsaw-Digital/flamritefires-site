@@ -1,9 +1,9 @@
 <div class="cta-fixed flex lg:hidden">
     <div class="cta-apointment" style="min-width:50px">
-        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
+        <a href="/where-to-buy">
             <img src="/icons/where_to_buy.svg"> 
         </a>
-        <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier">
+        <a href="/where-to-buy">
             <span>Where To Buy</span>
         </a>
     </div>
@@ -18,15 +18,15 @@
 </div>
 
 <div class="cta-fixed hidden lg:flex">
-    <a href="https://supplier.flameritefires.com/find-your-local-flamerite-supplier" class="cta-apointment">
-        <img src="/icons/new-right-2.svg">
+    <a href="/where-to-buy" class="cta-apointment">
+        <img src="/icons/new-right-1.svg">
         <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
     </a>
 </div>
 
 <div class="cta-fixed mt-16 hidden lg:flex">
     <a href="/contact-us/" class="cta-brochure">
-        <img src="/icons/new-right-1.svg">
+        <img src="/icons/new-right-2.svg">
         <span style="font-size:12px; color:#fff">CONTACT US</span>
     </a>
 </div>
