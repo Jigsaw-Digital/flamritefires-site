@@ -175,9 +175,10 @@ $data = get_field('layout_contact_data');
                         <div>
                             <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
                             <p class="text-gray-600">
-                                Flamerite Fires<br>
-                                Lichfield Road Industrial Estate<br>
-                                Staffordshire<br>
+                                UNIT 10 MARINER PARK<br>
+                                TAMWORTH<br>
+                                STAFFORDSHIRE<br>
+                                ENGLAND<br>
                                 B79 7UL<br>
                                 UK
                             </p>
