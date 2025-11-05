@@ -200,8 +200,8 @@ get_header();
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
                                 <p class="text-gray-600">
-                                    <a href="mailto:info@greycaine.co.uk" class="hover:text-primary transition-colors">
-                                        info@greycaine.co.uk
+                                    <a href="mailto:info@flameritefires.com" class="hover:text-primary transition-colors">
+                                        info@flameritefires.com
                                     </a>
                                 </p>
                             </div>
