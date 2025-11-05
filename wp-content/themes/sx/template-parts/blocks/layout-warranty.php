@@ -69,7 +69,7 @@ $data = get_field('layout_warranty_data');
             </div>
 
             <!-- Warranty Form -->
-            <div class="bg-white rounded-xl shadow-lg p-8">
+            <div>
                 <iframe
                     src="https://api.leadconnectorhq.com/widget/form/UIw9jZxZdx10Lp7NRilw"
                     style="width:100%;height:100%;border:none;border-radius:3px"
