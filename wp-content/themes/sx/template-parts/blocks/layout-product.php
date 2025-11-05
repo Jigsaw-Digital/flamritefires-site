@@ -15,7 +15,7 @@ $title = get_the_title();
         <div class="relative w-full lg:w-2/5 max-w-[600px] lg:sticky lg:top-32 lg:self-start">
             <?php if ($data['image_slider']): ?>
                 <!-- Main Image Slider -->
-                <div class="swiper-container product-slider overflow-hidden rounded-[35px] relative" id="productSlider">
+                <div class="swiper-container product-slider overflow-hidden relative" id="productSlider">
                     <div class="swiper-wrapper">
                         <?php foreach ($data['image_slider'] as $slide): ?>
                             <div class="swiper-slide">
