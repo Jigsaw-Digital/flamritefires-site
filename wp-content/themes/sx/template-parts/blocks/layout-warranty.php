@@ -9,29 +9,6 @@ $data = get_field('layout_warranty_data');
 <section class="bg-tertiary pb-16 pt-16 relative px-6 min-h-[calc(100vh-430px)]">
     <div class="mx-auto max-w-[1200px]">
 
-        <!-- Block Header -->
-        <?php if (!empty($data['title'])): ?>
-            <div class="text-center mb-12">
-                <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
-                    <?php echo esc_html($data['title']); ?>
-                </h1>
-                <?php if (!empty($data['description'])): ?>
-                    <div class="text-lg text-gray-700 max-w-2xl mx-auto">
-                        <?php echo wp_kses_post($data['description']); ?>
-                    </div>
-                <?php endif; ?>
-            </div>
-        <?php else: ?>
-            <div class="text-center mb-12">
-                <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
-                    Extended Warranty
-                </h1>
-                <div class="text-lg text-gray-700 max-w-2xl mx-auto">
-                    <p>Become part of the Flamerite Fires family and cover your fire for up to 5 years, guaranteeing the longevity of your fireplace for years to come.</p>
-                </div>
-            </div>
-        <?php endif; ?>
-
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
             <!-- Warranty Information -->
