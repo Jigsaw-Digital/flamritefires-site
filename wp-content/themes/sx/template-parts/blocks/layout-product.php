@@ -22,11 +22,18 @@ $title = get_the_title();
                                 <div class="aspect-[4/3] w-full overflow-hidden">
                                     <img src="<?php echo esc_url($slide['url']); ?>"
                                          alt="<?php echo esc_attr($title); ?>"
-                                         class="w-full h-full object-contain bg-gray-100">
+                                         class="w-full h-full object-cover">
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
+
+                    <!-- Fullscreen Button -->
+                    <button id="fullscreenBtn" class="absolute top-4 right-4 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-200 z-10">
+                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
+                        </svg>
+                    </button>
 
                     <!-- Navigation Arrows -->
                     <!-- <div class="flex gap-3 justify-center mt-4 lg:hidden">
@@ -133,6 +140,34 @@ $title = get_the_title();
         </div>
     </div>
 
+    <!-- Fullscreen Image Lightbox -->
+    <div id="imageLightbox" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center hidden">
+        <button id="closeLightbox" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 p-3 rounded-full transition-all duration-200 z-20">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+
+        <!-- Lightbox Slider -->
+        <div class="w-full h-full flex items-center justify-center p-4">
+            <div class="swiper-container lightbox-slider w-full h-full max-w-7xl" id="lightboxSlider">
+                <div class="swiper-wrapper">
+                    <?php foreach ($data['image_slider'] as $slide): ?>
+                        <div class="swiper-slide flex items-center justify-center">
+                            <img src="<?php echo esc_url($slide['url']); ?>"
+                                 alt="<?php echo esc_attr($title); ?>"
+                                 class="max-h-[90vh] max-w-full object-contain">
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Navigation -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Where to Buy Modal/Slide-out -->
     <div id="whereToBuyModal" class="fixed inset-0 z-[9999] hidden">
         <!-- Overlay -->
@@ -207,6 +242,53 @@ document.addEventListener('DOMContentLoaded', function() {
         thumbs: {
             swiper: thumbsSlider,
         },
+    });
+
+    // Lightbox slider
+    const lightboxSlider = new Swiper('#lightboxSlider', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        navigation: {
+            nextEl: '#lightboxSlider .swiper-button-next',
+            prevEl: '#lightboxSlider .swiper-button-prev',
+        },
+    });
+
+    // Fullscreen lightbox functionality
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const imageLightbox = document.getElementById('imageLightbox');
+    const closeLightbox = document.getElementById('closeLightbox');
+
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', function() {
+            imageLightbox.classList.remove('hidden');
+            // Sync lightbox to current slide
+            lightboxSlider.slideTo(productSlider.activeIndex);
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (closeLightbox) {
+        closeLightbox.addEventListener('click', function() {
+            imageLightbox.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Close lightbox when clicking background
+    imageLightbox?.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !imageLightbox.classList.contains('hidden')) {
+            imageLightbox.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
     });
 
     // Navigation button handlers
