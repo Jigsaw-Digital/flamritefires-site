@@ -54,7 +54,7 @@ $alignment_class = $alignment_classes[$text_alignment] ?? $alignment_classes['ce
 
             <?php if ($show_breadcrumbs): ?>
                 <!-- Breadcrumbs -->
-                <div class="text-left space-x-2 font-montserrat mt-4 text-white text-sm">
+                <div class="text-left space-x-2  mt-4 text-white text-sm">
                     <a href="<?php echo home_url('/'); ?>" class="uppercase hover:underline">Home</a>
                     <span>|</span>
                     <span class="uppercase"><?php echo get_the_title(); ?></span>

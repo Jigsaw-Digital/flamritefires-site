@@ -100,7 +100,7 @@ $padding_class = $disable_top_padding ? 'pb-16' : 'py-16';
             </h1>
 
             <?php if ($description): ?>
-                <div class="text-lg text-gray-600 font-montserrat">
+                <div class="text-lg text-gray-600">
                     <?php echo wp_kses_post($description); ?>
                 </div>
             <?php endif; ?>

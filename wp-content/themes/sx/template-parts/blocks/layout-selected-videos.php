@@ -37,7 +37,7 @@ $modal_id_prefix = 'video-modal-' . uniqid();
         <?php endif; ?>
 
         <?php if ($description): ?>
-            <div class="text-lg text-gray-600 font-montserrat mb-8">
+            <div class="text-lg text-gray-600  mb-8">
                 <?php echo wp_kses_post($description); ?>
             </div>
         <?php endif; ?>
