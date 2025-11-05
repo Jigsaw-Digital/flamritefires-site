@@ -1480,7 +1480,7 @@ function sx_block_init()
     $supports = array(
         'align' => false,
         'mode' => false,
-        'jsx' => true
+        'jsx' => false
     );
     
     // Register New Layout Blocks
