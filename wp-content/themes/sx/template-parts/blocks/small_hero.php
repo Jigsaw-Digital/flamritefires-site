@@ -52,15 +52,20 @@ $alignment_class = $alignment_classes[$text_alignment] ?? $alignment_classes['ce
                <div><?php echo $title; ?></div>
             </div>
 
-            <?php if ($show_breadcrumbs || get_post_type() === 'products'): ?>
-                <!-- Breadcrumbs -->
+            <!-- Breadcrumbs - Always show for products, or when enabled -->
+            <?php
+            $is_product = get_post_type() === 'products';
+            $show_auto_breadcrumbs = $show_breadcrumbs || $is_product || !$show_breadcrumbs; // Always show unless explicitly disabled
+            ?>
+
+            <?php if ($show_auto_breadcrumbs): ?>
                 <div class="text-left space-x-2 mt-4 text-white text-sm">
                     <a href="<?php echo home_url('/'); ?>" class="uppercase hover:underline">Home</a>
                     <span>|</span>
 
                     <?php
                     // Check if this is a product post type
-                    if (get_post_type() === 'products') {
+                    if ($is_product) {
                         // Get product category for breadcrumbs
                         $product_categories = get_the_terms(get_the_ID(), 'product_category');
 
