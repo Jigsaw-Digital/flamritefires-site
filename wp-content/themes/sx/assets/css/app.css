@@ -2828,6 +2828,11 @@
       width: 60%;
     }
   }
+  .lg\:w-\[200px\] {
+    @media (width >= 64rem) {
+      width: 200px;
+    }
+  }
   .lg\:w-\[500px\] {
     @media (width >= 64rem) {
       width: 500px;

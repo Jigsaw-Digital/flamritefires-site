@@ -77,8 +77,8 @@ $post_type_labels = array(
                         <span class="text-primary">(<?php echo count($posts); ?>)</span>
                     </h2>
 
-                    <?php if ($post_type === 'products' || $post_type === 'documents'): ?>
-                        <!-- Products and Documents use card grid -->
+                    <?php if ($post_type === 'products' || $post_type === 'documents' || $post_type === 'page'): ?>
+                        <!-- Products, Documents, and Pages use card grid -->
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             <?php foreach ($posts as $post):
                                 setup_postdata($post);
@@ -86,6 +86,8 @@ $post_type_labels = array(
                                     get_template_part('template-parts/content', 'product-card');
                                 } elseif ($post_type === 'documents') {
                                     get_template_part('template-parts/content', 'document-card');
+                                } elseif ($post_type === 'page') {
+                                    get_template_part('template-parts/content', 'page-card');
                                 }
                             endforeach;
                             wp_reset_postdata(); ?>

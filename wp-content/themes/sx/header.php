@@ -152,9 +152,9 @@
 
     <header id="header" class="<?php echo esc_attr($header_classes); ?>" data-has-dynamic-hero="<?php echo $has_dynamic_hero ? 'true' : 'false'; ?>">
         <div class="mx-auto flex max-w-6xl justify-between px-6 lg:max-w-9xl">
-            <div class="flex w-[200px] items-center xl:w-[200px]"> 
+            <div class="flex w-[150px] lg:w-[200px] items-center xl:w-[200px]">
                 <a href="<?php echo home_url('/'); ?>">
-                    <?php 
+                    <?php
                     $site_logo = get_field('site_logo', 'option');
                     if ($site_logo) {
                         echo '<img class="dark-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
@@ -188,6 +188,11 @@
 
             <div class="flex gap-3 lg:gap-4 justify-center items-center">
                 <!-- Mobile: Icons only -->
+                <button @click="searchOpen = !searchOpen" class="lg:hidden <?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?>" aria-label="Search">
+                    <svg class="w-[20px] hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
                 <a href="tel:01543251122" class="lg:hidden">
                     <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
