@@ -410,15 +410,71 @@
                     <p class="text-white/80 text-sm md:text-base">
                         We use cookies and third-party services to enhance your browsing experience. This includes Google Analytics for traffic analysis (optional) and Google reCAPTCHA for form spam protection (necessary).
                         By clicking "Accept All", you consent to optional analytics cookies.
-                        Click "Necessary Only" to use only essential cookies required for forms and site functionality. Visit our <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> for more information.
+                        Click "Customize" to manage your cookie preferences. Visit our <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> for more information.
                     </p>
+
+                    <!-- Cookie Preferences (Hidden by default) -->
+                    <div id="cookie-preferences" class="hidden mt-6 space-y-4">
+                        <p class="text-white/90 text-sm font-medium mb-3">Manage Cookie Preferences:</p>
+
+                        <!-- Necessary Cookies (Always on, disabled) -->
+                        <label class="flex items-start gap-3 cursor-not-allowed opacity-60">
+                            <input type="checkbox" checked disabled class="mt-1 w-5 h-5 rounded border-gray-400 text-primary focus:ring-primary cursor-not-allowed">
+                            <div class="flex-1">
+                                <div class="text-white font-medium text-sm">Strictly Necessary Cookies</div>
+                                <div class="text-white/70 text-xs mt-1">Required for the website to function. Includes form spam protection (reCAPTCHA) and session management. Cannot be disabled.</div>
+                            </div>
+                        </label>
+
+                        <!-- Analytics Cookies -->
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="cookie-analytics" checked class="mt-1 w-5 h-5 rounded border-gray-400 text-primary focus:ring-primary cursor-pointer">
+                            <div class="flex-1">
+                                <div class="text-white font-medium text-sm">Analytics Cookies</div>
+                                <div class="text-white/70 text-xs mt-1">Help us understand how visitors interact with our website by collecting and reporting information anonymously. Uses Google Analytics.</div>
+                            </div>
+                        </label>
+
+                        <!-- Marketing Cookies -->
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="cookie-marketing" checked class="mt-1 w-5 h-5 rounded border-gray-400 text-primary focus:ring-primary cursor-pointer">
+                            <div class="flex-1">
+                                <div class="text-white font-medium text-sm">Marketing Cookies</div>
+                                <div class="text-white/70 text-xs mt-1">Track your activity to provide personalized advertising and marketing content. Used for retargeting and ad optimization.</div>
+                            </div>
+                        </label>
+
+                        <!-- Functional Cookies -->
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="cookie-functional" checked class="mt-1 w-5 h-5 rounded border-gray-400 text-primary focus:ring-primary cursor-pointer">
+                            <div class="flex-1">
+                                <div class="text-white font-medium text-sm">Functional Cookies</div>
+                                <div class="text-white/70 text-xs mt-1">Enable enhanced functionality and personalization, such as remembering your preferences and settings.</div>
+                            </div>
+                        </label>
+
+                        <!-- Performance Cookies -->
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input type="checkbox" id="cookie-performance" checked class="mt-1 w-5 h-5 rounded border-gray-400 text-primary focus:ring-primary cursor-pointer">
+                            <div class="flex-1">
+                                <div class="text-white font-medium text-sm">Performance Cookies</div>
+                                <div class="text-white/70 text-xs mt-1">Help us improve website performance by understanding which pages are most and least popular and how visitors move around the site.</div>
+                            </div>
+                        </label>
+
+                        <button id="cookie-save-preferences" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 mt-4">
+                            Save My Preferences
+                        </button>
+                    </div>
                 </div>
-                <div class="flex flex-row gap-2 md:gap-3 w-full md:w-auto">
+
+                <!-- Buttons Container -->
+                <div class="flex flex-row-reverse md:flex-row gap-2 md:gap-3 w-full md:w-auto">
                     <button id="cookie-policy-accept" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-3 md:px-4 rounded-md transition-colors duration-300 whitespace-nowrap text-sm md:text-base flex-1 md:flex-none">
                         Accept All
                     </button>
-                    <button id="cookie-policy-decline" class="bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-3 md:px-4 rounded-md transition-colors duration-300 whitespace-nowrap border border-white/30 text-sm md:text-base flex-1 md:flex-none">
-                        Necessary Only
+                    <button id="cookie-policy-customize" class="bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-3 md:px-4 rounded-md transition-colors duration-300 whitespace-nowrap border border-white/30 text-sm md:text-base flex-1 md:flex-none">
+                        Customize
                     </button>
                 </div>
             </div>
@@ -452,7 +508,9 @@
     (function() {
         const banner = document.getElementById('cookie-policy-banner');
         const acceptBtn = document.getElementById('cookie-policy-accept');
-        const declineBtn = document.getElementById('cookie-policy-decline');
+        const customizeBtn = document.getElementById('cookie-policy-customize');
+        const savePreferencesBtn = document.getElementById('cookie-save-preferences');
+        const preferencesSection = document.getElementById('cookie-preferences');
         const COOKIE_NAME = 'cookie_consent';
         const COOKIE_EXPIRY_DAYS = 365;
 
@@ -488,20 +546,56 @@
             }, 300);
         }
 
-        // Handle accept
+        // Handle accept all
         function handleAccept() {
             setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
             hideBanner();
             // Dispatch event to load analytics
             window.dispatchEvent(new Event('cookiesAccepted'));
-            console.log('Cookies accepted - analytics will now load');
+            console.log('All cookies accepted - analytics will now load');
         }
 
-        // Handle decline
-        function handleDecline() {
-            setCookie(COOKIE_NAME, 'necessary', COOKIE_EXPIRY_DAYS);
+        // Handle customize button click
+        function handleCustomize() {
+            if (preferencesSection.classList.contains('hidden')) {
+                preferencesSection.classList.remove('hidden');
+                customizeBtn.textContent = 'Hide Options';
+            } else {
+                preferencesSection.classList.add('hidden');
+                customizeBtn.textContent = 'Customize';
+            }
+        }
+
+        // Handle save preferences
+        function handleSavePreferences() {
+            const analytics = document.getElementById('cookie-analytics').checked;
+            const marketing = document.getElementById('cookie-marketing').checked;
+            const functional = document.getElementById('cookie-functional').checked;
+            const performance = document.getElementById('cookie-performance').checked;
+
+            // Check if all are unchecked (user wants to decline all optional)
+            if (!analytics && !marketing && !functional && !performance) {
+                setCookie(COOKIE_NAME, 'necessary', COOKIE_EXPIRY_DAYS);
+                console.log('Only necessary cookies accepted');
+            } else {
+                // At least one optional cookie is enabled
+                setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
+
+                // Store individual preferences
+                setCookie('cookie_analytics', analytics ? '1' : '0', COOKIE_EXPIRY_DAYS);
+                setCookie('cookie_marketing', marketing ? '1' : '0', COOKIE_EXPIRY_DAYS);
+                setCookie('cookie_functional', functional ? '1' : '0', COOKIE_EXPIRY_DAYS);
+                setCookie('cookie_performance', performance ? '1' : '0', COOKIE_EXPIRY_DAYS);
+
+                // Only load analytics if specifically enabled
+                if (analytics) {
+                    window.dispatchEvent(new Event('cookiesAccepted'));
+                }
+
+                console.log('Custom cookie preferences saved');
+            }
+
             hideBanner();
-            console.log('Only necessary cookies accepted');
         }
 
         // Check if banner should be shown
@@ -514,8 +608,11 @@
         if (acceptBtn) {
             acceptBtn.addEventListener('click', handleAccept);
         }
-        if (declineBtn) {
-            declineBtn.addEventListener('click', handleDecline);
+        if (customizeBtn) {
+            customizeBtn.addEventListener('click', handleCustomize);
+        }
+        if (savePreferencesBtn) {
+            savePreferencesBtn.addEventListener('click', handleSavePreferences);
         }
     })();
     </script>
