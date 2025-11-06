@@ -179,13 +179,17 @@ $title = get_the_title();
                                            overflow-y-auto transform translate-x-full">
             <!-- Header -->
             <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
-                <h2 class="text-2xl font-bold text-primary">Where to Buy</h2>
+                <h2 class="text-2xl font-bold text-primary">Your Local Supplier</h2>
                 <button id="closeWhereToBuy" class="text-gray-500 hover:text-primary hover:bg-gray-100 rounded-full p-2 transition-all duration-200">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
             </div>
+
+            <p class="text-[14px] text-black">
+            We will help you find your best local Flamerite supplier. If you can send over your details we will contact you to match your needs to the perfect fire. As a thank you we will send you a <b>£50</b> voucher to put against your new Flamerite fire.
+        </p>
 
             <!-- Iframe Content -->
             <div class="">
