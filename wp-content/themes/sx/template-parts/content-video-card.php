@@ -28,11 +28,17 @@ $category_name = '';
 if ($categories && !is_wp_error($categories)) {
     $category_name = $categories[0]->name;
 }
+
+// Generate unique modal ID for this video
+$modal_id = 'video-modal-' . get_the_ID();
 ?>
 
 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
     <?php if ($video_url): ?>
-        <a href="<?php echo esc_url($video_url); ?>" target="_blank" class="block" rel="noopener noreferrer">
+        <button type="button"
+                onclick="openVideoModal('<?php echo esc_js($modal_id); ?>')"
+                class="block w-full text-left cursor-pointer"
+                aria-label="Play <?php echo esc_attr(get_the_title()); ?>">
     <?php else: ?>
         <a href="<?php the_permalink(); ?>" class="block">
     <?php endif; ?>
