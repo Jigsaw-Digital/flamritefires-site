@@ -269,33 +269,43 @@ $post_type_labels = array(
 
 <script>
 // Video modal functions for search page
-function openVideoModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (!modal) return;
+if (typeof window.openVideoModal === 'undefined') {
+    window.openVideoModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) {
+            console.error('Modal not found:', modalId);
+            return;
+        }
 
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
+        console.log('Opening modal:', modalId);
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
 
-    // Get the video element and play it
-    const video = modal.querySelector('video');
-    if (video) {
-        video.play();
-    }
+        // Get the video element and play it
+        const video = modal.querySelector('video');
+        if (video) {
+            video.play().catch(e => console.log('Video autoplay prevented:', e));
+        }
+    };
 }
 
-function closeVideoModal(modalId) {
-    const modal = document.getElementById(modalId);
-    if (!modal) return;
+if (typeof window.closeVideoModal === 'undefined') {
+    window.closeVideoModal = function(modalId) {
+        const modal = document.getElementById(modalId);
+        if (!modal) return;
 
-    // Get the video element and pause it
-    const video = modal.querySelector('video');
-    if (video) {
-        video.pause();
-        video.currentTime = 0;
-    }
+        console.log('Closing modal:', modalId);
 
-    modal.classList.add('hidden');
-    document.body.style.overflow = '';
+        // Get the video element and pause it
+        const video = modal.querySelector('video');
+        if (video) {
+            video.pause();
+            video.currentTime = 0;
+        }
+
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    };
 }
 
 // Close modal on escape key
@@ -303,15 +313,18 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         const openModals = document.querySelectorAll('[id^="video-modal-"]:not(.hidden)');
         openModals.forEach(modal => {
-            closeVideoModal(modal.id);
+            window.closeVideoModal(modal.id);
         });
     }
 });
 
-// Close modal when clicking outside the video
+// Close modal when clicking on the backdrop
 document.addEventListener('click', function(e) {
-    if (e.target.id && e.target.id.startsWith('video-modal-')) {
-        closeVideoModal(e.target.id);
+    if (e.target.classList.contains('bg-black/90') || (e.target.id && e.target.id.startsWith('video-modal-'))) {
+        const modal = e.target.closest('[id^="video-modal-"]');
+        if (modal) {
+            window.closeVideoModal(modal.id);
+        }
     }
 });
 </script>
