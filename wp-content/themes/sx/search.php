@@ -273,58 +273,50 @@ $post_type_labels = array(
 if (typeof openVideoModal === 'undefined') {
     function openVideoModal(modalId) {
         const modal = document.getElementById(modalId);
-        if (!modal) {
-            console.error('Modal not found:', modalId);
-            return;
-        }
+        const video = document.getElementById('video-' + modalId);
 
-        console.log('Opening modal:', modalId);
-        modal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden';
+        if (modal && video) {
+            modal.classList.remove('opacity-0', 'invisible');
+            modal.classList.add('opacity-100', 'visible');
+            document.body.style.overflow = 'hidden';
 
-        // Get the video element and play it
-        const video = modal.querySelector('video');
-        if (video) {
+            // Small delay to ensure modal is visible before playing
             setTimeout(() => {
-                video.play().catch(e => console.log('Video autoplay prevented:', e));
+                video.play();
             }, 100);
         }
     }
 
     function closeVideoModal(modalId) {
         const modal = document.getElementById(modalId);
-        if (!modal) return;
+        const video = document.getElementById('video-' + modalId);
 
-        console.log('Closing modal:', modalId);
-
-        // Get the video element and pause it
-        const video = modal.querySelector('video');
-        if (video) {
+        if (modal && video) {
             video.pause();
             video.currentTime = 0;
-        }
 
-        modal.classList.add('hidden');
-        document.body.style.overflow = '';
+            modal.classList.remove('opacity-100', 'visible');
+            modal.classList.add('opacity-0', 'invisible');
+            document.body.style.overflow = '';
+        }
     }
 
-    // Close modal on escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            const openModals = document.querySelectorAll('[id^="video-modal-"]:not(.hidden)');
-            openModals.forEach(modal => {
-                closeVideoModal(modal.id);
-            });
+    // Close modal when clicking outside
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('[id^="video-modal-"]')) {
+            const modalId = e.target.id;
+            closeVideoModal(modalId);
         }
     });
 
-    // Close modal when clicking on the backdrop
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('bg-black/90') || (e.target.id && e.target.id.startsWith('video-modal-'))) {
-            const modal = e.target.closest('[id^="video-modal-"]');
-            if (modal) {
-                closeVideoModal(modal.id);
-            }
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const openModals = document.querySelectorAll('[id^="video-modal-"].opacity-100');
+            openModals.forEach(modal => {
+                const modalId = modal.id;
+                closeVideoModal(modalId);
+            });
         }
     });
 }

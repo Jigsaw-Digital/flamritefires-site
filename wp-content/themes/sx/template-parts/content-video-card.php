@@ -4,14 +4,19 @@
  * Used for displaying video posts in search results and grids
  */
 
-$video_url = get_field('video_url');
 $video_description = get_field('video_description');
-$featured_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
+$video_file = get_field('video_file');
 
-// Get video thumbnail if available
+// Get video URL from video_file
+$video_url = $video_file ? $video_file['url'] : '';
+
+// Get video thumbnail
 $video_thumbnail = get_field('video_thumbnail');
-if ($video_thumbnail) {
+$featured_image = null;
+if ($video_thumbnail && is_array($video_thumbnail) && isset($video_thumbnail['url'])) {
     $featured_image = $video_thumbnail['url'];
+} else {
+    $featured_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
 }
 
 // Create excerpt
@@ -34,13 +39,12 @@ $modal_id = 'video-modal-' . get_the_ID();
 ?>
 
 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
-    <button type="button"
-            onclick="console.log('Button clicked - video_url: <?php echo $video_url ? 'exists' : 'missing'; ?>, modal: <?php echo esc_js($modal_id); ?>'); <?php if ($video_url): ?>openVideoModal('<?php echo esc_js($modal_id); ?>');<?php else: ?>window.location.href='<?php the_permalink(); ?>';<?php endif ?>"
-            class="block w-full text-left cursor-pointer"
-            aria-label="<?php echo $video_url ? 'Play ' : 'View '; ?><?php echo esc_attr(get_the_title()); ?>">
+    <?php if ($video_url): ?>
+        <button type="button" class="w-full text-left" onclick="openVideoModal('<?php echo esc_js($modal_id); ?>')">
+    <?php endif; ?>
 
         <!-- Video Thumbnail -->
-        <div class="relative pointer-events-none">
+        <div class="relative">
             <?php if ($featured_image): ?>
                 <div class="aspect-video overflow-hidden bg-gray-50 relative">
                     <img src="<?php echo esc_url($featured_image); ?>"
@@ -48,13 +52,15 @@ $modal_id = 'video-modal-' . get_the_ID();
                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
                     <!-- Play Icon Overlay -->
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                        <div class="bg-primary w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
+                    <?php if ($video_url): ?>
+                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                            <div class="bg-primary w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
             <?php else: ?>
                 <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative">
@@ -91,7 +97,7 @@ $modal_id = 'video-modal-' . get_the_ID();
         </div>
 
         <!-- Content -->
-        <div class="p-6 pointer-events-none">
+        <div class="p-6">
             <div class="mb-3">
                 <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-2">
                     Videos
@@ -117,33 +123,31 @@ $modal_id = 'video-modal-' . get_the_ID();
                 </span>
             </div>
         </div>
-    </button>
+
+    <?php if ($video_url): ?>
+        </button>
+    <?php endif; ?>
 </div>
 
 <?php if ($video_url): ?>
     <!-- Video Modal -->
-    <div id="<?php echo esc_attr($modal_id); ?>" class="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
-        <div class="relative w-full max-w-5xl">
-            <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="sr-only"><?php the_title(); ?></h2>
-
+    <div id="<?php echo esc_attr($modal_id); ?>" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-80 opacity-0 invisible transition-all duration-300">
+        <div class="relative w-full h-full max-w-6xl max-h-[90vh] mx-4">
             <!-- Close Button -->
-            <button type="button"
-                    onclick="closeVideoModal('<?php echo esc_js($modal_id); ?>')"
-                    class="absolute -top-12 right-0 text-white hover:text-primary transition-colors z-10"
-                    aria-label="Close video player">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            <button type="button" class="absolute -top-2 -right-2 lg:top-4 lg:right-4 z-10 bg-white hover:bg-gray-100 text-gray-800 rounded-full p-3 lg:p-4 shadow-lg transition-all duration-200 hover:scale-110" onclick="closeVideoModal('<?php echo esc_js($modal_id); ?>')">
+                <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
 
             <!-- Video Container -->
             <div class="w-full h-full flex items-center justify-center">
                 <video
-                    id="video-<?php echo esc_attr(get_the_ID()); ?>"
+                    id="video-<?php echo esc_attr($modal_id); ?>"
                     class="w-full h-full object-contain rounded-lg"
                     controls
                     preload="metadata">
-                    <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                    <source src="<?php echo esc_url($video_url); ?>" type="<?php echo esc_attr($video_file['mime_type'] ?? 'video/mp4'); ?>">
                     Your browser does not support the video tag.
                 </video>
             </div>
