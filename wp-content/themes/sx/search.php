@@ -6,46 +6,71 @@
 get_header();
 
 global $wp_query;
-$total_results = $wp_query->found_posts;
 $search_query = get_search_query();
 
-// Handle search query variations for E-FX/EFX
-$original_query = $search_query;
+// Handle search query variations for E-FX/EFX by doing a second query if needed
+$combined_results = array();
 if (stripos($search_query, 'efx') !== false || stripos($search_query, 'e-fx') !== false) {
-    // If searching for efx or e-fx, search for both variations
-    add_filter('posts_search', function($search, $wp_query) use ($original_query) {
-        global $wpdb;
-
-        if (!$wp_query->is_search() || empty($search)) {
-            return $search;
+    // Get results from original query
+    if (have_posts()) {
+        while (have_posts()) {
+            the_post();
+            $combined_results[] = $post;
         }
+        wp_reset_postdata();
+    }
 
-        // Replace the search term with both variations
-        $search_variations = array();
+    // Create variation query
+    $variation_query = $search_query;
+    if (stripos($search_query, 'efx') !== false) {
+        $variation_query = str_ireplace('efx', 'e-fx', $search_query);
+    } elseif (stripos($search_query, 'e-fx') !== false) {
+        $variation_query = str_ireplace('e-fx', 'efx', $search_query);
+    }
 
-        // Original search
-        if (stripos($original_query, 'efx') !== false) {
-            $efx_variation = str_ireplace('efx', 'e-fx', $original_query);
-            $search_variations[] = $wpdb->esc_like($efx_variation);
-        } elseif (stripos($original_query, 'e-fx') !== false) {
-            $efx_variation = str_ireplace('e-fx', 'efx', $original_query);
-            $search_variations[] = $wpdb->esc_like($efx_variation);
+    // Query for variation
+    $variation_wp_query = new WP_Query(array(
+        's' => $variation_query,
+        'post_type' => 'any',
+        'posts_per_page' => -1,
+    ));
+
+    if ($variation_wp_query->have_posts()) {
+        while ($variation_wp_query->have_posts()) {
+            $variation_wp_query->the_post();
+            // Check if not already in results
+            $already_exists = false;
+            foreach ($combined_results as $existing_post) {
+                if ($existing_post->ID === get_the_ID()) {
+                    $already_exists = true;
+                    break;
+                }
+            }
+            if (!$already_exists) {
+                $combined_results[] = $post;
+            }
         }
+        wp_reset_postdata();
+    }
 
-        if (!empty($search_variations)) {
-            // Add OR condition for the variation
-            $or_search = " OR ({$wpdb->posts}.post_title LIKE '%" . $search_variations[0] . "%')
-                          OR ({$wpdb->posts}.post_content LIKE '%" . $search_variations[0] . "%')";
-            $search = str_replace('AND (((', 'AND (((' . $or_search . ' OR ', $search);
-        }
-
-        return $search;
-    }, 10, 2);
+    $total_results = count($combined_results);
+} else {
+    $total_results = $wp_query->found_posts;
 }
 
 // Group results by post type
 $results_by_type = array();
-if (have_posts()) {
+if (!empty($combined_results)) {
+    // Use combined results from E-FX/EFX search
+    foreach ($combined_results as $post) {
+        $post_type = get_post_type($post);
+        if (!isset($results_by_type[$post_type])) {
+            $results_by_type[$post_type] = array();
+        }
+        $results_by_type[$post_type][] = $post;
+    }
+} elseif (have_posts()) {
+    // Use regular search results
     while (have_posts()) {
         the_post();
         $post_type = get_post_type();
