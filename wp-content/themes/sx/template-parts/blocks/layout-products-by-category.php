@@ -220,7 +220,7 @@ $description = $data['description'] ?? '';
     <?php if ($display_products): ?>
         <?php if (!empty($products)): ?>
         <div class="mx-auto max-w-9xl container">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
                 <?php foreach ($products as $product): ?>
                     <?php include(get_template_directory() . '/template-parts/partials/product-card.php'); ?>
                 <?php endforeach; ?>
