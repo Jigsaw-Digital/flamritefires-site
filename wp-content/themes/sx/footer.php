@@ -401,6 +401,9 @@
         </div>
     </div>
 
+    <!-- Cookie Consent Overlay -->
+    <div id="cookie-policy-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] transition-opacity duration-300 opacity-0" style="display: none;"></div>
+
     <!-- Cookie Consent Banner -->
     <div id="cookie-policy-banner" class="fixed bottom-0 left-0 right-0 bg-[#1e2938] z-[9999] shadow-lg transform transition-transform duration-300 ease-in-out border-t border-primary/20" style="display: none; transform: translateY(100%);">
         <div class="container mx-auto px-4 py-4 md:py-6">
@@ -507,6 +510,7 @@
     // Cookie consent banner functionality
     (function() {
         const banner = document.getElementById('cookie-policy-banner');
+        const overlay = document.getElementById('cookie-policy-overlay');
         const acceptBtn = document.getElementById('cookie-policy-accept');
         const customizeBtn = document.getElementById('cookie-policy-customize');
         const savePreferencesBtn = document.getElementById('cookie-save-preferences');
@@ -532,17 +536,32 @@
 
         // Show banner with animation
         function showBanner() {
+            // Show overlay first
+            overlay.style.display = 'block';
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+            }, 10);
+
+            // Then show banner
             banner.style.display = 'block';
             setTimeout(() => {
                 banner.style.transform = 'translateY(0)';
             }, 10);
+
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
         }
 
         // Hide banner with animation
         function hideBanner() {
             banner.style.transform = 'translateY(100%)';
+            overlay.style.opacity = '0';
+
             setTimeout(() => {
                 banner.style.display = 'none';
+                overlay.style.display = 'none';
+                // Re-enable body scroll
+                document.body.style.overflow = '';
             }, 300);
         }
 
