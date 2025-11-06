@@ -1974,6 +1974,23 @@ function sx_block_init()
     ));
 }
 
+// Add loading="lazy" to all images for better performance
+add_filter('wp_get_attachment_image_attributes', function($attr, $attachment, $size) {
+    if (!isset($attr['loading'])) {
+        $attr['loading'] = 'lazy';
+    }
+    return $attr;
+}, 10, 3);
+
+// Add lazy loading to content images
+add_filter('the_content', function($content) {
+    if (is_feed() || is_preview()) {
+        return $content;
+    }
+    $content = preg_replace('/<img((?![^>]*loading=)[^>]*)>/i', '<img$1 loading="lazy">', $content);
+    return $content;
+});
+
 // Custom Walker Class for Desktop Menu
 if (!class_exists('Custom_Walker_Nav_Menu')) {
     class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {

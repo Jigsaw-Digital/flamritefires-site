@@ -119,7 +119,8 @@ $post_type_labels = array(
                            class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors"
                            value="<?php echo esc_attr($search_query); ?>">
                     <button type="submit"
-                            class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                            class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
+                            aria-label="Search">
                         Search
                     </button>
                 </div>

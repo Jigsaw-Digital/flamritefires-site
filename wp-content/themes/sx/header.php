@@ -9,6 +9,17 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
+    <?php
+    // Meta description
+    if (is_singular()) {
+        $meta_description = get_field('meta_description') ?: wp_trim_words(get_the_excerpt() ?: get_the_content(), 25);
+        if ($meta_description) {
+            echo '<meta name="description" content="' . esc_attr(strip_tags($meta_description)) . '">';
+        }
+    } elseif (is_home() || is_front_page()) {
+        echo '<meta name="description" content="' . esc_attr(get_bloginfo('description')) . '">';
+    }
+    ?>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png">
@@ -255,7 +266,8 @@
                            value=""
                            x-ref="searchInput">
                     <button type="submit"
-                            class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors">
+                            class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors"
+                            aria-label="Search">
                         Search
                     </button>
                 </div>

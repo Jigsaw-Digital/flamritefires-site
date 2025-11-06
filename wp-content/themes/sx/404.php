@@ -23,21 +23,39 @@ get_header();
                 Sorry, the page you are looking for doesn't exist or has been moved. Please check the URL or return to the homepage.
             </p>
 
+            <!-- Search Box - Mobile First -->
+            <div class="mt-8 lg:hidden">
+                <form role="search" method="get" action="<?php echo home_url('/'); ?>" class="max-w-[500px] mx-auto">
+                    <div class="flex flex-col gap-2">
+                        <input type="search"
+                               name="s"
+                               placeholder="Search our site..."
+                               class="w-full px-6 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
+                               value="<?php echo get_search_query(); ?>">
+                        <button type="submit"
+                                class="w-full bg-primary text-white font-semibold py-3 px-6 rounded-lg hover:bg-primary/90 transition-colors"
+                                aria-label="Search">
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                 <a href="<?php echo home_url('/'); ?>"
-                   class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                   class="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-lg hover:bg-primary/90 transition-colors text-center">
                     Return to Homepage
                 </a>
 
                 <a href="<?php echo home_url('/contact-us'); ?>"
-                   class="inline-block border-2 border-primary text-primary font-semibold px-8 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors">
+                   class="inline-block border-2 border-primary text-primary font-semibold px-8 py-3 rounded-lg hover:bg-primary hover:text-white transition-colors text-center">
                     Contact Us
                 </a>
             </div>
 
-            <!-- Search Box -->
-            <div class="mt-12">
+            <!-- Search Box - Desktop -->
+            <div class="mt-12 hidden lg:block">
                 <form role="search" method="get" action="<?php echo home_url('/'); ?>" class="max-w-[500px] mx-auto">
                     <div class="relative">
                         <input type="search"
@@ -46,7 +64,8 @@ get_header();
                                class="w-full px-6 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors"
                                value="<?php echo get_search_query(); ?>">
                         <button type="submit"
-                                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                                class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+                                aria-label="Search">
                             Search
                         </button>
                     </div>
