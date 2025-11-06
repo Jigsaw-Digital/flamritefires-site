@@ -87,7 +87,6 @@ $data = get_field('layout_warranty_data');
                     data-form-id="UIw9jZxZdx10Lp7NRilw"
                     title="Extended Warranty">
                 </iframe>
-                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
             </div>
         </div>
     </div>

@@ -8,7 +8,52 @@ if (!$data) return;
 
 global $post;
 $title = get_the_title();
+
+// Build Product Schema Markup
+$product_schema = array(
+    '@context' => 'https://schema.org',
+    '@type' => 'Product',
+    'name' => $title,
+    'description' => wp_strip_all_tags($data['description_1'] ?? ''),
+    'brand' => array(
+        '@type' => 'Brand',
+        'name' => 'Flamerite Fires'
+    )
+);
+
+// Add images if available
+if (!empty($data['image_slider'])) {
+    $product_schema['image'] = array();
+    foreach ($data['image_slider'] as $image) {
+        if (!empty($image['url'])) {
+            $product_schema['image'][] = $image['url'];
+        }
+    }
+}
+
+// Add video if available
+if (!empty($data['video']['url'])) {
+    $product_schema['video'] = array(
+        '@type' => 'VideoObject',
+        'name' => $title . ' Video',
+        'contentUrl' => $data['video']['url'],
+        'thumbnailUrl' => !empty($data['image_slider'][0]['url']) ? $data['image_slider'][0]['url'] : ''
+    );
+}
+
+// Add offers/availability (you can customize this based on your needs)
+$product_schema['offers'] = array(
+    '@type' => 'Offer',
+    'availability' => 'https://schema.org/InStock',
+    'url' => get_permalink(),
+    'priceCurrency' => 'GBP'
+);
 ?>
+
+<!-- Product Schema Markup -->
+<script type="application/ld+json">
+<?php echo wp_json_encode($product_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
+</script>
 
 <div class="bg-tertiary py-8 lg:py-16 px-6 relative">
     <div class="lg:flex justify-center items-start w-full gap-12 mx-auto relative max-w-7xl">
@@ -29,8 +74,8 @@ $title = get_the_title();
                     </div>
 
                     <!-- Fullscreen Button -->
-                    <button id="fullscreenBtn" class="absolute top-4 right-4 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-200 z-10">
-                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <button id="fullscreenBtn" class="absolute top-4 right-4 bg-white/90 hover:bg-white p-3 rounded-full shadow-lg transition-all duration-200 z-10" aria-label="Open image in fullscreen">
+                        <svg class="w-5 h-5 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/>
                         </svg>
                     </button>
@@ -103,7 +148,7 @@ $title = get_the_title();
                 </div>
                 <?php if ($data['video']): ?>
                     <button class="border-primary hover:bg-primary text-primary hover:text-white inline-block mt-8 justify-center items-center border-2 px-6 py-2 text-sm font-semibold xl:text-lg cursor-pointer"
-                            id="watchVideoBtn" data-video="<?php echo esc_url($data['video']['url']); ?>">
+                            id="watchVideoBtn" data-video="<?php echo esc_url($data['video']['url']); ?>" aria-label="Watch product video">
                         Watch Video
                     </button>
                 <?php endif; ?>
@@ -111,12 +156,12 @@ $title = get_the_title();
                     <?php echo wp_kses_post($data['description_2']); ?>
                 </div>
                 <div class="flex flex-col gap-3 mt-6 max-w-[210px]">
-                    <button id="whereToBuyBtn" class="bg-primary text-white hover:bg-primary/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 cursor-pointer w-full">
-                        <img src="/icons/where_to_buy.svg" alt="Where to Buy" class="w-6 h-6">
+                    <button id="whereToBuyBtn" class="bg-primary text-white hover:bg-primary/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 cursor-pointer w-full" aria-label="Find local supplier">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/icons/where_to_buy.svg'); ?>" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
                         <span class="text-sm uppercase tracking-wider">WHERE TO BUY</span>
                     </button>
-                    <a href="/contact-us/" class="bg-[#1e2938] text-white hover:bg-[#1e2938]/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 w-full">
-                        <img src="/icons/contact_us.svg" alt="Contact Us" class="w-6 h-6">
+                    <a href="<?php echo esc_url(home_url('/contact-us/')); ?>" class="bg-[#1e2938] text-white hover:bg-[#1e2938]/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 w-full" aria-label="Contact us">
+                        <img src="<?php echo esc_url(get_template_directory_uri() . '/icons/contact_us.svg'); ?>" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
                         <span class="text-sm uppercase tracking-wider">CONTACT US</span>
                     </a>
                 </div>
@@ -126,25 +171,25 @@ $title = get_the_title();
 
 
     <!-- Video Modal -->
-    <div id="videoModal" class="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden">
+    <div id="videoModal" class="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
         <div class="relative w-full max-w-4xl">
-            <button id="closeVideoModal" class="absolute -top-10 right-0 text-white flex items-center gap-2 bg-transparent bg-opacity-50 px-3 py-1 rounded-md">
+            <h2 id="videoModalTitle" class="sr-only">Product Video</h2>
+            <button id="closeVideoModal" class="absolute -top-10 right-0 text-white flex items-center gap-2 bg-transparent bg-opacity-50 px-3 py-1 rounded-md" aria-label="Close video modal">
                 <span class="text-lg">Close</span>
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                 </svg>
             </button>
             <video id="modalVideo" controls class="w-full h-auto">
                 <source src="" type="video/mp4">
-                <track kind="captions" src="" srclang="en" label="English" default>
             </video>
         </div>
     </div>
 
     <!-- Fullscreen Image Lightbox -->
-    <div id="imageLightbox" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center hidden">
-        <button id="closeLightbox" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 p-3 rounded-full transition-all duration-200 z-20">
-            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <div id="imageLightbox" class="fixed inset-0 z-[9999] bg-black flex items-center justify-center hidden" role="dialog" aria-modal="true" aria-label="Image gallery fullscreen view">
+        <button id="closeLightbox" class="absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 p-3 rounded-full transition-all duration-200 z-20" aria-label="Close fullscreen view">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
@@ -181,8 +226,8 @@ $title = get_the_title();
             <!-- Header -->
             <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center z-10">
                 <h2 class="text-2xl font-bold text-primary">Your Local Supplier</h2>
-                <button id="closeWhereToBuy" class="text-gray-500 hover:text-primary hover:bg-gray-100 rounded-full p-2 transition-all duration-200">
-                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <button id="closeWhereToBuy" class="text-gray-500 hover:text-primary hover:bg-gray-100 rounded-full p-2 transition-all duration-200" aria-label="Close supplier finder">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
                     </svg>
                 </button>
@@ -209,7 +254,7 @@ $title = get_the_title();
                     data-height="1292"
                     data-layout-iframe-id="inline-ADxQOaLUD4qr1znHzjkr"
                     data-form-id="ADxQOaLUD4qr1znHzjkr"
-                    title="Voucher Promo">
+                    title="Find Your Local Flamerite Supplier - £50 Voucher Form">
                 </iframe>
             </div>
         </div>
@@ -403,9 +448,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-<!-- Load form embed script -->
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 
 <style>
     /* Active thumbnail styling */

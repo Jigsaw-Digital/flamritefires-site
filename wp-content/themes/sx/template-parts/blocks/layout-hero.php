@@ -6,7 +6,8 @@
 $data = get_field('layout_hero_data');
 if (!$data) return;
 
-$is_product = strpos($_SERVER['REQUEST_URI'], '/products/') !== false;
+// Check if this is a product page using WordPress functions
+$is_product = is_singular('products');
 ?>
 
 <section class="<?php echo $is_product ? 'bg-white h-[40vh] lg:h-[50vh] relative' : ($data['small'] ? 'bg-white h-[calc(100vh-100px)] relative' : 'bg-white h-[calc(100vh-100px)] relative'); ?>">

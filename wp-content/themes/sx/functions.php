@@ -41,6 +41,11 @@ function sx_theme_setup() {
     add_image_size('project-grid', 800, 600, true); // For project grid
 }
 
+// Enqueue form embed script globally (prevents duplicate loading)
+add_action('wp_enqueue_scripts', function() {
+    wp_enqueue_script('leadconnector-form-embed', 'https://link.msgsndr.com/js/form_embed.js', array(), null, true);
+});
+
 // Admin Colours
 // add_action('admin_init', function(){
 //     if (!wp_doing_ajax()) {
