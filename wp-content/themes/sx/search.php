@@ -15,7 +15,8 @@ if (stripos($search_query, 'efx') !== false || stripos($search_query, 'e-fx') !=
     if (have_posts()) {
         while (have_posts()) {
             the_post();
-            $combined_results[] = $post;
+            global $post;
+            $combined_results[] = clone $post;
         }
         wp_reset_postdata();
     }
@@ -38,6 +39,7 @@ if (stripos($search_query, 'efx') !== false || stripos($search_query, 'e-fx') !=
     if ($variation_wp_query->have_posts()) {
         while ($variation_wp_query->have_posts()) {
             $variation_wp_query->the_post();
+            global $post;
             // Check if not already in results
             $already_exists = false;
             foreach ($combined_results as $existing_post) {
@@ -47,7 +49,7 @@ if (stripos($search_query, 'efx') !== false || stripos($search_query, 'e-fx') !=
                 }
             }
             if (!$already_exists) {
-                $combined_results[] = $post;
+                $combined_results[] = clone $post;
             }
         }
         wp_reset_postdata();
