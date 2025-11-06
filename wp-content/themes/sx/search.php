@@ -267,4 +267,53 @@ $post_type_labels = array(
     </div>
 </section>
 
+<script>
+// Video modal functions for search page
+function openVideoModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+
+    // Get the video element and play it
+    const video = modal.querySelector('video');
+    if (video) {
+        video.play();
+    }
+}
+
+function closeVideoModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+
+    // Get the video element and pause it
+    const video = modal.querySelector('video');
+    if (video) {
+        video.pause();
+        video.currentTime = 0;
+    }
+
+    modal.classList.add('hidden');
+    document.body.style.overflow = '';
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const openModals = document.querySelectorAll('[id^="video-modal-"]:not(.hidden)');
+        openModals.forEach(modal => {
+            closeVideoModal(modal.id);
+        });
+    }
+});
+
+// Close modal when clicking outside the video
+document.addEventListener('click', function(e) {
+    if (e.target.id && e.target.id.startsWith('video-modal-')) {
+        closeVideoModal(e.target.id);
+    }
+});
+</script>
+
 <?php get_footer(); ?>

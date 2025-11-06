@@ -121,5 +121,40 @@ $modal_id = 'video-modal-' . get_the_ID();
                 </span>
             </div>
         </div>
-    </a>
+    <?php if ($video_url): ?>
+        </button>
+    <?php else: ?>
+        </a>
+    <?php endif; ?>
 </div>
+
+<?php if ($video_url): ?>
+    <!-- Video Modal -->
+    <div id="<?php echo esc_attr($modal_id); ?>" class="fixed inset-0 z-[9999] bg-black/90 flex items-center justify-center p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="<?php echo esc_attr($modal_id); ?>-title">
+        <div class="relative w-full max-w-5xl">
+            <h2 id="<?php echo esc_attr($modal_id); ?>-title" class="sr-only"><?php the_title(); ?></h2>
+
+            <!-- Close Button -->
+            <button type="button"
+                    onclick="closeVideoModal('<?php echo esc_js($modal_id); ?>')"
+                    class="absolute -top-12 right-0 text-white hover:text-primary transition-colors z-10"
+                    aria-label="Close video player">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+
+            <!-- Video Container -->
+            <div class="w-full h-full flex items-center justify-center">
+                <video
+                    id="video-<?php echo esc_attr(get_the_ID()); ?>"
+                    class="w-full h-full object-contain rounded-lg"
+                    controls
+                    preload="metadata">
+                    <source src="<?php echo esc_url($video_url); ?>" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
