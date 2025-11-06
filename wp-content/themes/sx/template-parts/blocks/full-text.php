@@ -29,13 +29,13 @@ switch ($background_style) {
 $padding_class = 'py-16';
 switch ($padding) {
     case 'large':
-        $padding_class = 'pb-24 pt-12';
+        $padding_class = 'pb-24 pt-6';
         break;
     case 'none':
         $padding_class = '';
         break;
     default:
-        $padding_class = 'pb-16 pt-8';
+        $padding_class = 'pb-16 pt-4';
         break;
 }
 ?>
