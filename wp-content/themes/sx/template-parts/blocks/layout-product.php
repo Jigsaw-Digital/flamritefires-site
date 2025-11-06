@@ -187,7 +187,7 @@ $title = get_the_title();
                 </button>
             </div>
 
-            <p class="text-[14px] text-black">
+            <p class="px-6 mt-4 text-[14px] text-black">
             We will help you find your best local Flamerite supplier. If you can send over your details we will contact you to match your needs to the perfect fire. As a thank you we will send you a <b>£50</b> voucher to put against your new Flamerite fire.
         </p>
 
