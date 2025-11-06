@@ -269,8 +269,9 @@ $post_type_labels = array(
 
 <script>
 // Video modal functions for search page
-if (typeof window.openVideoModal === 'undefined') {
-    window.openVideoModal = function(modalId) {
+// Define globally only if not already defined
+if (typeof openVideoModal === 'undefined') {
+    function openVideoModal(modalId) {
         const modal = document.getElementById(modalId);
         if (!modal) {
             console.error('Modal not found:', modalId);
@@ -284,13 +285,13 @@ if (typeof window.openVideoModal === 'undefined') {
         // Get the video element and play it
         const video = modal.querySelector('video');
         if (video) {
-            video.play().catch(e => console.log('Video autoplay prevented:', e));
+            setTimeout(() => {
+                video.play().catch(e => console.log('Video autoplay prevented:', e));
+            }, 100);
         }
-    };
-}
+    }
 
-if (typeof window.closeVideoModal === 'undefined') {
-    window.closeVideoModal = function(modalId) {
+    function closeVideoModal(modalId) {
         const modal = document.getElementById(modalId);
         if (!modal) return;
 
@@ -305,28 +306,28 @@ if (typeof window.closeVideoModal === 'undefined') {
 
         modal.classList.add('hidden');
         document.body.style.overflow = '';
-    };
-}
-
-// Close modal on escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        const openModals = document.querySelectorAll('[id^="video-modal-"]:not(.hidden)');
-        openModals.forEach(modal => {
-            window.closeVideoModal(modal.id);
-        });
     }
-});
 
-// Close modal when clicking on the backdrop
-document.addEventListener('click', function(e) {
-    if (e.target.classList.contains('bg-black/90') || (e.target.id && e.target.id.startsWith('video-modal-'))) {
-        const modal = e.target.closest('[id^="video-modal-"]');
-        if (modal) {
-            window.closeVideoModal(modal.id);
+    // Close modal on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const openModals = document.querySelectorAll('[id^="video-modal-"]:not(.hidden)');
+            openModals.forEach(modal => {
+                closeVideoModal(modal.id);
+            });
         }
-    }
-});
+    });
+
+    // Close modal when clicking on the backdrop
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('bg-black/90') || (e.target.id && e.target.id.startsWith('video-modal-'))) {
+            const modal = e.target.closest('[id^="video-modal-"]');
+            if (modal) {
+                closeVideoModal(modal.id);
+            }
+        }
+    });
+}
 </script>
 
 <?php get_footer(); ?>

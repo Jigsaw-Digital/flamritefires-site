@@ -36,7 +36,7 @@ $modal_id = 'video-modal-' . get_the_ID();
 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
     <?php if ($video_url): ?>
         <button type="button"
-                onclick="openVideoModal('<?php echo esc_js($modal_id); ?>')"
+                onclick="console.log('Button clicked for modal: <?php echo esc_js($modal_id); ?>'); openVideoModal('<?php echo esc_js($modal_id); ?>');"
                 class="block w-full text-left cursor-pointer"
                 aria-label="Play <?php echo esc_attr(get_the_title()); ?>">
     <?php else: ?>
@@ -44,7 +44,7 @@ $modal_id = 'video-modal-' . get_the_ID();
     <?php endif; ?>
 
         <!-- Video Thumbnail -->
-        <div class="relative">
+        <div class="relative pointer-events-none">
             <?php if ($featured_image): ?>
                 <div class="aspect-video overflow-hidden bg-gray-50 relative">
                     <img src="<?php echo esc_url($featured_image); ?>"
@@ -95,7 +95,7 @@ $modal_id = 'video-modal-' . get_the_ID();
         </div>
 
         <!-- Content -->
-        <div class="p-6">
+        <div class="p-6 pointer-events-none">
             <div class="mb-3">
                 <span class="inline-block bg-primary/10 text-primary text-xs font-semibold px-3 py-1 rounded-full mb-2">
                     Videos
