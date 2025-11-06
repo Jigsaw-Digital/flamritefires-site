@@ -34,14 +34,10 @@ $modal_id = 'video-modal-' . get_the_ID();
 ?>
 
 <div class="group bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100">
-    <?php if ($video_url): ?>
-        <button type="button"
-                onclick="console.log('Button clicked for modal: <?php echo esc_js($modal_id); ?>'); openVideoModal('<?php echo esc_js($modal_id); ?>');"
-                class="block w-full text-left cursor-pointer"
-                aria-label="Play <?php echo esc_attr(get_the_title()); ?>">
-    <?php else: ?>
-        <a href="<?php the_permalink(); ?>" class="block">
-    <?php endif; ?>
+    <button type="button"
+            onclick="console.log('Button clicked - video_url: <?php echo $video_url ? 'exists' : 'missing'; ?>, modal: <?php echo esc_js($modal_id); ?>'); <?php if ($video_url): ?>openVideoModal('<?php echo esc_js($modal_id); ?>');<?php else: ?>window.location.href='<?php the_permalink(); ?>';<?php endif ?>"
+            class="block w-full text-left cursor-pointer"
+            aria-label="<?php echo $video_url ? 'Play ' : 'View '; ?><?php echo esc_attr(get_the_title()); ?>">
 
         <!-- Video Thumbnail -->
         <div class="relative pointer-events-none">
@@ -121,11 +117,7 @@ $modal_id = 'video-modal-' . get_the_ID();
                 </span>
             </div>
         </div>
-    <?php if ($video_url): ?>
-        </button>
-    <?php else: ?>
-        </a>
-    <?php endif; ?>
+    </button>
 </div>
 
 <?php if ($video_url): ?>
