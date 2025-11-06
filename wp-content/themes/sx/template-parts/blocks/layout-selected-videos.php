@@ -200,6 +200,7 @@ $modal_id_prefix = 'video-modal-' . uniqid();
                                     controls
                                     preload="metadata">
                                     <source src="<?php echo esc_url($video_url); ?>" type="<?php echo esc_attr($video_file['mime_type'] ?? 'video/mp4'); ?>">
+                                    <track kind="captions" src="" srclang="en" label="English">
                                     Your browser does not support the video tag.
                                 </video>
                             </div>

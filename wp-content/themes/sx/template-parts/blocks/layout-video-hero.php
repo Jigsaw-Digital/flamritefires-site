@@ -15,9 +15,10 @@ if (!$data) return;
                     <?php for ($i = 0; $i < $data['slides']; $i++): ?>
                         <div class="swiper-slide">
                             <div class="hero-video-container absolute top-0 left-0 w-full h-full">
-                                <video src="<?php echo esc_url($data['slides_' . $i . '_video_url']); ?>" 
+                                <video src="<?php echo esc_url($data['slides_' . $i . '_video_url']); ?>"
                                        class="object-cover w-full h-full"
-                                       autoplay muted loop playsinline>
+                                       autoplay muted loop playsinline
+                                       aria-hidden="true">
                                 </video>
                             </div>
                             

@@ -136,6 +136,7 @@ $title = get_the_title();
             </button>
             <video id="modalVideo" controls class="w-full h-auto">
                 <source src="" type="video/mp4">
+                <track kind="captions" src="" srclang="en" label="English" default>
             </video>
         </div>
     </div>

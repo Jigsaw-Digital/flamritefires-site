@@ -40,12 +40,13 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
                 }
                 ?>
                 <?php if (!empty($video_src)): ?>
-                    <video class="object-cover w-full h-full" 
-                           autoplay 
-                           muted 
-                           loop 
-                           playsinline 
+                    <video class="object-cover w-full h-full"
+                           autoplay
+                           muted
+                           loop
+                           playsinline
                            preload="auto"
+                           aria-hidden="true"
                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         <source src="<?php echo esc_url($video_src); ?>" type="video/mp4">
                         Your browser does not support the video tag.
