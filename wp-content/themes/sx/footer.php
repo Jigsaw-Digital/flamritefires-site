@@ -19,14 +19,14 @@
 
 <div class="cta-fixed hidden lg:flex">
     <a href="/where-to-buy" class="cta-apointment">
-        <img src="/icons/new-right-1.svg">
+        <img src="/icons/new-right-1.svg" alt="Where to Buy">
         <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
     </a>
 </div>
 
 <div class="cta-fixed mt-16 hidden lg:flex">
     <a href="/contact-us/" class="cta-brochure">
-        <img src="/icons/new-right-2.svg">
+        <img src="/icons/new-right-2.svg" alt="Contact Us">
         <span style="font-size:12px; color:#fff">CONTACT US</span>
     </a>
 </div>
@@ -408,8 +408,9 @@
                 <div class="flex-1">
                     <h3 class="text-white font-semibold text-lg mb-1">Cookie Policy</h3>
                     <p class="text-white/80 text-sm md:text-base">
-                        We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic.
-                        By clicking "Accept All", you consent to our use of cookies. Visit our <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> for more information.
+                        We use cookies and third-party services (including Google Analytics) to enhance your browsing experience and analyze our traffic.
+                        By clicking "Accept All", you consent to our use of cookies and third-party analytics.
+                        Click "Necessary Only" to use only essential cookies. Visit our <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> for more information.
                     </p>
                 </div>
                 <div class="flex flex-col sm:flex-row gap-2 md:gap-3">
@@ -491,8 +492,9 @@
         function handleAccept() {
             setCookie(COOKIE_NAME, 'accepted', COOKIE_EXPIRY_DAYS);
             hideBanner();
-            // Add any analytics or tracking scripts here
-            console.log('Cookies accepted');
+            // Dispatch event to load analytics
+            window.dispatchEvent(new Event('cookiesAccepted'));
+            console.log('Cookies accepted - analytics will now load');
         }
 
         // Handle decline
