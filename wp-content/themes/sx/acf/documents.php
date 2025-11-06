@@ -46,6 +46,7 @@ function register_documents_acf_fields() {
                         'flame_rite_fire_econtrol' => 'Flamerite Fire EControl',
                         'flame_rite_fire_instructions' => 'Flamerite Fire Instructions',
                         'e_fx_instructions' => 'E-FX Instructions',
+                        'e_ridium_instructions' => 'E-Ridium Instruction',
                     ),
                     'default_value' => 'pdf',
                     'allow_null' => 0,
