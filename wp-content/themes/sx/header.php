@@ -82,6 +82,11 @@
         .header-transparent:not(.scrolled) .text-primary {
             color: #e85319 !important;
         }
+
+        /* Hide elements with x-cloak until Alpine.js loads */
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -231,6 +236,7 @@
 
         <!-- Search Dropdown -->
         <div x-show="searchOpen"
+             x-cloak
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0 transform -translate-y-2"
              x-transition:enter-end="opacity-100 transform translate-y-0"
@@ -257,7 +263,9 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div x-show="mobileMenuOpen" class="fixed inset-0 z-[9999] overflow-y-auto bg-primary pb-6 lg:hidden" 
+        <div x-show="mobileMenuOpen"
+             x-cloak
+             class="fixed inset-0 z-[9999] overflow-y-auto bg-primary pb-6 lg:hidden"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
