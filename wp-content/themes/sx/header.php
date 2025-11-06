@@ -8,27 +8,6 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php if (!class_exists('WPSEO_Frontend')) : ?>
-        <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
-    <?php endif; ?>
-    <?php
-    // Meta description - Only add if Yoast SEO is not handling it
-    // Yoast will handle meta descriptions via wp_head() below
-    // This is just a fallback if Yoast is disabled or not configured
-    if (!class_exists('WPSEO_Frontend')) {
-        if (is_singular()) {
-            $meta_description = get_field('meta_description') ?: wp_trim_words(get_the_excerpt() ?: get_the_content(), 25);
-            if ($meta_description) {
-                echo '<meta name="description" content="' . esc_attr(strip_tags($meta_description)) . '">' . "\n";
-            }
-        } elseif (is_home() || is_front_page()) {
-            $site_description = get_bloginfo('description');
-            if ($site_description) {
-                echo '<meta name="description" content="' . esc_attr($site_description) . '">' . "\n";
-            }
-        }
-    }
-    ?>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png">

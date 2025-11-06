@@ -32,7 +32,10 @@ add_action('after_setup_theme', 'sx_theme_setup');
 function sx_theme_setup() {
     // Enable featured images
     add_theme_support('post-thumbnails');
-    
+
+    // Let WordPress/Yoast manage the document title
+    add_theme_support('title-tag');
+
     // Add custom image sizes if needed
     add_image_size('blog-grid', 600, 400, true); // For blog grid
     add_image_size('project-grid', 800, 600, true); // For project grid
