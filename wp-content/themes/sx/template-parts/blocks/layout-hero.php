@@ -46,36 +46,24 @@ $is_product = strpos($_SERVER['REQUEST_URI'], '/products/') !== false;
                                     <?php if (!$is_product): ?>
                                         <div class="hidden lg:flex items-center justify-center">
                                             <div class="backdrop-blur-md bg-white/20 p-4 lg:p-8 rounded-xl shadow-lg border border-white/30 w-full max-w-md">
-                                                <form class="space-y-2 lg:space-y-4" id="heroContactForm">
-                                                    <h3 class="text-white text-sm lg:text-xl mb-2 lg:mb-6 font-medium">
-                                                        Explore Our Showroom With a Personal Design Expert – Only a Few Daily Appointments Available so Fill in this Form and Book yours NOW.
-                                                    </h3>
-                                                    <div>
-                                                        <input type="text" name="contact_name" placeholder="Full Name" 
-                                                               class="w-full px-4 py-1 lg:py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" required>
-                                                    </div>
-                                                    <div>
-                                                        <input type="email" name="contact_email" placeholder="Email Address" 
-                                                               class="w-full px-4 py-1 lg:py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" required>
-                                                    </div>
-                                                    <div>
-                                                        <input type="text" name="contact_phone" placeholder="Phone Number" 
-                                                               class="w-full px-4 py-1 lg:py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50" required>
-                                                    </div>
-                                                    <div>
-                                                        <textarea name="contact_message" placeholder="Your Message" rows="3" 
-                                                                  class="w-full px-4 py-1 lg:py-3 bg-white/10 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 resize-none" required></textarea>
-                                                    </div>
-                                                    <button type="submit" 
-                                                            class="w-full py-1 lg:py-3 bg-white text-primary font-medium rounded-lg hover:bg-white/90 transition duration-300">
-                                                        Submit
-                                                    </button>
-                                                </form>
-                                                
-                                                <div class="hidden" id="thankYouMessage">
-                                                    <h2 class="text-white text-lg font-semibold mb-4">Thank you</h2>
-                                                    <p class="text-white">We will be in touch shortly to answer your query.</p>
-                                                </div>
+                                                <iframe
+                                                    src="https://api.leadconnectorhq.com/widget/form/08L7zVVi4qNLKn6Dwqf2"
+                                                    style="width:100%;height:100%;border:none;border-radius:3px"
+                                                    id="inline-08L7zVVi4qNLKn6Dwqf2"
+                                                    data-layout="{'id':'INLINE'}"
+                                                    data-trigger-type="alwaysShow"
+                                                    data-trigger-value=""
+                                                    data-activation-type="alwaysActivated"
+                                                    data-activation-value=""
+                                                    data-deactivation-type="neverDeactivate"
+                                                    data-deactivation-value=""
+                                                    data-form-name="Hero"
+                                                    data-height="undefined"
+                                                    data-layout-iframe-id="inline-08L7zVVi4qNLKn6Dwqf2"
+                                                    data-form-id="08L7zVVi4qNLKn6Dwqf2"
+                                                    title="Hero">
+                                                </iframe>
+                                                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
                                             </div>
                                         </div>
                                     <?php endif; ?>
@@ -99,24 +87,5 @@ document.addEventListener('DOMContentLoaded', function() {
             disableOnInteraction: false,
         }
     });
-    
-    // Contact form submission
-    const form = document.getElementById('heroContactForm');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show thank you message
-            form.style.display = 'none';
-            document.getElementById('thankYouMessage').classList.remove('hidden');
-            
-            // Reset form after delay
-            setTimeout(function() {
-                form.style.display = 'block';
-                document.getElementById('thankYouMessage').classList.add('hidden');
-                form.reset();
-            }, 5000);
-        });
-    }
 });
 </script>
