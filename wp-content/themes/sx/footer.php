@@ -469,7 +469,7 @@
                 </div>
 
                 <!-- Buttons Container -->
-                <div class="flex flex-row-reverse md:flex-row gap-2 md:gap-3 w-full md:w-auto">
+                <div class="flex flex-row-reverse gap-2 md:gap-3 w-full md:w-auto">
                     <button id="cookie-policy-accept" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-3 md:px-4 rounded-md transition-colors duration-300 whitespace-nowrap text-sm md:text-base flex-1 md:flex-none">
                         Accept All
                     </button>
