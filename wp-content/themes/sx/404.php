@@ -55,24 +55,24 @@ get_header();
 
             <!-- Popular Links -->
             <div class="mt-12 pt-12 border-t border-gray-300">
-                <h3 class="text-xl font-semibold text-[#1e2938] mb-6">
+                <h3 class="text-xl lg:text-2xl font-semibold text-[#1e2938] mb-8 text-center">
                     Popular Pages
                 </h3>
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
                     <a href="<?php echo home_url('/e-fx-built-in-fires'); ?>"
-                       class="text-primary hover:text-primary/80 transition-colors">
+                       class="block text-center bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-4 px-6 rounded-lg transition-colors">
                         E-FX Built-In Fires
                     </a>
                     <a href="<?php echo home_url('/e-fx-fireplace-suites'); ?>"
-                       class="text-primary hover:text-primary/80 transition-colors">
+                       class="block text-center bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-4 px-6 rounded-lg transition-colors">
                         E-FX Fireplace Suites
                     </a>
                     <a href="<?php echo home_url('/hearth-inset-fires'); ?>"
-                       class="text-primary hover:text-primary/80 transition-colors">
+                       class="block text-center bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-4 px-6 rounded-lg transition-colors">
                         Hearth Inset Fires
                     </a>
                     <a href="<?php echo home_url('/e-ridium-holographic-fires'); ?>"
-                       class="text-primary hover:text-primary/80 transition-colors">
+                       class="block text-center bg-white border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-4 px-6 rounded-lg transition-colors">
                         E-Ridium Holographic Fires
                     </a>
                 </div>
