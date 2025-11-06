@@ -31,7 +31,7 @@ $data = get_field('layout_warranty_data');
                         </div>
                         <div class="flex items-start">
                             <div class="flex-shrink-0 w-2 h-2 bg-primary rounded-full mt-2 mr-3"></div>
-                            <p class="text-gray-700">Two extra years at a one off cost of £75 + VAT (Total of Five years)</p>
+                            <p class="text-gray-700">Two extra years at a one off cost of £90 inc VAT (Total of Five years)</p>
                         </div>
                     </div>
 
