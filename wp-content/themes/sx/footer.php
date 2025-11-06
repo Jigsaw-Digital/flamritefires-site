@@ -413,11 +413,11 @@
                         Click "Necessary Only" to use only essential cookies required for forms and site functionality. Visit our <a href="<?php echo esc_url(home_url('/privacy-policy/')); ?>" class="text-primary hover:text-primary/80 underline">Privacy Policy</a> for more information.
                     </p>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-2 md:gap-3">
-                    <button id="cookie-policy-accept" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 whitespace-nowrap">
+                <div class="flex flex-row gap-2 md:gap-3 w-full md:w-auto">
+                    <button id="cookie-policy-accept" class="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-3 md:px-4 rounded-md transition-colors duration-300 whitespace-nowrap text-sm md:text-base flex-1 md:flex-none">
                         Accept All
                     </button>
-                    <button id="cookie-policy-decline" class="bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 whitespace-nowrap border border-white/30">
+                    <button id="cookie-policy-decline" class="bg-white/10 hover:bg-white/20 text-white font-medium py-2 px-3 md:px-4 rounded-md transition-colors duration-300 whitespace-nowrap border border-white/30 text-sm md:text-base flex-1 md:flex-none">
                         Necessary Only
                     </button>
                 </div>
