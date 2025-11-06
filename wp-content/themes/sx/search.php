@@ -92,6 +92,7 @@ $post_type_labels = array(
     'documents' => 'Documents',
     'videos' => 'Videos',
     'testimonials' => 'Testimonials',
+    'brochures' => 'Brochures',
 );
 ?>
 
@@ -138,8 +139,8 @@ $post_type_labels = array(
                         <span class="text-primary">(<?php echo count($posts); ?>)</span>
                     </h2>
 
-                    <?php if ($post_type === 'products' || $post_type === 'documents' || $post_type === 'page' || $post_type === 'videos'): ?>
-                        <!-- Products, Documents, Pages, and Videos use card grid -->
+                    <?php if ($post_type === 'products' || $post_type === 'documents' || $post_type === 'page' || $post_type === 'videos' || $post_type === 'brochures'): ?>
+                        <!-- Products, Documents, Pages, Videos, and Brochures use card grid -->
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             <?php foreach ($posts as $post):
                                 setup_postdata($post);
@@ -151,6 +152,8 @@ $post_type_labels = array(
                                     get_template_part('template-parts/content', 'page-card');
                                 } elseif ($post_type === 'videos') {
                                     get_template_part('template-parts/content', 'video-card');
+                                } elseif ($post_type === 'brochures') {
+                                    get_template_part('template-parts/content', 'brochure-card');
                                 }
                             endforeach;
                             wp_reset_postdata(); ?>
