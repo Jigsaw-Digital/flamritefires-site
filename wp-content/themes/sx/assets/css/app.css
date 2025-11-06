@@ -31,12 +31,9 @@
     --color-green-200: oklch(92.5% 0.084 155.995);
     --color-green-400: oklch(79.2% 0.209 151.711);
     --color-green-800: oklch(44.8% 0.119 151.328);
-    --color-blue-50: oklch(97% 0.014 254.604);
     --color-blue-100: oklch(93.2% 0.032 255.585);
-    --color-blue-200: oklch(88.2% 0.059 254.128);
     --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-blue-800: oklch(42.4% 0.199 265.638);
-    --color-blue-900: oklch(37.9% 0.146 265.522);
     --color-purple-100: oklch(94.6% 0.033 307.174);
     --color-purple-800: oklch(43.8% 0.218 303.724);
     --color-gray-50: oklch(98.5% 0.002 247.839);
@@ -935,9 +932,6 @@
   .resize {
     resize: both;
   }
-  .resize-none {
-    resize: none;
-  }
   .list-inside {
     list-style-position: inside;
   }
@@ -1113,9 +1107,6 @@
   .rounded-2xl {
     border-radius: var(--radius-2xl);
   }
-  .rounded-\[35px\] {
-    border-radius: 35px;
-  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -1162,9 +1153,6 @@
   .border-b-2 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 2px;
-  }
-  .border-blue-200 {
-    border-color: var(--color-blue-200);
   }
   .border-gray-100 {
     border-color: var(--color-gray-100);
@@ -1240,9 +1228,6 @@
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
-  }
-  .bg-blue-50 {
-    background-color: var(--color-blue-50);
   }
   .bg-blue-100 {
     background-color: var(--color-blue-100);
@@ -1714,9 +1699,6 @@
   }
   .text-blue-800 {
     color: var(--color-blue-800);
-  }
-  .text-blue-900 {
-    color: var(--color-blue-900);
   }
   .text-gray-100 {
     color: var(--color-gray-100);
@@ -2194,16 +2176,6 @@
         background-color: color-mix(in srgb, #fff 20%, transparent);
         @supports (color: color-mix(in lab, red, red)) {
           background-color: color-mix(in oklab, var(--color-white) 20%, transparent);
-        }
-      }
-    }
-  }
-  .hover\:bg-white\/90 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: color-mix(in srgb, #fff 90%, transparent);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-white) 90%, transparent);
         }
       }
     }
@@ -2885,15 +2857,6 @@
       gap: calc(var(--spacing) * 12);
     }
   }
-  .lg\:space-y-4 {
-    @media (width >= 64rem) {
-      :where(& > :not(:last-child)) {
-        --tw-space-y-reverse: 0;
-        margin-block-start: calc(calc(var(--spacing) * 4) * var(--tw-space-y-reverse));
-        margin-block-end: calc(calc(var(--spacing) * 4) * calc(1 - var(--tw-space-y-reverse)));
-      }
-    }
-  }
   .lg\:space-y-8 {
     @media (width >= 64rem) {
       :where(& > :not(:last-child)) {
@@ -2971,11 +2934,6 @@
   .lg\:py-0 {
     @media (width >= 64rem) {
       padding-block: calc(var(--spacing) * 0);
-    }
-  }
-  .lg\:py-3 {
-    @media (width >= 64rem) {
-      padding-block: calc(var(--spacing) * 3);
     }
   }
   .lg\:py-16 {
@@ -3196,11 +3154,6 @@ p {
 .yarl__container {
   background: #172435e3 !important;
 }
-.cc-zizag {
-  border-image-repeat: repeat stretch;
-  border-image-source: url("../images/zigzag.svg");
-  border-top-style: solid;
-}
 .cc-top {
   border-image-slice: 27 0 0 0;
   border-image-width: 8px 0px 0px 0px;
@@ -3210,12 +3163,6 @@ p {
   border-image-slice: 27 0 0 0;
   border-image-width: 8px 0px 0px 0px;
   border-image-outset: 5px 0px 0px 0px;
-}
-.cc-zizag-secondary {
-  border-image-source: url("../images/zigzag_red.svg");
-}
-.cc-zizag-gold {
-  border-image-source: url("../images/zigzag_gold.svg");
 }
 .jd-content-white {
   color: var(--color-white);
