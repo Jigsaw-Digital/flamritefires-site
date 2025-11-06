@@ -68,5 +68,3 @@ $form_type = $data['form_type'] ?? 'download-brochure';
         </div>
     </div>
 </section>
-
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>

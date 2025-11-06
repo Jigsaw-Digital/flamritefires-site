@@ -30,7 +30,6 @@ $data = get_field('layout_contact_data');
                     data-form-id="fRJOFnFZ2m9huUlEgbib"
                     title="Contact Us">
                 </iframe>
-                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
             </div>
             
             <!-- Contact Information -->

@@ -46,5 +46,3 @@ $data = get_field('layout_where_to_buy_data');
         </div>
     </div>
 </section>
-
-<script src="https://link.msgsndr.com/js/form_embed.js"></script>

@@ -64,7 +64,6 @@ $is_product = is_singular('products');
                                                     data-form-id="08L7zVVi4qNLKn6Dwqf2"
                                                     title="Hero">
                                                 </iframe>
-                                                <script src="https://link.msgsndr.com/js/form_embed.js"></script>
                                             </div>
                                         </div>
                                     <?php endif; ?>
