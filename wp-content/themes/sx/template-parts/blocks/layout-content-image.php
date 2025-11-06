@@ -24,10 +24,25 @@ $disable_top_padding = $disable_top_padding ?: false;
 
 // Set theme-based classes and styles
 $is_dark = ($background_theme === 'dark');
-$bg_class = $is_dark ? 'bg-[#1e2938]' : 'bg-tertiary';
-$text_color = $is_dark ? 'text-white' : 'text-[#1e2938]';
-$subtitle_color = $is_dark ? 'text-orange-400' : 'text-orange-600';
-$button_class = $is_dark ? 'bg-white text-[#1e2938] hover:bg-gray-100' : 'bg-primary text-white hover:bg-primary/90';
+$is_dark_grey = ($background_theme === 'dark_grey');
+
+if ($is_dark) {
+    $bg_class = 'bg-[#1e2938]';
+    $text_color = 'text-white';
+    $subtitle_color = 'text-orange-400';
+    $button_class = 'bg-white text-[#1e2938] hover:bg-gray-100';
+} elseif ($is_dark_grey) {
+    $bg_class = 'bg-[#e7e3de]';
+    $text_color = 'text-[#1e2938]';
+    $subtitle_color = 'text-orange-600';
+    $button_class = 'bg-primary text-white hover:bg-primary/90';
+} else {
+    // Default theme
+    $bg_class = 'bg-tertiary';
+    $text_color = 'text-[#1e2938]';
+    $subtitle_color = 'text-orange-600';
+    $button_class = 'bg-primary text-white hover:bg-primary/90';
+}
 
 // Padding classes
 $padding_class = $disable_top_padding ? 'pb-8 pt-8 lg:pb-16 lg:!pt-0' : 'pb-8 pt-8 lg:py-16';

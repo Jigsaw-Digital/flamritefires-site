@@ -88,6 +88,7 @@ function register_layout_content_image_acf_fields() {
                     'choices' => array(
                         'default' => 'Default (Light)',
                         'dark' => 'Dark',
+                        'dark_grey' => 'Dark Grey',
                     ),
                     'default_value' => 'default',
                     'allow_null' => 0,

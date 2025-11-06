@@ -1242,6 +1242,9 @@
   .bg-\[\#1e2938\] {
     background-color: #1e2938;
   }
+  .bg-\[\#e7e3de\] {
+    background-color: #e7e3de;
+  }
   .bg-\[\#ed1c24\]\/80 {
     background-color: color-mix(in oklab, #ed1c24 80%, transparent);
   }
