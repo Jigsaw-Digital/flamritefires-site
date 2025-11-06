@@ -9,6 +9,40 @@ global $wp_query;
 $total_results = $wp_query->found_posts;
 $search_query = get_search_query();
 
+// Handle search query variations for E-FX/EFX
+$original_query = $search_query;
+if (stripos($search_query, 'efx') !== false || stripos($search_query, 'e-fx') !== false) {
+    // If searching for efx or e-fx, search for both variations
+    add_filter('posts_search', function($search, $wp_query) use ($original_query) {
+        global $wpdb;
+
+        if (!$wp_query->is_search() || empty($search)) {
+            return $search;
+        }
+
+        // Replace the search term with both variations
+        $search_variations = array();
+
+        // Original search
+        if (stripos($original_query, 'efx') !== false) {
+            $efx_variation = str_ireplace('efx', 'e-fx', $original_query);
+            $search_variations[] = $wpdb->esc_like($efx_variation);
+        } elseif (stripos($original_query, 'e-fx') !== false) {
+            $efx_variation = str_ireplace('e-fx', 'efx', $original_query);
+            $search_variations[] = $wpdb->esc_like($efx_variation);
+        }
+
+        if (!empty($search_variations)) {
+            // Add OR condition for the variation
+            $or_search = " OR ({$wpdb->posts}.post_title LIKE '%" . $search_variations[0] . "%')
+                          OR ({$wpdb->posts}.post_content LIKE '%" . $search_variations[0] . "%')";
+            $search = str_replace('AND (((', 'AND (((' . $or_search . ' OR ', $search);
+        }
+
+        return $search;
+    }, 10, 2);
+}
+
 // Group results by post type
 $results_by_type = array();
 if (have_posts()) {
@@ -77,8 +111,8 @@ $post_type_labels = array(
                         <span class="text-primary">(<?php echo count($posts); ?>)</span>
                     </h2>
 
-                    <?php if ($post_type === 'products' || $post_type === 'documents' || $post_type === 'page'): ?>
-                        <!-- Products, Documents, and Pages use card grid -->
+                    <?php if ($post_type === 'products' || $post_type === 'documents' || $post_type === 'page' || $post_type === 'videos'): ?>
+                        <!-- Products, Documents, Pages, and Videos use card grid -->
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                             <?php foreach ($posts as $post):
                                 setup_postdata($post);
@@ -88,6 +122,8 @@ $post_type_labels = array(
                                     get_template_part('template-parts/content', 'document-card');
                                 } elseif ($post_type === 'page') {
                                     get_template_part('template-parts/content', 'page-card');
+                                } elseif ($post_type === 'videos') {
+                                    get_template_part('template-parts/content', 'video-card');
                                 }
                             endforeach;
                             wp_reset_postdata(); ?>
