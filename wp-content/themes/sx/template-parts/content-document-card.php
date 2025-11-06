@@ -24,36 +24,40 @@ $file_url = $document_file ? $document_file['url'] : '';
 $file_size = $document_file && isset($document_file['filesize']) ? size_format($document_file['filesize']) : '';
 
 // File type badge colors
-function get_document_badge_color($file_type) {
-    $badges = array(
-        'pdf' => 'bg-red-100 text-red-800',
-        'word' => 'bg-blue-100 text-blue-800',
-        'excel' => 'bg-green-100 text-green-800',
-        'powerpoint' => 'bg-orange-100 text-orange-800',
-        'text' => 'bg-gray-100 text-gray-800',
-        'flame_rite_fire_econtrol' => 'bg-primary/10 text-primary',
-        'flame_rite_fire_instructions' => 'bg-primary/10 text-primary',
-        'e_fx_instructions' => 'bg-primary/10 text-primary',
-        'e_ridium_instructions' => 'bg-primary/10 text-primary',
-        'other' => 'bg-purple-100 text-purple-800',
-    );
-    return $badges[$file_type] ?? 'bg-gray-100 text-gray-800';
+if (!function_exists('get_document_badge_color')) {
+    function get_document_badge_color($file_type) {
+        $badges = array(
+            'pdf' => 'bg-red-100 text-red-800',
+            'word' => 'bg-blue-100 text-blue-800',
+            'excel' => 'bg-green-100 text-green-800',
+            'powerpoint' => 'bg-orange-100 text-orange-800',
+            'text' => 'bg-gray-100 text-gray-800',
+            'flame_rite_fire_econtrol' => 'bg-primary/10 text-primary',
+            'flame_rite_fire_instructions' => 'bg-primary/10 text-primary',
+            'e_fx_instructions' => 'bg-primary/10 text-primary',
+            'e_ridium_instructions' => 'bg-primary/10 text-primary',
+            'other' => 'bg-purple-100 text-purple-800',
+        );
+        return $badges[$file_type] ?? 'bg-gray-100 text-gray-800';
+    }
 }
 
-function get_document_type_label($file_type) {
-    $labels = array(
-        'pdf' => 'PDF',
-        'word' => 'DOC',
-        'excel' => 'XLS',
-        'powerpoint' => 'PPT',
-        'text' => 'TXT',
-        'flame_rite_fire_econtrol' => 'ECONTROL',
-        'flame_rite_fire_instructions' => 'INSTRUCTIONS',
-        'e_fx_instructions' => 'E-FX',
-        'e_ridium_instructions' => 'E-RIDIUM',
-        'other' => 'FILE',
-    );
-    return $labels[$file_type] ?? 'FILE';
+if (!function_exists('get_document_type_label')) {
+    function get_document_type_label($file_type) {
+        $labels = array(
+            'pdf' => 'PDF',
+            'word' => 'DOC',
+            'excel' => 'XLS',
+            'powerpoint' => 'PPT',
+            'text' => 'TXT',
+            'flame_rite_fire_econtrol' => 'ECONTROL',
+            'flame_rite_fire_instructions' => 'INSTRUCTIONS',
+            'e_fx_instructions' => 'E-FX',
+            'e_ridium_instructions' => 'E-RIDIUM',
+            'other' => 'FILE',
+        );
+        return $labels[$file_type] ?? 'FILE';
+    }
 }
 ?>
 
