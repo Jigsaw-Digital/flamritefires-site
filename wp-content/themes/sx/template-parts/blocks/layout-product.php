@@ -157,11 +157,11 @@ $product_schema['offers'] = array(
                 </div>
                 <div class="flex flex-col gap-3 mt-6 max-w-[210px]">
                     <button id="whereToBuyBtn" class="bg-primary text-white hover:bg-primary/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 cursor-pointer w-full" aria-label="Find local supplier">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/icons/where_to_buy.svg'); ?>" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
+                        <img src="/icons/where_to_buy.svg'" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
                         <span class="text-sm uppercase tracking-wider">WHERE TO BUY</span>
                     </button>
                     <a href="<?php echo esc_url(home_url('/contact-us/')); ?>" class="bg-[#1e2938] text-white hover:bg-[#1e2938]/90 flex items-center gap-3 px-6 py-3 font-semibold transition duration-300 w-full" aria-label="Contact us">
-                        <img src="<?php echo esc_url(get_template_directory_uri() . '/icons/contact_us.svg'); ?>" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
+                        <img src="/icons/contact_us.svg" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
                         <span class="text-sm uppercase tracking-wider">CONTACT US</span>
                     </a>
                 </div>
