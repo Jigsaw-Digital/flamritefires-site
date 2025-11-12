@@ -78,3 +78,4 @@ function register_layout_general_form_acf_fields() {
         ));
     }
 }
+add_action('acf/init', 'register_layout_general_form_acf_fields');

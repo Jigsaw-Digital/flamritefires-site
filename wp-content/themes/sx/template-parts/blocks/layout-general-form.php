@@ -11,14 +11,20 @@ $form_type = $data['form_type'] ?? 'download-brochure';
     <div class="mx-auto max-w-[1200px]">
 
         <!-- Block Header -->
-        <?php if (!empty($data['title'])): ?>
+        <?php
+        $title = $data['title'] ?? '';
+        $description = $data['description'] ?? '';
+        ?>
+        <?php if (!empty($title) || !empty($description)): ?>
             <div class="text-center mb-12">
-                <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
-                    <?php echo esc_html($data['title']); ?>
-                </h1>
-                <?php if (!empty($data['description'])): ?>
+                <?php if (!empty($title)): ?>
+                    <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
+                        <?php echo esc_html($title); ?>
+                    </h1>
+                <?php endif; ?>
+                <?php if (!empty($description)): ?>
                     <div class="text-lg text-gray-700 max-w-2xl mx-auto">
-                        <?php echo wp_kses_post($data['description']); ?>
+                        <?php echo wp_kses_post($description); ?>
                     </div>
                 <?php endif; ?>
             </div>

@@ -18,6 +18,9 @@ require_once get_template_directory() . '/acf/blocks/layout-products-by-category
 // Include layout where to buy ACF fields
 require_once get_template_directory() . '/acf/blocks/layout-where-to-buy.php';
 
+// Include layout general form ACF fields
+require_once get_template_directory() . '/acf/blocks/layout-general-form.php';
+
 // Include documents ACF fields
 require_once get_template_directory() . '/acf/documents.php';
 
