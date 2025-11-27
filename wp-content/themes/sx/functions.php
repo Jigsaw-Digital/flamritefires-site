@@ -1455,6 +1455,18 @@ if (function_exists('acf_add_options_page')) {
                         'instructions' => 'Enter your Google Maps JavaScript API key. This is used for ACF Google Map fields and coverage maps.',
                         'required' => 0,
                     ),
+                    array(
+                        'key' => 'field_show_outlet_banners',
+                        'label' => 'Show Outlet Banners',
+                        'name' => 'show_outlet_banners',
+                        'type' => 'true_false',
+                        'instructions' => 'Toggle the outlet banners on the hero section of the homepage.',
+                        'required' => 0,
+                        'default_value' => 1,
+                        'ui' => 1,
+                        'ui_on_text' => 'Show',
+                        'ui_off_text' => 'Hide',
+                    ),
                 ),
                 'location' => array(
                     array(

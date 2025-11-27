@@ -74,7 +74,7 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
                 <!-- Left side - Text content -->
                 <div class="text-left mt-[60px] lg:mt-[75px] lg:mt-0 flex justify-center flex-col">
                     <?php if ($title): ?>
-                        <h1 class="max-w-[800px] text-xl xl:text-3xl 2xl:text-4xl text-white tracking-[0.3em] mb-4">
+                        <h1 class="max-w-[800px] text-xl lg:text-[24px] text-white tracking-[0.3em] mb-4">
                             <?php echo esc_html($title); ?>
                         </h1>
                     <?php endif; ?>
@@ -96,16 +96,22 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
                     <?php endif; ?>
 
                     <!-- Outlet Banners -->
-                    <div class="mb-6">
-                        <!-- Desktop Banner -->
-                        <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Desktop.png"
-                             alt="Outlet Banner"
-                             class="hidden md:block max-w-full h-auto">
-                        <!-- Mobile Banner -->
-                        <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Mobile.png"
-                             alt="Outlet Banner"
-                             class="block md:hidden max-w-full h-auto">
-                    </div>
+                    <?php if (get_field('show_outlet_banners', 'option')): ?>
+                        <div class="mb-6">
+                            <!-- Desktop Banner -->
+                            <a href="https://shop.flameritefires.com/" target="_blank" rel="noopener noreferrer" class="hidden md:block">
+                                <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Desktop.png"
+                                     alt="Flamerite Outlet - End of line fires at reduced prices"
+                                     class="max-w-full h-auto hover:opacity-90 transition-opacity">
+                            </a>
+                            <!-- Mobile Banner -->
+                            <a href="https://shop.flameritefires.com/" target="_blank" rel="noopener noreferrer" class="block md:hidden">
+                                <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Mobile.png"
+                                     alt="Flamerite Outlet - End of line fires at reduced prices"
+                                     class="max-w-full h-auto hover:opacity-90 transition-opacity">
+                            </a>
+                        </div>
+                    <?php endif; ?>
 
                     <!-- Call to Action Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4">
