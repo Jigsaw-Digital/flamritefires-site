@@ -94,7 +94,19 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
                             <?php echo wp_kses_post($description); ?>
                         </div>
                     <?php endif; ?>
-                    
+
+                    <!-- Outlet Banners -->
+                    <div class="mb-6">
+                        <!-- Desktop Banner -->
+                        <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Desktop.png"
+                             alt="Outlet Banner"
+                             class="hidden md:block max-w-full h-auto">
+                        <!-- Mobile Banner -->
+                        <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Mobile.png"
+                             alt="Outlet Banner"
+                             class="block md:hidden max-w-full h-auto">
+                    </div>
+
                     <!-- Call to Action Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4">
                         <?php if ($primary_cta): ?>
