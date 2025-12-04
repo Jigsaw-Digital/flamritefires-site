@@ -72,7 +72,7 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
         <div class="absolute-full flex items-center px-6 lg:px-12 z-20">
             <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Left side - Text content -->
-                <div class="text-left mt-[60px] h-full lg:mt-[75px] lg:mt-0 flex  flex-col justify-between ">
+                <div class="text-left mt-[60px] h-full lg:mt-[75px] lg:mt-0 flex  flex-col justify-center ">
                     <div>
                     <?php if ($title): ?>
                         <h1 class="max-w-[800px] text-xl lg:text-[24px] text-white tracking-[0.3em] mb-4">
@@ -101,7 +101,7 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
                     <?php if (get_field('show_outlet_banners', 'option')): ?>
                         <div class="mb-6">
                             <!-- Desktop Banner -->
-                            <a href="https://shop.flameritefires.com/" target="_blank" rel="noopener noreferrer" class="hidden md:block max-w-[300px]">
+                            <a href="https://shop.flameritefires.com/" target="_blank" rel="noopener noreferrer" class="hidden md:block max-w-[360px]">
                                 <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Desktop.png"
                                      alt="Flamerite Outlet - End of line fires at reduced prices"
                                      class="max-w-full h-auto hover:opacity-90 transition-opacity">
