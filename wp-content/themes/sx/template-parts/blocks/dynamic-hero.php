@@ -72,7 +72,7 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
         <div class="absolute-full flex items-center px-6 lg:px-12 z-20">
             <div class="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <!-- Left side - Text content -->
-                <div class="text-left mt-[60px] lg:mt-[75px] lg:mt-0 flex  flex-col justify-between ">
+                <div class="text-left mt-[60px] h-full lg:mt-[75px] lg:mt-0 flex  flex-col justify-between ">
                     <div>
                     <?php if ($title): ?>
                         <h1 class="max-w-[800px] text-xl lg:text-[24px] text-white tracking-[0.3em] mb-4">
