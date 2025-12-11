@@ -8,49 +8,7 @@ if (!$data) return;
 
 global $post;
 $title = get_the_title();
-
-// Build Product Schema Markup
-$product_schema = array(
-    '@context' => 'https://schema.org',
-    '@type' => 'Product',
-    'name' => $title,
-    'description' => wp_strip_all_tags($data['description_1'] ?? ''),
-    'brand' => array(
-        '@type' => 'Brand',
-        'name' => 'Flamerite Fires'
-    )
-);
-
-// Add images if available
-if (!empty($data['image_slider'])) {
-    $product_schema['image'] = array();
-    foreach ($data['image_slider'] as $image) {
-        if (!empty($image['url'])) {
-            $product_schema['image'][] = $image['url'];
-        }
-    }
-}
-
-// Add video if available (with required VideoObject fields)
-if (!empty($data['video']['url'])) {
-    $product_schema['video'] = array(
-        '@type' => 'VideoObject',
-        'name' => $title . ' Video',
-        'description' => wp_strip_all_tags($data['description_1'] ?? $title . ' product video'),
-        'contentUrl' => $data['video']['url'],
-        'thumbnailUrl' => !empty($data['image_slider'][0]['url']) ? $data['image_slider'][0]['url'] : '',
-        'uploadDate' => get_the_date('c')
-    );
-}
-
-// Product URL for reference (no pricing - lead gen site)
-$product_schema['url'] = get_permalink();
 ?>
-
-<!-- Product Schema Markup -->
-<script type="application/ld+json">
-<?php echo wp_json_encode($product_schema, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT); ?>
-</script>
 
 <div class="bg-tertiary py-8 lg:py-16 px-6 relative">
     <div class="lg:flex justify-center items-start w-full gap-12 mx-auto relative max-w-7xl">

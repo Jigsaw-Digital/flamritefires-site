@@ -1,16 +1,9 @@
 User-agent: *
 Allow: /
 
-# Block WordPress admin area
+# Block WordPress admin (except ajax)
 Disallow: /wp-admin/
 Allow: /wp-admin/admin-ajax.php
-
-# Block sensitive directories
-Disallow: /wp-includes/
-Disallow: /cgi-bin/
-
-# Block query strings
-Disallow: /*?*
 
 # Sitemap (Yoast SEO)
 Sitemap: https://flameritefires.com/sitemap_index.xml
