@@ -53,22 +53,18 @@ $modal_id = 'video-modal-' . get_the_ID();
 
                     <!-- Play Icon Overlay -->
                     <?php if ($video_url): ?>
-                        <div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-colors">
-                            <div class="bg-primary w-16 h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
-                                <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
+                        <div class="absolute inset-0 flex-center bg-black/20 group-hover:bg-black/30 transition-colors">
+                            <div class="bg-primary w-16 h-16 rounded-full flex-center group-hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 text-white ml-1" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-play"/></svg>
                             </div>
                         </div>
                     <?php endif; ?>
                 </div>
             <?php else: ?>
-                <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative">
+                <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex-center relative">
                     <div class="text-center text-white">
-                        <div class="bg-primary w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-2">
-                            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8 5v14l11-7z"/>
-                            </svg>
+                        <div class="bg-primary w-16 h-16 rounded-full flex-center mx-auto mb-2">
+                            <svg class="w-8 h-8 text-white ml-1" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-play"/></svg>
                         </div>
                         <span class="text-sm font-medium">Video</span>
                     </div>
@@ -115,11 +111,9 @@ $modal_id = 'video-modal-' . get_the_ID();
 
             <div class="flex items-center justify-between pt-4 border-t border-gray-100">
                 <span class="text-xs text-gray-500"><?php echo get_the_date(); ?></span>
-                <span class="inline-flex items-center text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                <span class="row-sm text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
                     <?php echo $video_url ? 'Watch Video' : 'View Details'; ?>
-                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-arrow-right"/></svg>
                 </span>
             </div>
         </div>
@@ -135,13 +129,11 @@ $modal_id = 'video-modal-' . get_the_ID();
         <div class="relative w-full h-full max-w-6xl max-h-[90vh] mx-4">
             <!-- Close Button -->
             <button type="button" class="absolute -top-2 -right-2 lg:top-4 lg:right-4 z-10 bg-white hover:bg-gray-100 text-gray-800 rounded-full p-3 lg:p-4 shadow-lg transition-all duration-200 hover:scale-110" onclick="closeVideoModal('<?php echo esc_js($modal_id); ?>')">
-                <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-                </svg>
+                <svg class="w-5 h-5 lg:w-6 lg:h-6" fill="none" stroke="currentColor" stroke-width="2.5"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-close"/></svg>
             </button>
 
             <!-- Video Container -->
-            <div class="w-full h-full flex items-center justify-center">
+            <div class="w-full h-full flex-center">
                 <video
                     id="video-<?php echo esc_attr($modal_id); ?>"
                     class="w-full h-full object-contain rounded-lg"

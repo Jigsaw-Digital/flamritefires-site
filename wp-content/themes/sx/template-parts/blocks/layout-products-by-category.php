@@ -207,21 +207,17 @@ $description = $data['description'] ?? '';
                                          alt="<?php echo esc_attr($brochure->post_title); ?>"
                                          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                                     <!-- PDF Download Overlay -->
-                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex-center">
                                         <div class="text-white text-center">
-                                            <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                            </svg>
+                                            <svg class="w-12 h-12 mx-auto mb-2" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-download"/></svg>
                                             <p class="text-sm font-semibold">Download PDF</p>
                                         </div>
                                     </div>
                                 </div>
                             <?php else: ?>
-                                <div class="aspect-[3/4] bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center">
+                                <div class="aspect-[3/4] bg-gradient-to-br from-primary to-primary/80 flex-center">
                                     <div class="text-white text-center p-4">
-                                        <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/>
-                                        </svg>
+                                        <svg class="w-16 h-16 mx-auto mb-4" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-document"/></svg>
                                         <p class="text-sm font-semibold">PDF Brochure</p>
                                     </div>
                                 </div>
@@ -240,10 +236,8 @@ $description = $data['description'] ?? '';
                                     </p>
                                 <?php endif; ?>
                                 <?php if ($brochure_file): ?>
-                                    <div class="mt-3 flex items-center text-sm text-primary font-medium">
-                                        <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/>
-                                        </svg>
+                                    <div class="mt-3 row-sm text-sm text-primary font-medium">
+                                        <svg class="w-4 h-4" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-download"/></svg>
                                         Download PDF
                                     </div>
                                 <?php endif; ?>
