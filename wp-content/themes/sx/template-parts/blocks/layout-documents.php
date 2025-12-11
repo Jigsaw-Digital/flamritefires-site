@@ -146,11 +146,9 @@ $padding_class = $disable_top_padding ? 'pb-16' : 'py-16';
                                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     </div>
                                 <?php else: ?>
-                                    <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                                    <div class="aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200 flex-center">
                                         <div class="text-center text-gray-400">
-                                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                                            </svg>
+                                            <svg class="w-12 h-12 mx-auto mb-2" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-document-text"/></svg>
                                             <span class="text-sm font-medium">Document</span>
                                         </div>
                                     </div>
@@ -188,11 +186,9 @@ $padding_class = $disable_top_padding ? 'pb-16' : 'py-16';
                                         <?php endif; ?>
                                     </div>
 
-                                    <div class="flex items-center text-primary text-sm font-medium">
+                                    <div class="row-sm text-primary text-sm font-medium">
                                         <span>Download</span>
-                                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-                                        </svg>
+                                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-folder-download"/></svg>
                                     </div>
                                 </div>
                             </div>
@@ -207,9 +203,7 @@ $padding_class = $disable_top_padding ? 'pb-16' : 'py-16';
     <?php else: ?>
         <div class="mx-auto max-w-9xl container px-6 lg:px-8">
             <div class="text-center py-16">
-                <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                </svg>
+                <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-document-text"/></svg>
                 <h3 class="text-lg font-medium text-gray-900 mb-2">No documents found</h3>
                 <p class="text-gray-500">There are no documents available at the moment.</p>
             </div>

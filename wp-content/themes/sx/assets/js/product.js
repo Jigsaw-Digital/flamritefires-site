@@ -53,19 +53,24 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         imageLightbox.classList.remove('hidden');
+        imageLightbox.style.display = 'flex';
+        imageLightbox.style.alignItems = 'center';
+        imageLightbox.style.justifyContent = 'center';
         lightboxSlider?.slideTo(productSlider.activeIndex);
         document.body.style.overflow = 'hidden';
     });
 
-    closeLightbox?.addEventListener('click', function() {
+    function closeLightboxModal() {
         imageLightbox.classList.add('hidden');
+        imageLightbox.style.display = '';
         document.body.style.overflow = '';
-    });
+    }
+
+    closeLightbox?.addEventListener('click', closeLightboxModal);
 
     imageLightbox?.addEventListener('click', function(e) {
         if (e.target === this) {
-            this.classList.add('hidden');
-            document.body.style.overflow = '';
+            closeLightboxModal();
         }
     });
 
@@ -99,8 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Escape key closes lightbox
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && imageLightbox && !imageLightbox.classList.contains('hidden')) {
-            imageLightbox.classList.add('hidden');
-            document.body.style.overflow = '';
+            closeLightboxModal();
         }
     });
 });
