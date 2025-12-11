@@ -31,23 +31,20 @@ if (!empty($data['image_slider'])) {
     }
 }
 
-// Add video if available
+// Add video if available (with required VideoObject fields)
 if (!empty($data['video']['url'])) {
     $product_schema['video'] = array(
         '@type' => 'VideoObject',
         'name' => $title . ' Video',
+        'description' => wp_strip_all_tags($data['description_1'] ?? $title . ' product video'),
         'contentUrl' => $data['video']['url'],
-        'thumbnailUrl' => !empty($data['image_slider'][0]['url']) ? $data['image_slider'][0]['url'] : ''
+        'thumbnailUrl' => !empty($data['image_slider'][0]['url']) ? $data['image_slider'][0]['url'] : '',
+        'uploadDate' => get_the_date('c')
     );
 }
 
-// Add offers/availability (you can customize this based on your needs)
-$product_schema['offers'] = array(
-    '@type' => 'Offer',
-    'availability' => 'https://schema.org/InStock',
-    'url' => get_permalink(),
-    'priceCurrency' => 'GBP'
-);
+// Product URL for reference (no pricing - lead gen site)
+$product_schema['url'] = get_permalink();
 ?>
 
 <!-- Product Schema Markup -->
