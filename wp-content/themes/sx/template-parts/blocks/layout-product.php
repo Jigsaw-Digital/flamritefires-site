@@ -138,7 +138,7 @@ $title = get_the_title();
     </div>
 </div>
 
-<script src="<?php echo get_template_directory_uri(); ?>/assets/js/product.js?v=1.0.0"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/assets/js/product.min.js?v=1.0.0"></script>
 
 <?php
 // Related products section

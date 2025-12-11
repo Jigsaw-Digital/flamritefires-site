@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "scripts": {
     "build": "tailwindcss -i ./assets/tailwind.css -o ./assets/css/app.css --watch",
-    "build:prod": "tailwindcss -i ./assets/tailwind.css -o ./assets/css/app.css --minify"
+    "build:prod": "tailwindcss -i ./assets/tailwind.css -o ./assets/css/app.css --minify && npm run build:prod:js",
+    "build:prod:js": "esbuild assets/js/product.js --minify --outfile=assets/js/product.min.js && esbuild assets/js/footer.js --minify --outfile=assets/js/footer.min.js"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.11",
     "@tailwindcss/container-queries": "^0.1.1",
     "autoprefixer": "^10.4.17",
+    "esbuild": "^0.27.1",
     "postcss": "^8.4.35",
     "tailwindcss": "^4.1.11"
   }
