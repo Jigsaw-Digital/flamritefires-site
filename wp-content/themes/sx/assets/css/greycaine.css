@@ -1,5 +1,6 @@
 /**
  * Greycaine Theme Custom Styles
+ * This file is imported into tailwind.css and compiled via build:prod
  */
 
 /* Font Family */
@@ -16,28 +17,28 @@
     z-index: 999;
 }
 
-.dark-logo { 
-    display: block; 
+.dark-logo {
+    display: block;
 }
 
-.light-logo { 
-    display: none; 
+.light-logo {
+    display: none;
 }
 
-.nav-desktop { 
-    display: flex; 
+.nav-desktop {
+    display: flex;
 }
 
-.nav-mobile { 
-    display: none; 
+.nav-mobile {
+    display: none;
 }
 
 @media (max-width: 1023px) {
-    .nav-desktop { 
-        display: none !important; 
+    .nav-desktop {
+        display: none !important;
     }
-    .nav-mobile { 
-        display: block !important; 
+    .nav-mobile {
+        display: block !important;
     }
 }
 
@@ -296,7 +297,7 @@
     .lg\:max-w-8xl {
         max-width: 88rem;
     }
-    
+
     .lg\:max-w-9xl {
         max-width: 96rem;
     }
