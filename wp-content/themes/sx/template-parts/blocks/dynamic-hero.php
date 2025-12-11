@@ -97,23 +97,22 @@ $container_class = $is_product ? 'pt-[70px] hero-slider h-[40vh] lg:h-[50vh] obj
                     <?php endif; ?>
                     </div>
 
-                    <!-- Outlet Banners -->
+                    <!-- Outlet Banners - DISABLED: shop.flameritefires.com returns 403
                     <?php if (get_field('show_outlet_banners', 'option')): ?>
                         <div class="mb-6">
-                            <!-- Desktop Banner -->
                             <a href="https://shop.flameritefires.com/" target="_blank" rel="noopener noreferrer" class="hidden md:block max-w-[360px]">
                                 <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Desktop.png"
                                      alt="Flamerite Outlet - End of line fires at reduced prices"
                                      class="max-w-full h-auto hover:opacity-90 transition-opacity">
                             </a>
-                            <!-- Mobile Banner -->
                             <a href="https://shop.flameritefires.com/" target="_blank" rel="noopener noreferrer" class="block md:hidden">
                                 <img src="<?php echo get_site_url(); ?>/banners/OutletBanner_Mobile.png"
                                      alt="Flamerite Outlet - End of line fires at reduced prices"
                                      class="max-w-full h-auto hover:opacity-90 transition-opacity">
                             </a>
-                        </div> 
+                        </div>
                     <?php endif; ?>
+                    -->
 
                     <!-- Call to Action Buttons -->
                     <div class="flex flex-col sm:flex-row gap-4">

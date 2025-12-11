@@ -74,6 +74,7 @@ $title = get_the_title();
         </div>
     </div>
 
+    <?php if ($data['video']): ?>
     <!-- Video Modal -->
     <div id="videoModal" class="modal-overlay p-4 hidden" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
         <div class="relative w-full max-w-4xl">
@@ -85,43 +86,23 @@ $title = get_the_title();
             <video id="modalVideo" controls class="w-full h-auto"><source src="" type="video/mp4"></video>
         </div>
     </div>
+    <?php endif; ?>
 
-    <!-- Fullscreen Image Lightbox -->
+    <!-- Fullscreen Image Lightbox - images populated via JS from main slider -->
     <div id="imageLightbox" class="fixed inset-0 z-[9999] bg-black flex-center hidden" role="dialog" aria-modal="true" aria-label="Image gallery fullscreen view">
         <button id="closeLightbox" class="icon-btn absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 z-20" aria-label="Close fullscreen view">
             <svg class="h-6 w-6" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-close"/></svg>
         </button>
         <div class="w-full h-full flex-center p-4">
             <div class="swiper-container lightbox-slider w-full h-full max-w-7xl" id="lightboxSlider">
-                <div class="swiper-wrapper">
-                    <?php foreach ($data['image_slider'] as $slide): ?>
-                        <div class="swiper-slide flex-center">
-                            <img src="<?php echo esc_url($slide['url']); ?>" alt="<?php echo esc_attr($title); ?>" class="max-h-[90vh] max-w-full object-contain">
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                <div class="swiper-wrapper"></div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
         </div>
     </div>
 
-    <!-- Where to Buy Modal -->
-    <div id="whereToBuyModal" class="fixed inset-0 z-[9999] hidden">
-        <div id="whereToBuyOverlay" class="absolute inset-0 transition-opacity" style="background:rgba(0,0,0,0.3)"></div>
-        <div id="whereToBuyContent" class="absolute bg-white transition-transform duration-300 ease-in-out inset-0 lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[600px] lg:max-w-[90vw] overflow-y-auto transform translate-x-full">
-            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex-between z-10">
-                <h2 class="text-2xl font-bold text-primary">Your Local Supplier</h2>
-                <button id="closeWhereToBuy" class="icon-btn text-gray-500 hover:text-primary" aria-label="Close supplier finder">
-                    <svg class="h-6 w-6" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-close"/></svg>
-                </button>
-            </div>
-            <p class="px-6 mt-4 text-sm text-black">We will help you find your best local Flamerite supplier. If you can send over your details we will contact you to match your needs to the perfect fire. As a thank you we will send you a <b>£50</b> voucher to put against your new Flamerite fire.</p>
-            <div>
-                <iframe src="https://api.leadconnectorhq.com/widget/form/ADxQOaLUD4qr1znHzjkr" style="width:100%;height:1292px;border:none;border-radius:3px" id="inline-ADxQOaLUD4qr1znHzjkr" data-layout="{'id':'INLINE'}" data-trigger-type="alwaysShow" data-trigger-value="" data-activation-type="alwaysActivated" data-activation-value="" data-deactivation-type="neverDeactivate" data-deactivation-value="" data-form-name="Voucher Promo" data-height="1292" data-layout-iframe-id="inline-ADxQOaLUD4qr1znHzjkr" data-form-id="ADxQOaLUD4qr1znHzjkr" title="Find Your Local Flamerite Supplier - £50 Voucher Form"></iframe>
-            </div>
-        </div>
-    </div>
+    <!-- Where to Buy Modal moved to footer.php for site-wide availability -->
 </div>
 
 <script src="<?php echo get_template_directory_uri(); ?>/assets/js/product.min.js?v=1.0.0"></script>

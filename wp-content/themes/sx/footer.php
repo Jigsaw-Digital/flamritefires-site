@@ -121,6 +121,21 @@
         </div>
     </div>
 
+    <!-- Where to Buy Modal (Global) -->
+    <div id="whereToBuyModal" class="fixed inset-0 z-[9999] hidden">
+        <div id="whereToBuyOverlay" class="absolute inset-0 transition-opacity" style="background:rgba(0,0,0,0.3)"></div>
+        <div id="whereToBuyContent" class="absolute bg-white transition-transform duration-300 ease-in-out inset-0 lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[600px] lg:max-w-[90vw] overflow-y-auto transform translate-x-full">
+            <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex-between z-10">
+                <h2 class="text-2xl font-bold text-primary">Your Local Supplier</h2>
+                <button id="closeWhereToBuy" class="icon-btn text-gray-500 hover:text-primary" aria-label="Close supplier finder">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-close"/></svg>
+                </button>
+            </div>
+            <p class="px-6 mt-4 text-sm text-black">We will help you find your best local Flamerite supplier. If you can send over your details we will contact you to match your needs to the perfect fire. As a thank you we will send you a <b>£50</b> voucher to put against your new Flamerite fire.</p>
+            <div id="whereToBuyIframeContainer"></div>
+        </div>
+    </div>
+
     <!-- Cookie Consent Overlay -->
     <div id="cookie-policy-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998] transition-opacity duration-300 opacity-0" style="display: none;"></div>
 

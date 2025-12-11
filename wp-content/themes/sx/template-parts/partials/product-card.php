@@ -14,12 +14,6 @@ $product_data = get_field('layout_product_data', $product->ID);
 $product_price = '';
 $product_description = '';
 
-// Debug: Check what we got
-if (current_user_can('administrator')) {
-    echo '<!-- Product ID: ' . $product->ID . ' -->';
-    echo '<!-- Product Data: ' . print_r($product_data, true) . ' -->';
-}
-
 // Try to get data from the parsed blocks directly
 if (has_blocks($product->post_content)) {
     $blocks = parse_blocks($product->post_content);
@@ -41,12 +35,6 @@ if (has_blocks($product->post_content)) {
             if (!$product_description && isset($block['attrs']['data'])) {
                 $product_price = $block['attrs']['data']['price'] ?? '';
                 $product_description = $block['attrs']['data']['description_1'] ?? '';
-            }
-
-            if (current_user_can('administrator')) {
-                echo '<!-- Block found. Block ID: ' . $block_id . ' -->';
-                echo '<!-- Block attrs: ' . print_r($block['attrs'], true) . ' -->';
-                echo '<!-- Description found: ' . ($product_description ? 'YES' : 'NO') . ' -->';
             }
 
             break;

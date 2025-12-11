@@ -114,3 +114,53 @@ document.addEventListener('DOMContentLoaded', function() {
     if (customizeBtn) customizeBtn.addEventListener('click', handleCustomize);
     if (savePreferencesBtn) savePreferencesBtn.addEventListener('click', handleSavePreferences);
 })();
+
+// Where to Buy Modal (Global)
+(function() {
+    const modal = document.getElementById('whereToBuyModal');
+    const content = document.getElementById('whereToBuyContent');
+    const overlay = document.getElementById('whereToBuyOverlay');
+    const closeBtn = document.getElementById('closeWhereToBuy');
+    const iframeContainer = document.getElementById('whereToBuyIframeContainer');
+    let iframeLoaded = false;
+
+    function openModal() {
+        if (!modal) return;
+        // Lazy load iframe on first open
+        if (!iframeLoaded && iframeContainer) {
+            iframeContainer.innerHTML = '<iframe src="https://api.leadconnectorhq.com/widget/form/ADxQOaLUD4qr1znHzjkr" style="width:100%;height:1292px;border:none;border-radius:3px" title="Find Your Local Flamerite Supplier"></iframe>';
+            iframeLoaded = true;
+        }
+        modal.classList.remove('hidden');
+        setTimeout(() => {
+            content.classList.remove('translate-x-full');
+            content.classList.add('translate-x-0');
+        }, 10);
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        if (!modal) return;
+        content.classList.add('translate-x-full');
+        content.classList.remove('translate-x-0');
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }, 300);
+    }
+
+    // Attach to any element with whereToBuyBtn class or id
+    document.querySelectorAll('#whereToBuyBtn, #whereToBuyBtn2, #whereToBuyBtn3, .where-to-buy-trigger').forEach(btn => {
+        btn.addEventListener('click', openModal);
+    });
+
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    if (overlay) overlay.addEventListener('click', closeModal);
+
+    // Escape key closes modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+})();

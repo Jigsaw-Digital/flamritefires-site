@@ -23,24 +23,37 @@ document.addEventListener('DOMContentLoaded', function() {
         thumbs: { swiper: thumbsSlider }
     });
 
-    // Lightbox slider
-    const lightboxSlider = new Swiper('#lightboxSlider', {
-        slidesPerView: 1,
-        spaceBetween: 0,
-        navigation: {
-            nextEl: '#lightboxSlider .swiper-button-next',
-            prevEl: '#lightboxSlider .swiper-button-prev'
-        }
-    });
+    // Lightbox slider - initialized lazily
+    let lightboxSlider = null;
 
     // Fullscreen lightbox
     const fullscreenBtn = document.getElementById('fullscreenBtn');
     const imageLightbox = document.getElementById('imageLightbox');
     const closeLightbox = document.getElementById('closeLightbox');
+    const lightboxWrapper = document.querySelector('#lightboxSlider .swiper-wrapper');
 
     fullscreenBtn?.addEventListener('click', function() {
+        // Populate lightbox from main slider if not already done
+        if (lightboxWrapper && !lightboxWrapper.children.length) {
+            const mainSlides = document.querySelectorAll('#productSlider .swiper-slide img');
+            mainSlides.forEach(img => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide flex-center';
+                slide.innerHTML = `<img src="${img.src}" alt="${img.alt}" class="max-h-[90vh] max-w-full object-contain">`;
+                lightboxWrapper.appendChild(slide);
+            });
+            // Initialize lightbox slider after populating
+            lightboxSlider = new Swiper('#lightboxSlider', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                navigation: {
+                    nextEl: '#lightboxSlider .swiper-button-next',
+                    prevEl: '#lightboxSlider .swiper-button-prev'
+                }
+            });
+        }
         imageLightbox.classList.remove('hidden');
-        lightboxSlider.slideTo(productSlider.activeIndex);
+        lightboxSlider?.slideTo(productSlider.activeIndex);
         document.body.style.overflow = 'hidden';
     });
 
@@ -81,46 +94,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Where to Buy modal
-    const whereToBuyModal = document.getElementById('whereToBuyModal');
-    const whereToBuyContent = document.getElementById('whereToBuyContent');
-    const whereToBuyOverlay = document.getElementById('whereToBuyOverlay');
-    const closeWhereToBuy = document.getElementById('closeWhereToBuy');
+    // Where to Buy modal is now handled globally in footer.js
 
-    function openWhereToBuy() {
-        whereToBuyModal.classList.remove('hidden');
-        setTimeout(() => {
-            whereToBuyContent.classList.remove('translate-x-full');
-            whereToBuyContent.classList.add('translate-x-0');
-        }, 10);
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeWhereToBuyModal() {
-        whereToBuyContent.classList.add('translate-x-full');
-        whereToBuyContent.classList.remove('translate-x-0');
-        setTimeout(() => {
-            whereToBuyModal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }, 300);
-    }
-
-    document.getElementById('whereToBuyBtn')?.addEventListener('click', openWhereToBuy);
-    document.getElementById('whereToBuyBtn2')?.addEventListener('click', openWhereToBuy);
-    document.getElementById('whereToBuyBtn3')?.addEventListener('click', openWhereToBuy);
-    closeWhereToBuy?.addEventListener('click', closeWhereToBuyModal);
-    whereToBuyOverlay?.addEventListener('click', closeWhereToBuyModal);
-
-    // Escape key closes all modals
+    // Escape key closes lightbox
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            if (!imageLightbox?.classList.contains('hidden')) {
-                imageLightbox.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-            if (!whereToBuyModal?.classList.contains('hidden')) {
-                closeWhereToBuyModal();
-            }
+        if (e.key === 'Escape' && imageLightbox && !imageLightbox.classList.contains('hidden')) {
+            imageLightbox.classList.add('hidden');
+            document.body.style.overflow = '';
         }
     });
 });
