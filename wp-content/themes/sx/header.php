@@ -17,75 +17,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css?v=1.0.2">
-    
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css?v=1.0.3">
+
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
-    <style>
-        * {
-            font-family: 'Roboto', sans-serif;
-        }
-        .fixed-to-top {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-        }
-        .dark-logo { display: block; }
-        .light-logo { display: none; }
-        .nav-desktop { display: flex; }
-        .nav-mobile { display: none; }
-
-        @media (max-width: 1023px) {
-            .nav-desktop { display: none !important; }
-            .nav-mobile { display: block !important; }
-        }
-
-        .megamenu {
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.3s ease-in-out;
-        }
-        .megamenu.visible {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .grey-qo-regular {
-            font-family: 'Roboto', sans-serif;
-            font-style: italic;
-        }
-
-        /* Transparent header styles */
-        .header-transparent {
-            background:  linear-gradient(to bottom, black 0%, black 10%, transparent 100%);  
-        }
-
-        .header-transparent.scrolled {
-            background: #1f2937;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-        }
-
-        /* Link colors for transparent header */
-        .header-transparent:not(.scrolled) .nav-desktop a,
-        .header-transparent:not(.scrolled) .nav-desktop .text-white {
-            color: #fff !important;
-        }
-
-        /* Contact links (email/phone) in orange for transparent header */
-        .header-transparent:not(.scrolled) .text-primary {
-            color: #e85319 !important;
-        }
-
-        /* Hide elements with x-cloak until Alpine.js loads */
-        [x-cloak] {
-            display: none !important;
-        }
-    </style>
 
     <!-- Google Analytics - Only loads if user has accepted cookies -->
     <script>
