@@ -89,7 +89,7 @@ $title = get_the_title();
     <?php endif; ?>
 
     <!-- Fullscreen Image Lightbox - images populated via JS from main slider -->
-    <div id="imageLightbox" class="fixed inset-0 z-[9999] bg-black flex-center hidden" role="dialog" aria-modal="true" aria-label="Image gallery fullscreen view">
+    <div id="imageLightbox" class="fixed inset-0 z-[9999] bg-black hidden" role="dialog" aria-modal="true" aria-label="Image gallery fullscreen view">
         <button id="closeLightbox" class="icon-btn absolute top-4 right-4 text-white bg-black/50 hover:bg-black/70 z-20" aria-label="Close fullscreen view">
             <svg class="h-6 w-6" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-close"/></svg>
         </button>
