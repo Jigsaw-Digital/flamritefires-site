@@ -49,9 +49,9 @@ $padding_class = $disable_top_padding ? 'pb-8 pt-8 lg:pb-16 lg:!pt-0' : 'pb-8 pt
             <?php endif; ?>
 
             <!-- Main Title -->
-            <h1 class="text-3xl lg:text-3xl font-bold <?php echo $text_color; ?> mb-6">
+            <h2 class="text-3xl lg:text-3xl font-bold <?php echo $text_color; ?> mb-6">
                 <?php echo esc_html($title); ?>
-            </h1>
+            </h2>
 
             <!-- Article Content with inline images support -->
             <div class="article-content lg:text-lg lg:mt-4 space-y-6 <?php echo $text_color; ?>">

@@ -45,9 +45,9 @@ switch ($padding) {
 
         <?php if ($title): ?>
             <div class="text-center mb-12">
-                <h1 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
+                <h2 class="text-3xl lg:text-4xl xl:text-5xl font-bold text-primary mb-6">
                     <?php echo esc_html($title); ?>
-                </h1>
+                </h2>
             </div>
         <?php endif; ?>
 
