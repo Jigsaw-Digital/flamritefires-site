@@ -63,12 +63,9 @@ $container_class = $layout_columns === '2' ? 'max-w-6xl' : 'max-w-3xl';
                                 class="flex justify-between items-center w-full text-left font-semibold transition-colors hover:text-red-600"
                                 :class="{ 'text-red-600': openFaq === <?php echo $index; ?> }">
                             <?php echo esc_html($faq->post_title); ?>
-                            <svg xmlns="http://www.w3.org/2000/svg" 
-                                 class="h-5 w-5 text-gray-500 transform transition-transform duration-300" 
+                            <svg class="h-5 w-5 text-gray-500 transform transition-transform duration-300"
                                  :class="{ 'rotate-180': openFaq === <?php echo $index; ?> }"
-                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
+                                 fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-chevron-down"/></svg>
                         </button>
                         <div x-show="openFaq === <?php echo $index; ?>"
                              x-transition:enter="transition ease-out duration-300"
@@ -91,32 +88,3 @@ $container_class = $layout_columns === '2' ? 'max-w-6xl' : 'max-w-3xl';
         </div>
     </div>
 </section>
-
-<style>
-/* FAQ specific styles for content formatting */
-#faq button {
-    padding: 0.75rem 0;
-}
-
-#faq .text-gray-600 p {
-    margin-bottom: 1rem;
-}
-
-#faq .text-gray-600 p:last-child {
-    margin-bottom: 0;
-}
-
-#faq .text-gray-600 ul,
-#faq .text-gray-600 ol {
-    margin: 1rem 0;
-    padding-left: 1.5rem;
-}
-
-#faq .text-gray-600 ul li {
-    list-style-type: disc;
-}
-
-#faq .text-gray-600 ol li {
-    list-style-type: decimal;
-}
-</style>
