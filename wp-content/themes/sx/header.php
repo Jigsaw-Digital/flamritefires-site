@@ -68,7 +68,7 @@
     } else {
         body_class();
     }
-?> x-data="{ mobileMenuOpen: false, mobileSubMenuOpen1: false, mobileSubMenuOpen2: false, mobileSubMenuOpen3: false, mobileSubMenuOpen4: false, mobileSubMenuOpen5: false, megaMenuOpen: false, searchOpen: false }" style="background-color: #333;">
+?> x-data="{ mobileMenuOpen: false, subMenu: {}, megaMenuOpen: false, searchOpen: false }" style="background-color: #333;">
     <?php wp_body_open(); ?>
     
     <?php

@@ -22,12 +22,12 @@ $block_id = 'coverage-' . uniqid();
     <div class="absolute inset-0 bg-[#ed1c24]/80"></div>    
     <div class="relative z-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[70vh]">
-            <!-- Left Side - Search and Results -->
-           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-[70vh]">
-            <div class="flex justify-center items-center">
+            <!-- Left Side - Decorative -->
+            <div class="flex-center">
                 <img src="/circle-lines.png" alt="" class="w-[80%] ml-auto object-contain">
             </div>
-             <div class="flex flex-col max-w-[500px] mx-auto h-full justify-center items-center">
+            <!-- Right Side - Search and Results -->
+            <div class="flex flex-col max-w-[500px] mx-auto h-full justify-center items-center">
                 <div class="flex flex-col">
                     <!-- Header -->
                 <div class="mb-8">

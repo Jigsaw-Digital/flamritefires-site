@@ -155,7 +155,7 @@ if (!class_exists('Greycaine_Mobile_Walker')) {
         function start_lvl(&$output, $depth = 0, $args = null) {
             $indent = str_repeat("\t", $depth);
             $this->submenu_count++;
-            $output .= "\n$indent<div x-show=\"mobileSubMenuOpen{$this->submenu_count}\" x-transition class=\"pl-4 mt-2 space-y-2\">\n";
+            $output .= "\n$indent<div x-show=\"subMenu[{$this->submenu_count}]\" x-transition class=\"pl-4 mt-2 space-y-2\">\n";
         }
 
         function end_lvl(&$output, $depth = 0, $args = null) {
@@ -176,10 +176,10 @@ if (!class_exists('Greycaine_Mobile_Walker')) {
                 if ($has_children) {
                     $submenu_id = $this->submenu_count + 1;
                     $output .= $indent . '<div class="text-white">';
-                    $output .= '<div class="flex items-center justify-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="mobileSubMenuOpen' . $submenu_id . ' = !mobileSubMenuOpen' . $submenu_id . '">';
+                    $output .= '<div class="flex-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="subMenu[' . $submenu_id . '] = !subMenu[' . $submenu_id . ']">';
                     $output .= '<span>' . apply_filters('the_title', $item->title, $item->ID) . '</span>';
-                    $output .= '<svg x-show="!mobileSubMenuOpen' . $submenu_id . '" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>';
-                    $output .= '<svg x-show="mobileSubMenuOpen' . $submenu_id . '" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6"/></svg>';
+                    $output .= '<svg x-show="!subMenu[' . $submenu_id . ']" class="h-4 w-4 text-white" fill="none" stroke="currentColor"><use href="' . get_template_directory_uri() . '/assets/images/icons.svg#icon-plus"/></svg>';
+                    $output .= '<svg x-show="subMenu[' . $submenu_id . ']" class="h-4 w-4 text-white" fill="none" stroke="currentColor"><use href="' . get_template_directory_uri() . '/assets/images/icons.svg#icon-minus"/></svg>';
                     $output .= '</div>';
                 } else {
                     $output .= $indent . '<div>';
@@ -213,8 +213,9 @@ function greycaine_default_menu() {
 }
 
 function greycaine_mobile_default_menu() {
-    echo '<div class="flex flex-col space-y-3">';
-    echo '<div class="text-white"><div class="flex items-center justify-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="mobileSubMenuOpen = !mobileSubMenuOpen"><span>Products</span><svg x-show="!mobileSubMenuOpen" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg></div></div>';
+    $icons_url = get_template_directory_uri() . '/assets/images/icons.svg';
+    echo '<div class="stack-sm">';
+    echo '<div class="text-white"><div class="flex-between text-[14px] uppercase text-white hover:text-[#b25c43] py-2 cursor-pointer" @click="subMenu[1] = !subMenu[1]"><span>Products</span><svg x-show="!subMenu[1]" class="h-4 w-4 text-white" fill="none" stroke="currentColor"><use href="' . $icons_url . '#icon-plus"/></svg><svg x-show="subMenu[1]" class="h-4 w-4 text-white" fill="none" stroke="currentColor"><use href="' . $icons_url . '#icon-minus"/></svg></div></div>';
     echo '<a href="/bespoke" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">Bespoke</a>';
     echo '<a href="/trade" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">Trade</a>';
     echo '<a href="/category/clearance" class="block text-[14px] uppercase text-white hover:text-[#b25c43] py-2" @click="mobileMenuOpen = false">Clearance</a>';

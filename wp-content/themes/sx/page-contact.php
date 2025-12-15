@@ -133,18 +133,14 @@ get_header();
                             <?php if ($_GET['contact_status'] === 'success'): ?>
                                 <div class="p-4 bg-green-50 border border-green-200 rounded-lg">
                                     <div class="flex">
-                                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                                        </svg>
+                                        <svg class="w-5 h-5 text-green-400 mr-3 mt-0.5" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-check-circle"/></svg>
                                         <p class="text-green-800"><?php echo esc_html(urldecode($_GET['message'])); ?></p>
                                     </div>
                                 </div>
                             <?php else: ?>
                                 <div class="p-4 bg-red-50 border border-red-200 rounded-lg">
                                     <div class="flex">
-                                        <svg class="w-5 h-5 text-red-400 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
-                                        </svg>
+                                        <svg class="w-5 h-5 text-red-400 mr-3 mt-0.5" fill="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-x-circle"/></svg>
                                         <p class="text-red-800"><?php echo esc_html(urldecode($_GET['message'])); ?></p>
                                     </div>
                                 </div>
@@ -159,67 +155,42 @@ get_header();
                     
                     <div class="space-y-6">
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                                </svg>
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-location"/></svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Address</h3>
-                                <p class="text-gray-600">
-                                    Your Business Address<br>
-                                    City, State 12345<br>
-                                    United Kingdom
-                                </p>
+                                <p class="text-gray-600">Your Business Address<br>City, State 12345<br>United Kingdom</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                </svg>
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-phone"/></svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Phone</h3>
-                                <p class="text-gray-600">
-                                    <a href="tel:01543251122" class="hover:text-primary transition-colors">
-                                        01923 923 120
-                                    </a>
-                                </p>
+                                <p class="text-gray-600"><a href="tel:01543251122" class="hover:text-primary transition-colors">01923 923 120</a></p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                </svg>
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-email"/></svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Email</h3>
-                                <p class="text-gray-600">
-                                    <a href="mailto:info@flameritefires.com" class="hover:text-primary transition-colors">
-                                        info@flameritefires.com
-                                    </a>
-                                </p>
+                                <p class="text-gray-600"><a href="mailto:info@flameritefires.com" class="hover:text-primary transition-colors">info@flameritefires.com</a></p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
-                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
+                            <div class="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex-center mr-4">
+                                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-clock"/></svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-1">Business Hours</h3>
-                                <p class="text-gray-600">
-                                    Monday - Friday: 9:00 AM - 5:00 PM<br>
-                                    Saturday: 9:00 AM - 1:00 PM<br>
-                                    Sunday: Closed
-                                </p>
+                                <p class="text-gray-600">Monday - Friday: 9:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
