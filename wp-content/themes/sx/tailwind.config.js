@@ -28,6 +28,7 @@ module.exports = {
           DEFAULT: '#0891b2', // Cool blue for Coolright mode (cyan-600)
           light: '#06b6d4', // Lighter cyan
           dark: '#0e7490', // Darker cyan
+          accent: '#22d3ee', // Bright cyan accent (complementary)
         },
       },
       // Add container query support

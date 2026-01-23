@@ -156,7 +156,7 @@ if ($product_categories && !is_wp_error($product_categories)) {
 if (!empty($related_products)): ?>
 <section class="section section-dark">
     <div class="container-wide">
-        <h2 class="<?php echo $is_coolright ? 'heading-section-coolblue' : 'heading-section'; ?>">Other Products in <?php echo esc_html($category->name); ?></h2>
+        <h2 class="<?php echo $is_coolright ? 'heading-section-coolblue-accent' : 'heading-section'; ?>">Other Products in <?php echo esc_html($category->name); ?></h2>
         <div class="grid-3">
             <?php foreach ($related_products as $product): ?>
                 <?php include(get_template_directory() . '/template-parts/partials/product-card.php'); ?>

@@ -450,6 +450,10 @@ color:#000;
   @apply text-3xl lg:text-4xl font-bold text-coolblue mb-8;
 }
 
+.heading-section-coolblue-accent {
+  @apply text-3xl lg:text-4xl font-bold text-coolblue-accent mb-8;
+}
+
 .heading-section-white {
   @apply text-3xl lg:text-4xl font-bold text-white mb-8;
 }

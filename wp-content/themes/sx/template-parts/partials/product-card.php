@@ -9,6 +9,26 @@ if (!isset($product)) {
     return;
 }
 
+// Detect Coolright mode for this product
+$is_coolright = false;
+if (function_exists('get_field')) {
+    $is_coolright = get_field('is_coolright_page', $product->ID);
+}
+
+// Check if product is in Fans or Portable AC Units categories
+if (!$is_coolright) {
+    $product_categories = get_the_terms($product->ID, 'product_category');
+    if ($product_categories && !is_wp_error($product_categories)) {
+        foreach ($product_categories as $category) {
+            if (in_array($category->slug, ['fans', 'portable-ac-units']) ||
+                in_array(strtolower($category->name), ['fans', 'portable ac units'])) {
+                $is_coolright = true;
+                break;
+            }
+        }
+    }
+}
+
 // Get product data using ACF - try multiple methods since it's a Gutenberg block
 $product_data = get_field('layout_product_data', $product->ID);
 $product_price = '';
@@ -78,7 +98,7 @@ if ($product_description) {
 
         <div class="card-body">
             <div class="mb-3">
-                <h3 class="card-title text-gray-900 group-hover:text-primary transition-colors leading-tight"><?php echo esc_html($product->post_title); ?></h3>
+                <h3 class="card-title text-gray-900 <?php echo $is_coolright ? 'group-hover:text-coolblue' : 'group-hover:text-primary'; ?> transition-colors leading-tight"><?php echo esc_html($product->post_title); ?></h3>
             </div>
 
             <?php if ($excerpt): ?>
@@ -87,12 +107,12 @@ if ($product_description) {
 
             <div class="flex-between pt-2 border-t border-gray-100">
                 <?php if ($product_price): ?>
-                    <span class="text-primary font-bold text-lg"><?php echo esc_html($product_price); ?></span>
+                    <span class="<?php echo $is_coolright ? 'text-coolblue' : 'text-primary'; ?> font-bold text-lg"><?php echo esc_html($product_price); ?></span>
                 <?php else: ?>
                     <div></div>
                 <?php endif; ?>
 
-                <div class="row-sm text-primary text-sm font-medium">
+                <div class="row-sm <?php echo $is_coolright ? 'text-coolblue' : 'text-primary'; ?> text-sm font-medium">
                     <span>View Details</span>
                     <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-arrow-right"/></svg>
                 </div>
