@@ -140,7 +140,7 @@
     ));
 
     // Header classes based on hero type and coolright mode
-    $header_classes = 'fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-3 lg:py-[20px] xl:py-[30px] transition-all duration-300';
+    $header_classes = 'fixed-to-top fixed left-0 top-0 z-[999] w-full py-2 md:py-4 transition-all duration-300';
     if ($is_coolright) {
         $header_classes .= ' coolright-header';
         if ($has_dynamic_hero) {
