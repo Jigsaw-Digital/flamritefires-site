@@ -47,14 +47,14 @@ if (!$is_coolright_footer && (is_singular('products') || is_tax('product_categor
 
 <div class="cta-fixed hidden lg:flex">
     <a href="/where-to-buy" class="<?php echo $is_coolright_footer ? 'cta-apointment-coolblue' : 'cta-apointment'; ?>">
-        <img src="/icons/new-right-1.svg" alt="Where to Buy">
+        <img src="<?php echo $is_coolright_footer ? '/icons/new-right-1-coolblue.svg' : '/icons/new-right-1.svg'; ?>" alt="Where to Buy">
         <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
     </a>
 </div>
 
 <div class="cta-fixed mt-16 hidden lg:flex">
     <a href="/contact-us/" class="<?php echo $is_coolright_footer ? 'cta-brochure-coolblue' : 'cta-brochure'; ?>">
-        <img src="/icons/new-right-2.svg" alt="Contact Us">
+        <img src="<?php echo $is_coolright_footer ? '/icons/new-right-2-coolblue.svg' : '/icons/new-right-2.svg'; ?>" alt="Contact Us">
         <span style="font-size:12px; color:#fff">CONTACT US</span>
     </a>
 </div>
