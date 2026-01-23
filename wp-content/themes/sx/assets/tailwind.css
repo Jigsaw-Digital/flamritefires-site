@@ -332,6 +332,10 @@ color:#000;
   @apply border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2 px-6 transition-all duration-300 cursor-pointer;
 }
 
+.btn-outline-coolblue {
+  @apply border-2 border-coolblue text-coolblue hover:bg-coolblue hover:text-white font-semibold py-2 px-6 transition-all duration-300 cursor-pointer;
+}
+
 .btn-outline-white {
   @apply border-2 border-white text-white hover:bg-white hover:text-primary font-semibold py-2 px-6 transition-all duration-300;
 }

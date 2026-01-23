@@ -68,14 +68,14 @@ if (!$is_coolright && is_singular('products')) {
         <div class="lg:flex gap-24 justify-center px-4 lg:px-6">
             <div class="stack h-full justify-start lg:min-h-[350px]">
                 <div class="lg:text-lg max-w-full lg:max-w-[440px] content mt-8 lg:mt-0">
-                    <h1 class="grey-qo-regular text-primary hidden lg:block text-3xl mb-2">
+                    <h1 class="grey-qo-regular <?php echo $is_coolright ? 'text-coolblue' : 'text-primary'; ?> hidden lg:block text-3xl mb-2">
                         <div class="jd-content"><?php echo esc_html(str_replace('- Greycaine', '', $title)); ?></div>
                     </h1>
                     <div class="jd-content"><?php echo str_replace('<li></li>', '', wp_kses_post($data['description_1'])); ?></div>
                 </div>
 
                 <?php if ($data['video']): ?>
-                    <button class="btn-outline mt-8 inline-block text-sm xl:text-lg" id="watchVideoBtn" data-video="<?php echo esc_url($data['video']['url']); ?>" aria-label="Watch product video">Watch Video</button>
+                    <button class="<?php echo $is_coolright ? 'btn-outline-coolblue' : 'btn-outline'; ?> mt-8 inline-block text-sm xl:text-lg" id="watchVideoBtn" data-video="<?php echo esc_url($data['video']['url']); ?>" aria-label="Watch product video">Watch Video</button>
                 <?php endif; ?>
 
                 <div class="lg:text-lg max-w-[440px] content mt-8 lg:mt-0"><?php echo wp_kses_post($data['description_2']); ?></div>
