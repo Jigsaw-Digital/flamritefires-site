@@ -140,7 +140,7 @@
     ));
 
     // Header classes based on hero type and coolright mode
-    $header_classes = 'fixed-to-top fixed left-0 top-0 z-[999] w-full py-2 md:py-4 transition-all duration-300';
+    $header_classes = 'fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-3 lg:py-[20px] xl:py-[30px] transition-all duration-300';
     if ($is_coolright) {
         $header_classes .= ' coolright-header';
         if ($has_dynamic_hero) {
@@ -211,7 +211,7 @@
                 </button>
             </nav>
 
-            <div class="flex gap-3 lg:gap-4 justify-center items-center">
+            <div class="flex gap-3 lg:gap-4 justify-center items-center max-h-[50px] lg:max-h-none">
                 <!-- Mobile: Icons only -->
                 <button @click="searchOpen = !searchOpen" class="lg:hidden <?php echo $is_coolright ? 'text-white hover:text-white/80' : ($small ? 'text-primary' : 'text-white hover:text-primary'); ?>" aria-label="Search">
                     <svg class="w-[20px] hover:scale-105" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-search"/></svg>
