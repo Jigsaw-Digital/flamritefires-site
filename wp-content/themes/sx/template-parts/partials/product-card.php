@@ -98,7 +98,7 @@ if ($product_description) {
 
         <div class="card-body">
             <div class="mb-3">
-                <h3 class="card-title text-gray-900 <?php echo $is_coolright ? 'group-hover:text-coolblue' : 'group-hover:text-primary'; ?> transition-colors leading-tight"><?php echo esc_html($product->post_title); ?></h3>
+                <h3 class="<?php echo $is_coolright ? 'card-title-coolblue' : 'card-title'; ?> text-gray-900 <?php echo $is_coolright ? 'group-hover:text-coolblue' : 'group-hover:text-primary'; ?> transition-colors leading-tight"><?php echo esc_html($product->post_title); ?></h3>
             </div>
 
             <?php if ($excerpt): ?>

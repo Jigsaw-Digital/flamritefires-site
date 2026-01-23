@@ -381,6 +381,10 @@ color:#000;
   @apply text-xl font-bold text-primary mb-2;
 }
 
+.card-title-coolblue {
+  @apply text-xl font-bold text-coolblue mb-2;
+}
+
 /* Containers & Sections */
 .section {
   @apply py-16 px-6;
