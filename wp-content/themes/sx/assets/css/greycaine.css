@@ -584,12 +584,26 @@
     background-color: #0e7490; /* Darker cyan */
 }
 
-.coolright-header .text-primary,
-.coolright-header .hover\:text-primary:hover {
-    color: #22d3ee !important; /* Light cyan */
+/* Ensure all text and icons are white in coolright mode */
+.coolright-header .text-white {
+    color: #fff !important;
+}
+
+/* Override any primary color text to white */
+.coolright-header .text-primary:not(.bg-primary) {
+    color: #fff !important;
 }
 
 /* Icon colors in coolright mode */
 .coolright-header svg {
     color: inherit;
+}
+
+/* Menu link colors in coolright mode */
+.coolright-header nav a {
+    color: #fff !important;
+}
+
+.coolright-header nav a:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
 }

@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css?v=1.0.3">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css?v=1.0.4">
 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -213,23 +213,23 @@
 
             <div class="flex gap-3 lg:gap-4 justify-center items-center">
                 <!-- Mobile: Icons only -->
-                <button @click="searchOpen = !searchOpen" class="lg:hidden <?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?>" aria-label="Search">
+                <button @click="searchOpen = !searchOpen" class="lg:hidden <?php echo $is_coolright ? 'text-white hover:text-white/80' : ($small ? 'text-primary' : 'text-white hover:text-primary'); ?>" aria-label="Search">
                     <svg class="w-[20px] hover:scale-105" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-search"/></svg>
                 </button>
                 <a href="tel:01543251122" class="lg:hidden">
-                    <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-phone"/></svg>
+                    <svg class="<?php echo $is_coolright ? 'text-white hover:text-white/80' : ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-phone"/></svg>
                 </a>
                 <a href="mailto:info@flameritefires.com" class="lg:hidden">
-                    <svg class="<?php echo ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-email"/></svg>
+                    <svg class="<?php echo $is_coolright ? 'text-white hover:text-white/80' : ($small ? 'text-primary' : 'text-white hover:text-primary'); ?> w-[20px] hover:scale-105" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-email"/></svg>
                 </a>
 
                 <!-- Desktop: Stacked text -->
-                <div class="hidden lg:flex flex-col gap-2.5 text-primary text-xs leading-tight">
-                    <a href="tel:01543251122" class="flex items-center gap-1 hover:text-primary/80 transition-colors">
+                <div class="hidden lg:flex flex-col gap-2.5 <?php echo $is_coolright ? 'text-white' : 'text-primary'; ?> text-xs leading-tight">
+                    <a href="tel:01543251122" class="flex items-center gap-1 <?php echo $is_coolright ? 'hover:text-white/80' : 'hover:text-primary/80'; ?> transition-colors">
                         <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-phone"/></svg>
                         <span class="font-medium">01543 251122</span>
                     </a>
-                    <a href="mailto:info@flameritefires.com" class="flex items-center gap-1 hover:text-primary/80 transition-colors">
+                    <a href="mailto:info@flameritefires.com" class="flex items-center gap-1 <?php echo $is_coolright ? 'hover:text-white/80' : 'hover:text-primary/80'; ?> transition-colors">
                         <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor"><use href="<?php echo get_template_directory_uri(); ?>/assets/images/icons.svg#icon-email"/></svg>
                         <span class="font-medium">info@flameritefires.com</span>
                     </a>

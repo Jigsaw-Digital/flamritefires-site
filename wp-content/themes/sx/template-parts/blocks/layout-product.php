@@ -8,6 +8,26 @@ if (!$data) return;
 
 global $post;
 $title = get_the_title();
+
+// Detect Coolright mode
+$is_coolright = false;
+if (function_exists('get_field')) {
+    $is_coolright = get_field('is_coolright_page');
+}
+
+// Check if current product is in Fans or Portable AC Units categories
+if (!$is_coolright && is_singular('products')) {
+    $product_categories = get_the_terms(get_the_ID(), 'product_category');
+    if ($product_categories && !is_wp_error($product_categories)) {
+        foreach ($product_categories as $category) {
+            if (in_array($category->slug, ['fans', 'portable-ac-units']) ||
+                in_array(strtolower($category->name), ['fans', 'portable ac units'])) {
+                $is_coolright = true;
+                break;
+            }
+        }
+    }
+}
 ?>
 
 <div class="section-light section relative">
@@ -61,11 +81,11 @@ $title = get_the_title();
                 <div class="lg:text-lg max-w-[440px] content mt-8 lg:mt-0"><?php echo wp_kses_post($data['description_2']); ?></div>
 
                 <div class="stack-sm mt-6 max-w-[210px]">
-                    <button id="whereToBuyBtn" class="btn-cta btn-icon w-full" aria-label="Find local supplier">
+                    <button id="whereToBuyBtn" class="<?php echo $is_coolright ? 'btn-cta-coolblue' : 'btn-cta'; ?> btn-icon w-full" aria-label="Find local supplier">
                         <img src="/icons/where_to_buy.svg" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
                         <span class="text-label">WHERE TO BUY</span>
                     </button>
-                    <a href="<?php echo esc_url(home_url('/contact-us/')); ?>" class="btn-cta-dark btn-icon w-full" aria-label="Contact us">
+                    <a href="<?php echo esc_url(home_url('/contact-us/')); ?>" class="<?php echo $is_coolright ? 'btn-cta-dark-coolblue' : 'btn-cta-dark'; ?> btn-icon w-full" aria-label="Contact us">
                         <img src="/icons/contact_us.svg" alt="" class="w-6 h-6" aria-hidden="true" loading="lazy">
                         <span class="text-label">CONTACT US</span>
                     </a>
@@ -136,7 +156,7 @@ if ($product_categories && !is_wp_error($product_categories)) {
 if (!empty($related_products)): ?>
 <section class="section section-dark">
     <div class="container-wide">
-        <h2 class="heading-section">Other Products in <?php echo esc_html($category->name); ?></h2>
+        <h2 class="<?php echo $is_coolright ? 'heading-section-coolblue' : 'heading-section'; ?>">Other Products in <?php echo esc_html($category->name); ?></h2>
         <div class="grid-3">
             <?php foreach ($related_products as $product): ?>
                 <?php include(get_template_directory() . '/template-parts/partials/product-card.php'); ?>
