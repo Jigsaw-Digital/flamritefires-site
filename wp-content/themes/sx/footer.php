@@ -21,7 +21,9 @@
 // Detect Coolright mode for footer
 $is_coolright_footer = false;
 if (function_exists('get_field')) {
-    $is_coolright_footer = get_field('is_coolright_page');
+    // Use get_queried_object_id() to ensure we get the current page/post ID
+    $current_id = get_queried_object_id();
+    $is_coolright_footer = get_field('is_coolright_page', $current_id);
 }
 
 // Check if current page/product is in Fans or Portable AC Units categories
