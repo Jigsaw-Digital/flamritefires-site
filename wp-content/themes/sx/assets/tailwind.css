@@ -87,8 +87,16 @@ p {
   @apply text-[12px] xl:text-lg mb-3 leading-6 xl:leading-8;
 }
 
+.jd-content p strong {
+  @apply block mt-6 mb-2;
+}
+
 .jd-content li {
-  @apply list-disc ml-3 list-[#cab069] text-left text-[16px] xl:text-lg;
+  @apply list-disc ml-3 mb-2 list-[#cab069] text-left text-[16px] xl:text-lg;
+}
+
+.jd-content ul {
+  @apply mt-2 mb-4;
 }
 
 .jd-content a:not(.tracking-widest) {
