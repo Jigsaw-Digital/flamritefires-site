@@ -99,6 +99,39 @@
     // Only enable transparent header if dynamic hero exists AND it's not disabled
     $has_dynamic_hero = $has_dynamic_hero && !$disable_transparent_header;
 
+    // Detect Coolright mode
+    $is_coolright = false;
+
+    // Check if page/product has coolright field enabled
+    if (function_exists('get_field')) {
+        $is_coolright = get_field('is_coolright_page');
+    }
+
+    // Also check if current product is in Fans or Portable AC Units categories
+    if (!$is_coolright && is_singular('products')) {
+        $product_categories = get_the_terms(get_the_ID(), 'product_category');
+        if ($product_categories && !is_wp_error($product_categories)) {
+            foreach ($product_categories as $category) {
+                if (in_array($category->slug, ['fans', 'portable-ac-units']) ||
+                    in_array(strtolower($category->name), ['fans', 'portable ac units'])) {
+                    $is_coolright = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    // Check if viewing a product category archive for Fans or Portable AC Units
+    if (!$is_coolright && is_tax('product_category')) {
+        $current_term = get_queried_object();
+        if ($current_term) {
+            if (in_array($current_term->slug, ['fans', 'portable-ac-units']) ||
+                in_array(strtolower($current_term->name), ['fans', 'portable ac units'])) {
+                $is_coolright = true;
+            }
+        }
+    }
+
     // Get WordPress categories for product menu
     $product_categories = get_categories(array(
         'taxonomy' => 'category',
@@ -106,12 +139,21 @@
         'parent' => 0
     ));
 
-    // Header classes based on hero type
+    // Header classes based on hero type and coolright mode
     $header_classes = 'fixed-to-top fixed left-0 top-0 z-[999] w-full items-center py-[20px] xl:py-[30px] transition-all duration-300';
-    if ($has_dynamic_hero) {
-        $header_classes .= ' header-transparent';
+    if ($is_coolright) {
+        $header_classes .= ' coolright-header';
+        if ($has_dynamic_hero) {
+            $header_classes .= ' header-transparent';
+        } else {
+            $header_classes .= ' bg-[#0891b2]'; // Cool blue color (cyan-600)
+        }
     } else {
-        $header_classes .= ' bg-gray-800';
+        if ($has_dynamic_hero) {
+            $header_classes .= ' header-transparent';
+        } else {
+            $header_classes .= ' bg-gray-800';
+        }
     }
     ?>
 
@@ -120,13 +162,33 @@
             <div class="flex w-[150px] lg:w-[200px] items-center xl:w-[200px]">
                 <a href="<?php echo home_url('/'); ?>">
                     <?php
-                    $site_logo = get_field('site_logo', 'option');
-                    if ($site_logo) {
-                        echo '<img class="dark-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
-                        echo '<img class="light-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                    // Use coolright logo if available and in coolright mode
+                    if ($is_coolright) {
+                        $coolright_logo = get_field('coolright_logo', 'option');
+                        if ($coolright_logo) {
+                            echo '<img class="dark-logo" src="' . esc_url($coolright_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . ' Coolright">';
+                            echo '<img class="light-logo" src="' . esc_url($coolright_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . ' Coolright">';
+                        } else {
+                            // Fallback to regular logo with note
+                            $site_logo = get_field('site_logo', 'option');
+                            if ($site_logo) {
+                                echo '<img class="dark-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                                echo '<img class="light-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                            } else {
+                                echo '<img class="dark-logo" src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                                echo '<img class="light-logo" src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                            }
+                        }
                     } else {
-                        echo '<img class="dark-logo" src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="' . esc_attr(get_bloginfo('name')) . '">';
-                        echo '<img class="light-logo" src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                        // Regular logo
+                        $site_logo = get_field('site_logo', 'option');
+                        if ($site_logo) {
+                            echo '<img class="dark-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                            echo '<img class="light-logo" src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                        } else {
+                            echo '<img class="dark-logo" src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                            echo '<img class="light-logo" src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                        }
                     }
                     ?>
                 </a>
@@ -212,7 +274,7 @@
         <!-- Mobile Menu -->
         <div x-show="mobileMenuOpen"
              x-cloak
-             class="fixed inset-0 z-[9999] overflow-y-auto bg-primary pb-6 lg:hidden"
+             class="fixed inset-0 z-[9999] overflow-y-auto <?php echo $is_coolright ? 'bg-[#0891b2]' : 'bg-primary'; ?> pb-6 lg:hidden"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"
@@ -221,7 +283,19 @@
              x-transition:leave-end="opacity-0">
             <div class="flex items-center justify-between px-6 pb-12 pt-[20px]">
                 <a href="<?php echo home_url('/'); ?>">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" class="my-auto w-[150px] lg:ml-0">
+                    <?php
+                    // Use coolright logo in mobile menu if available and in coolright mode
+                    if ($is_coolright) {
+                        $coolright_logo = get_field('coolright_logo', 'option');
+                        if ($coolright_logo) {
+                            echo '<img src="' . esc_url($coolright_logo['url']) . '" class="my-auto w-[150px] lg:ml-0" alt="' . esc_attr(get_bloginfo('name')) . ' Coolright">';
+                        } else {
+                            echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" class="my-auto w-[150px] lg:ml-0" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                        }
+                    } else {
+                        echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" class="my-auto w-[150px] lg:ml-0" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                    }
+                    ?>
                 </a>
                 <div class="flex gap-4">
                     <a href="tel:01543251122">

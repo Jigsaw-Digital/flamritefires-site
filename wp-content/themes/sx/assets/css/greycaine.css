@@ -561,3 +561,40 @@
         padding-right: 1rem;
     }
 }
+
+/* Coolright Mode Styles */
+.coolright-header {
+    background-color: #0891b2; /* Cool blue (cyan-600) */
+}
+
+.coolright-header.header-transparent {
+    background: linear-gradient(to bottom, #0891b2 0%, #0891b2 10%, transparent 100%);
+}
+
+.coolright-header.header-transparent.scrolled {
+    background: #0891b2;
+}
+
+/* Update hover states for coolright mode */
+.coolright-header .btn-cta {
+    background-color: #06b6d4; /* Lighter cyan */
+}
+
+.coolright-header .btn-cta:hover {
+    background-color: #0e7490; /* Darker cyan */
+}
+
+.coolright-header .text-primary,
+.coolright-header .hover\:text-primary:hover {
+    color: #22d3ee !important; /* Light cyan */
+}
+
+/* Icon colors in coolright mode */
+.coolright-header svg {
+    color: inherit;
+}
+
+/* Mobile menu for coolright */
+.coolright-header + * .bg-\[#0891b2\] {
+    background-color: #0891b2;
+}

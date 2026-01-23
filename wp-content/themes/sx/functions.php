@@ -27,6 +27,12 @@ require_once get_template_directory() . '/acf/documents.php';
 // Include videos ACF fields
 require_once get_template_directory() . '/acf/videos.php';
 
+// Include coolright mode ACF fields
+require_once get_template_directory() . '/acf/coolright.php';
+
+// Include site options ACF fields
+require_once get_template_directory() . '/acf/site-options.php';
+
 // Include sample testimonials creator (remove in production)
 require_once get_template_directory() . '/inc/sample-testimonials.php';
 
