@@ -470,6 +470,81 @@
     padding-right: 12px;
 }
 
+/* Coolright CTA Buttons - Two-Tone Blues */
+.cta-apointment-coolblue {
+    background-color: #0891b2; /* Cool blue (cyan-600) */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px 0 0 10px;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: width 0.3s ease;
+}
+
+.cta-brochure-coolblue {
+    background-color: #0e7490; /* Darker cyan (cyan-700) */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 10px 0 0 10px;
+    overflow: hidden;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    transition: width 0.3s ease;
+}
+
+.cta-apointment-coolblue img,
+.cta-brochure-coolblue img {
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    border-radius: 0 !important;
+    border: none !important;
+    outline: none !important;
+    box-sizing: border-box !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+}
+
+.cta-apointment-coolblue span,
+.cta-brochure-coolblue span {
+    display: none;
+    color: #fff;
+}
+
+.cta-apointment-coolblue:hover,
+.cta-brochure-coolblue:hover {
+    width: 170px;
+    cursor: pointer;
+    opacity: 90%;
+    overflow: visible;
+}
+
+.cta-brochure-coolblue:hover {
+    background-color: #0e7490; /* Keep darker cyan on hover */
+}
+
+.cta-apointment-coolblue:hover span,
+.cta-brochure-coolblue:hover span {
+    display: inline-block !important;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
 @media (max-width: 768px) {
     .cta-fixed {
         position: fixed;

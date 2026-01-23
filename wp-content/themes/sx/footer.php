@@ -1,7 +1,7 @@
 <!-- <div class="cta-fixed flex lg:hidden">
     <div class="cta-apointment" style="min-width:50px">
         <a href="/where-to-buy">
-            <img src="/icons/where_to_buy.svg"> 
+            <img src="/icons/where_to_buy.svg">
         </a>
         <a href="/where-to-buy">
             <span>Where To Buy</span>
@@ -9,7 +9,7 @@
     </div>
     <div class="cta-brochure">
         <a href="/contact-us/">
-            <img src="/icons/contact_us.svg"> 
+            <img src="/icons/contact_us.svg">
         </a>
         <a href="/contact-us/">
             <span>Contact Us</span>
@@ -17,15 +17,43 @@
     </div>
 </div> -->
 
+<?php
+// Detect Coolright mode for footer
+$is_coolright_footer = false;
+if (function_exists('get_field')) {
+    $is_coolright_footer = get_field('is_coolright_page');
+}
+
+// Check if current page/product is in Fans or Portable AC Units categories
+if (!$is_coolright_footer && (is_singular('products') || is_tax('product_category'))) {
+    if (is_singular('products')) {
+        $product_categories = get_the_terms(get_the_ID(), 'product_category');
+    } else {
+        $current_term = get_queried_object();
+        $product_categories = $current_term ? [$current_term] : [];
+    }
+
+    if ($product_categories && !is_wp_error($product_categories)) {
+        foreach ($product_categories as $category) {
+            if (in_array($category->slug, ['fans', 'portable-ac-units']) ||
+                in_array(strtolower($category->name), ['fans', 'portable ac units'])) {
+                $is_coolright_footer = true;
+                break;
+            }
+        }
+    }
+}
+?>
+
 <div class="cta-fixed hidden lg:flex">
-    <a href="/where-to-buy" class="cta-apointment">
+    <a href="/where-to-buy" class="<?php echo $is_coolright_footer ? 'cta-apointment-coolblue' : 'cta-apointment'; ?>">
         <img src="/icons/new-right-1.svg" alt="Where to Buy">
         <span style="font-size:12px; color:#fff">WHERE TO BUY</span>
     </a>
 </div>
 
 <div class="cta-fixed mt-16 hidden lg:flex">
-    <a href="/contact-us/" class="cta-brochure">
+    <a href="/contact-us/" class="<?php echo $is_coolright_footer ? 'cta-brochure-coolblue' : 'cta-brochure'; ?>">
         <img src="/icons/new-right-2.svg" alt="Contact Us">
         <span style="font-size:12px; color:#fff">CONTACT US</span>
     </a>
@@ -33,7 +61,7 @@
 
 </main>
 
-    <div class="print:hidden pt-16 pb-16 bg-primary overflow-hidden px-6 lg:px-10">
+    <div class="print:hidden pt-16 pb-16 <?php echo $is_coolright_footer ? 'bg-coolblue' : 'bg-primary'; ?> overflow-hidden px-6 lg:px-10">
         <div class="max-w-7xl mx-auto lg:flex justify-between px-6 lg:px-0">
             <div class="w-[200px] xl:w-[300px] max-w-[400px]">
                 <?php 
