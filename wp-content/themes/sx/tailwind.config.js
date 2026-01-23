@@ -24,6 +24,11 @@ module.exports = {
           light: '#FDFCFA',
           dark: '#E8E3DC',
         },
+        coolblue: {
+          DEFAULT: '#0891b2', // Cool blue for Coolright mode (cyan-600)
+          light: '#06b6d4', // Lighter cyan
+          dark: '#0e7490', // Darker cyan
+        },
       },
       // Add container query support
       containerQuery: {

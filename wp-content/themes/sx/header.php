@@ -146,7 +146,7 @@
         if ($has_dynamic_hero) {
             $header_classes .= ' header-transparent';
         } else {
-            $header_classes .= ' bg-[#0891b2]'; // Cool blue color (cyan-600)
+            $header_classes .= ' bg-coolblue';
         }
     } else {
         if ($has_dynamic_hero) {
@@ -274,7 +274,7 @@
         <!-- Mobile Menu -->
         <div x-show="mobileMenuOpen"
              x-cloak
-             class="fixed inset-0 z-[9999] overflow-y-auto <?php echo $is_coolright ? 'bg-[#0891b2]' : 'bg-primary'; ?> pb-6 lg:hidden"
+             class="fixed inset-0 z-[9999] overflow-y-auto <?php echo $is_coolright ? 'bg-coolblue' : 'bg-primary'; ?> pb-6 lg:hidden"
              x-transition:enter="transition ease-out duration-300"
              x-transition:enter-start="opacity-0"
              x-transition:enter-end="opacity-100"

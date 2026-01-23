@@ -593,8 +593,3 @@
 .coolright-header svg {
     color: inherit;
 }
-
-/* Mobile menu for coolright */
-.coolright-header + * .bg-\[#0891b2\] {
-    background-color: #0891b2;
-}
