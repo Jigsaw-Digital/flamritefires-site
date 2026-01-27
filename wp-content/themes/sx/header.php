@@ -70,7 +70,7 @@
     $has_dynamic_hero = false;
     $disable_transparent_header = false;
 
-    if (has_blocks($post->post_content)) {
+    if ($post && has_blocks($post->post_content)) {
         $blocks = parse_blocks($post->post_content);
         foreach ($blocks as $block) {
             if (in_array($block['blockName'], ['acf/dynamic-hero', 'acf/layout-hero', 'acf/layout-video-hero'])) {
