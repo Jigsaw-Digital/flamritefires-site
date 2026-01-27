@@ -62,16 +62,7 @@
 
     <?php wp_head(); ?>
 </head>
-<body <?php
-    if ($has_dynamic_hero) {
-        body_class('has-transparent-header');
-    } else {
-        body_class();
-    }
-?> x-data="{ mobileMenuOpen: false, subMenu: {}, megaMenuOpen: false, searchOpen: false }" style="background-color: #333;">
-    <?php wp_body_open(); ?>
-    
-    <?php
+<?php
     // Get hero block data to determine header style
     global $post;
     $hero_block = null;
@@ -98,6 +89,17 @@
 
     // Only enable transparent header if dynamic hero exists AND it's not disabled
     $has_dynamic_hero = $has_dynamic_hero && !$disable_transparent_header;
+?>
+<body <?php
+    if ($has_dynamic_hero) {
+        body_class('has-transparent-header');
+    } else {
+        body_class();
+    }
+?> x-data="{ mobileMenuOpen: false, subMenu: {}, megaMenuOpen: false, searchOpen: false }" style="background-color: #333;">
+    <?php wp_body_open(); ?>
+
+    <?php
 
     // Detect Coolright mode
     $is_coolright = false;
